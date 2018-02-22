@@ -57,3 +57,13 @@ typings/
 # dotenv environment variables file
 .env
 
+# IDE
+.idea
+.idea/
+
+# Pug templates result
+*.pug.js
+
+# output
+/static/output
+/static/output/

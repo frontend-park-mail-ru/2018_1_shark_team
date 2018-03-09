@@ -18,9 +18,9 @@ export default class Router {
     }
 
     hidePages() {
-        for(let i = 0; i < this.listOfPages.length; i++) {
-            this.listOfPages[i].page.hidden = true;
-        }
+        this.listOfPages.forEach((element) => {
+            element.page.hidden = true;
+        });
     }
 
     showPage() {
@@ -28,11 +28,16 @@ export default class Router {
 
         const url = window.location.pathname;
 
-        for(let i = 0; i < this.listOfPages.length; i++) {
-            if(url === this.listOfPages[i].url) {
-                this.listOfPages[i].page.hidden = false;
-                return;
+        let flag = true;
+        this.listOfPages.forEach((element) => {
+            if(url === element.url && flag === true) {
+                element.page.hidden = false;
+                flag = false;
             }
+        });
+
+        if(flag === false) {
+            return;
         }
 
         this.listOfPages[0].page.hidden = false;

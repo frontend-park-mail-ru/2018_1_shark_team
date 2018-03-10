@@ -12,6 +12,9 @@ import "../views/main-menu-page/main-menu-page.scss";
 import AboutAuthorsPage from "../views/about-authors-page/AboutAuthorsPage";
 import "../views/about-authors-page/about-authors-page.scss";
 
+import GameRulesPage from "../views/game-rules-page/GameRulesPage";
+import "../views/game-rules-page/game-rules-page.scss";
+
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
@@ -30,6 +33,7 @@ class Start {
         this.signInPage = new SignUpPage();
         this.mainMenuPage = new MainMenuPage();
         this.aboutAuthorsPage = new AboutAuthorsPage();
+        this.gameRulesPage = new GameRulesPage();
     }
 
     createAndInitElementsBase() {
@@ -52,6 +56,7 @@ class Start {
         this.router.addPage("/log-in", document.querySelector(".log-in-page"));
         this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
         this.router.addPage("/about-authors", document.querySelector(".about-authors-page"));
+        this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -64,6 +69,7 @@ class Start {
         SignUpPage.addEventsToElements(this.router, this.elementsBase);
         MainMenuPage.addEventsToElements(this.router, this.elementsBase);
         AboutAuthorsPage.addEventsToElements(this.router, this.elementsBase);
+        GameRulesPage.addEventsToElements(this.router, this.elementsBase);
     }
 
     createAndInitFieldsCleaner() {
@@ -83,5 +89,6 @@ class Start {
 }
 
 window.addEventListener("load", () => {
+    console.log("window load complete");
     new Start();
 });

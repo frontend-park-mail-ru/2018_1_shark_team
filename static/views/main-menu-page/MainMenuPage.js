@@ -20,5 +20,9 @@ export default class MainMenuPage {
         document.querySelector(".form__about-authors-button").addEventListener("click", () => {
             router.moveToPage("/about-authors");
         });
+
+        document.querySelector(".form__game-rules-button").addEventListener("click", () => {
+            router.moveToPage("/game-rules");
+        });
     }
 }

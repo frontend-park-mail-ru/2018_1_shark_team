@@ -33,6 +33,10 @@ class Start {
         this.router.addPage("/log-in", document.querySelector(".log-in-page"));
         this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
         this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
+        this.router.setAllowedForNotLoggedUsersPages([
+            "/log-in",
+            "/sign-up",
+        ]);
         this.router.showPage();
     }
 

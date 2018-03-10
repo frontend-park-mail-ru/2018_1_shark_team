@@ -1,5 +1,7 @@
 "use strict";
 
+import AjaxWorker from "./AjaxWorker";
+
 export default class Router {
     constructor() {
         this.listOfPages = [];
@@ -30,11 +32,8 @@ export default class Router {
         });
     }
 
-    showPage() {
-        this.hidePages();
-
+    printPage() {
         const url = window.location.pathname;
-
         let flag = true;
         this.listOfPages.forEach((element) => {
             if(url === element.url && flag === true) {
@@ -42,13 +41,36 @@ export default class Router {
                 flag = false;
             }
         });
-
         if(flag === false) {
             return;
         }
-
         this.listOfPages[0].page.hidden = false;
         history.pushState({}, "", this.listOfPages[0].url);
+    }
+
+    setAllowedForNotLoggedUsersPages(arrPagesForNotLoggedUsers) {
+        this.arrPagesForNotLoggedUsers = arrPagesForNotLoggedUsers;
+    }
+
+    showPage() {
+        this.hidePages();
+
+        if(this.arrPagesForNotLoggedUsers.indexOf(window.location.pathname) !== -1) {
+            this.printPage();
+            return;
+        }
+
+        new AjaxWorker("loginbycookies", {}, (resultString) => {
+           const result = JSON.parse(resultString).message;
+
+           if(result === "YES") {
+               this.printPage();
+               return;
+           }
+           if(result === "NO") {
+                window.location = "/log-in";
+           }
+        }).sendPost();
     }
 
     moveToPage(url) {

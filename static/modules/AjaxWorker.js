@@ -14,6 +14,7 @@ export default class AjaxWorker {
     sendPost() {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", this.url, true);
+	    xhr.withCredentials = true;
         xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
         xhr.send(JSON.stringify(this.body));
         xhr.onreadystatechange = () => {
@@ -25,3 +26,4 @@ export default class AjaxWorker {
         }
     }
 }
+

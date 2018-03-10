@@ -16,8 +16,8 @@ import FieldsCleaner from "./FieldsCleaner";
 class Start {
     constructor() {
         this.createPages();
-        this.createAndInitRouter();
         this.createAndInitElementsBase();
+        this.createAndInitRouter();
         this.addEventsToElements();
         this.createAndInitFieldsCleaner();
     }
@@ -26,18 +26,6 @@ class Start {
         this.logInPage = new LogInPage();
         this.signInPage = new SignUpPage();
         this.mainMenuPage = new MainMenuPage();
-    }
-
-    createAndInitRouter() {
-        this.router = new Router();
-        this.router.addPage("/log-in", document.querySelector(".log-in-page"));
-        this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
-        this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
-        this.router.setAllowedForNotLoggedUsersPages([
-            "/log-in",
-            "/sign-up",
-        ]);
-        this.router.showPage();
     }
 
     createAndInitElementsBase() {
@@ -50,11 +38,26 @@ class Start {
         this.elementsBase.addElement("logInLoginField", document.querySelector(".log-in-page__form .form__login-input-field"));
         this.elementsBase.addElement("logInPasswordField", document.querySelector(".log-in-page__form .form__password-input-field"));
         this.elementsBase.addElement("logInMessageBox", document.querySelector(".log-in-page__message-box"));
+
+        this.elementsBase.addElement("mainMenuLoginLabel", document.querySelector(".main-menu-page__label"));
+    }
+
+    createAndInitRouter() {
+        this.router = new Router(this.elementsBase);
+        this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
+        this.router.addPage("/log-in", document.querySelector(".log-in-page"));
+        this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
+        this.router.setAllowedForNotLoggedUsersPages([
+            "/log-in",
+            "/sign-up",
+        ]);
+        this.router.showPage();
     }
 
     addEventsToElements() {
         LogInPage.addEventsToElements(this.router, this.elementsBase);
         SignUpPage.addEventsToElements(this.router, this.elementsBase);
+        MainMenuPage.addEventsToElements(this.router, this.elementsBase);
     }
 
     createAndInitFieldsCleaner() {

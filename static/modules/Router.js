@@ -3,7 +3,9 @@
 import AjaxWorker from "./AjaxWorker";
 
 export default class Router {
-    constructor() {
+    constructor(elementsBase) {
+        this.elementsBase = elementsBase;
+
         this.listOfPages = [];
 
         window.addEventListener("popstate", () => {
@@ -61,15 +63,19 @@ export default class Router {
         }
 
         new AjaxWorker("loginbycookies", {}, (resultString) => {
-           const result = JSON.parse(resultString).message;
+            const answerObj = JSON.parse(resultString);
+            const result = answerObj.message;
+            const login = answerObj.login;
 
-           if(result === "YES") {
-               this.printPage();
-               return;
-           }
-           if(result === "NO") {
-                window.location = "/log-in";
-           }
+            if(result === "YES") {
+                localStorage.setItem("loginValue", login);
+                this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = "User: " + login;
+                this.printPage();
+                return;
+            }
+            if(result === "NO") {
+                 window.location = "/log-in";
+            }
         }).sendPost();
     }
 

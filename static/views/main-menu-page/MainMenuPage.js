@@ -24,5 +24,9 @@ export default class MainMenuPage {
         document.querySelector(".form__game-rules-button").addEventListener("click", () => {
             router.moveToPage("/game-rules");
         });
+
+        document.querySelector(".form__my-page-button").addEventListener("click", () => {
+            router.moveToPage("/my-page");
+        });
     }
 }

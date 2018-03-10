@@ -70,6 +70,7 @@ export default class Router {
             if(result === "YES") {
                 localStorage.setItem("loginValue", login);
                 this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = "User: " + login;
+                this.elementsBase.getElement("myPageLoginLabel").innerHTML = "User: " + login;
                 this.printPage();
                 return;
             }

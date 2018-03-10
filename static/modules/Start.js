@@ -11,6 +11,7 @@ import "../views/main-menu-page/main-menu-page.scss";
 
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
+import FieldsCleaner from "./FieldsCleaner";
 
 class Start {
     constructor() {
@@ -18,6 +19,7 @@ class Start {
         this.createAndInitRouter();
         this.createAndInitElementsBase();
         this.addEventsToElements();
+        this.createAndInitFieldsCleaner();
     }
 
     createPages() {
@@ -49,6 +51,21 @@ class Start {
     addEventsToElements() {
         LogInPage.addEventsToElements(this.router, this.elementsBase);
         SignUpPage.addEventsToElements(this.router, this.elementsBase);
+    }
+
+    createAndInitFieldsCleaner() {
+        this.fieldsCleaner = new FieldsCleaner();
+        const dict = this.elementsBase;
+
+        this.fieldsCleaner.addField(dict.getElement("signUpLoginField"));
+        this.fieldsCleaner.addField(dict.getElement("signUpPasswordField"));
+        this.fieldsCleaner.addField(dict.getElement("signUpMessageBox"));
+        this.fieldsCleaner.addField(dict.getElement("logInLoginField"));
+        this.fieldsCleaner.addField(dict.getElement("logInPasswordField"));
+        this.fieldsCleaner.addField(dict.getElement("logInMessageBox"));
+
+        this.fieldsCleaner.clearFields();
+        this.router.initFieldsCleaner(this.fieldsCleaner);
     }
 }
 

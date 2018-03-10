@@ -9,6 +9,9 @@ export default class Router {
         });
     }
 
+    initFieldsCleaner(fieldsCleaner) {
+        this.fieldsCleaner = fieldsCleaner;
+    }
 
     addPage(url, page) {
         this.listOfPages.push({
@@ -18,6 +21,10 @@ export default class Router {
     }
 
     hidePages() {
+        if(this.fieldsCleaner !== undefined && this.fieldsCleaner !== null) {
+            this.fieldsCleaner.clearFields();
+        }
+
         this.listOfPages.forEach((element) => {
             element.page.hidden = true;
         });

@@ -9,6 +9,9 @@ import "../views/sign-up-page/sign-up-page.scss";
 import MainMenuPage from "../views/main-menu-page/MainMenuPage";
 import "../views/main-menu-page/main-menu-page.scss";
 
+import AboutAuthorsPage from "../views/about-authors-page/AboutAuthorsPage";
+import "../views/about-authors-page/about-authors-page.scss";
+
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
@@ -26,6 +29,7 @@ class Start {
         this.logInPage = new LogInPage();
         this.signInPage = new SignUpPage();
         this.mainMenuPage = new MainMenuPage();
+        this.aboutAuthorsPage = new AboutAuthorsPage();
     }
 
     createAndInitElementsBase() {
@@ -47,6 +51,7 @@ class Start {
         this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
         this.router.addPage("/log-in", document.querySelector(".log-in-page"));
         this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
+        this.router.addPage("/about-authors", document.querySelector(".about-authors-page"));
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -58,6 +63,7 @@ class Start {
         LogInPage.addEventsToElements(this.router, this.elementsBase);
         SignUpPage.addEventsToElements(this.router, this.elementsBase);
         MainMenuPage.addEventsToElements(this.router, this.elementsBase);
+        AboutAuthorsPage.addEventsToElements(this.router, this.elementsBase);
     }
 
     createAndInitFieldsCleaner() {

@@ -16,5 +16,9 @@ export default class MainMenuPage {
         document.querySelector(".form__exit-button").addEventListener("click", () => {
             new ExitManager(["BE79DSEA", "F1IIMEH4SEA", "loginOfUser"]).exitFromSystem();
         });
+
+        document.querySelector(".form__about-authors-button").addEventListener("click", () => {
+            router.moveToPage("/about-authors");
+        });
     }
 }

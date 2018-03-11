@@ -2,6 +2,8 @@
 
 import AjaxWorker from "./AjaxWorker";
 
+let stopRightMoving = false;
+
 export default class LiderBoardLoader {
     constructor(elementsBase) {
         this.elementsBase = elementsBase;
@@ -11,16 +13,19 @@ export default class LiderBoardLoader {
     static initLiderBoardParams() {
         localStorage.setItem("startNumber", "0");
         localStorage.setItem("deltaNumber", "3");
+        stopRightMoving = false;
     }
 
     static moveRight() {
-        const startPosParam = localStorage.getItem("startNumber");
-        const numberElementsParam = localStorage.getItem("deltaNumber");
+        if(stopRightMoving === false) {
+            const startPosParam = localStorage.getItem("startNumber");
+            const numberElementsParam = localStorage.getItem("deltaNumber");
 
-        let startPos = parseInt(startPosParam);
-        startPos += parseInt(numberElementsParam);
+            let startPos = parseInt(startPosParam);
+            startPos += parseInt(numberElementsParam);
 
-        localStorage.setItem("startNumber", startPos.toString());
+            localStorage.setItem("startNumber", startPos.toString());
+        }
     }
 
     static moveLeft() {
@@ -33,6 +38,8 @@ export default class LiderBoardLoader {
         if(startPos < 0) {
             startPos = 0;
         }
+
+        stopRightMoving = false;
 
         localStorage.setItem("startNumber", startPos.toString());
     }
@@ -69,6 +76,7 @@ export default class LiderBoardLoader {
                 const text = document.createTextNode(content);
                 h3.appendChild(text);
                 this.elementsBase.getElement("lidersBox").appendChild(h3);
+                stopRightMoving = true;
             }
         }).sendPost();
     }

@@ -20,6 +20,7 @@ export default class MyPage {
         document.querySelector(".form__save-changes-button").addEventListener("click", () => {
             const login = localStorage.getItem("loginValue");
             const image = elementsBase.getElement("userAvatarImage").src;
+
             const promise = new AjaxWorker("saveavatar", {
                 login: login,
                 image: image

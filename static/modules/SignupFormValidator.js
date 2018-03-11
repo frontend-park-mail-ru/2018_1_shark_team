@@ -1,7 +1,7 @@
 "use strict";
 
-import StringContentManager from "./StringContentManager";
 import AjaxWorker from "./AjaxWorker";
+import isStringNormal from "./isStringNormal";
 
 /**
  * объект с константами для вывода сообщений на экран
@@ -46,7 +46,7 @@ export default class SignupFormValidator {
             messageArr.push(message_signup_page.MESSAGE_LOGIN_EMPTY);
         }
 
-        if(new StringContentManager(login).normalString() === false) {
+        if(isStringNormal(login) === false) {
             messageArr.push(message_signup_page.MESSAGE_LOGIN_BAD_CHARS);
         }
 
@@ -54,7 +54,7 @@ export default class SignupFormValidator {
             messageArr.push(message_signup_page.MESSAGE_PASSWORD_EMPTY);
         }
 
-        if(new StringContentManager(password).normalString() === false) {
+        if(isStringNormal(password) === false) {
             messageArr.push(message_signup_page.MESSAGE_PASSWORD_BAD_CHARS);
         }
 

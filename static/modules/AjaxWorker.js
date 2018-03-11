@@ -36,6 +36,7 @@ export default class AjaxWorker {
         });
     }
 
+    // send post query to server
     sendPost() {
         this.getPromise().then(
             (xhrResult) => {

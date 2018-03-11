@@ -1,7 +1,5 @@
 # 2018_1_shark_team
 
-<<<<<<< HEAD
-=======
 ### Heroku: http://funny-race-client.herokuapp.com/
 
 ### Команда
@@ -19,5 +17,5 @@
 | Запросить аватарку | POST,<br> `/getavatar` | {login: «George»} | Возвращается строка  |  IMAGE_NOT_SET — пользователь не загружал свой аватар,<br> image-data — содержимое аватарки |
 | Получить лидеров | POST,<br> `/getliders` | { startPos: 6,<br> numberElements: 3 } | [ { login: «Maxim», score: 45 } ] | Возвращается массив объектов с полями:<br> логин и максимальный балл |
 | Разлогиниться | POST,<br> `/logout` | { } | DELETE_COOKIES_OK | Удаление всех печенек пользователя |
- 
->>>>>>> 3a0bc4c78e0e1b768831a80980840afededbe4c2
+
+

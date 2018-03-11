@@ -59,12 +59,11 @@ export default class LoginFormValidator {
             messageArr.push(message_login_page.MESSAGE_PASSWORD_BAD_CHARS);
         }
 
-        for(let i = 0; i < messageArr.length; i++) {
-            const message = messageArr[i];
+        messageArr.forEach((message) => {
             const p = document.createElement("p");
             p.innerHTML = message;
             messageBox.appendChild(p);
-        }
+        });
 
         if(messageArr.length === 0) {
             const promise = new AjaxWorker("login/", {

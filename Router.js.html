@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Router.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Router.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+import AjaxWorker from "./AjaxWorker";
+import ReloadSpaPageManager from "./ReloadSpaPageManager";
+
+/**
+ * класс для реализации переключения страниц и роутинга
+ */
+export default class Router {
+    /**
+     * конструктор для инициализации словаря с DOM - объектами, массива страниц и добавления события popState
+     * @param elementsBase
+     */
+    constructor(elementsBase) {
+        this.elementsBase = elementsBase;
+
+        this.listOfPages = [];
+
+        window.addEventListener("popstate", () => {
+            this.showPage();
+        });
+    }
+
+    /**
+     * метод для инициализации объекта, отвечающего за очистку полей ввода и боксов
+     * @param fieldsCleaner
+     */
+    initFieldsCleaner(fieldsCleaner) {
+        this.fieldsCleaner = fieldsCleaner;
+    }
+
+    /**
+     * мето для добавления страницы в массив страниц
+     * @param url - часть адресной строки, соответствующая странице
+     * @param page - DOM объект страница
+     */
+    addPage(url, page) {
+        this.listOfPages.push({
+            url: url,
+            page: page
+        });
+    }
+
+    /**
+     * метод для скрытия всех страниц и очистки полей ввода и вывода
+     */
+    hidePages() {
+        if(this.fieldsCleaner !== undefined &amp;&amp; this.fieldsCleaner !== null) {
+            this.fieldsCleaner.clearFields();
+        }
+
+        this.listOfPages.forEach((element) => {
+            element.page.hidden = true;
+        });
+    }
+
+    /**
+     * метод для отрисовки определённой страницы
+     */
+    printPage() {
+        const url = window.location.pathname;
+        let flag = true;
+        this.listOfPages.forEach((element) => {
+            if(url === element.url &amp;&amp; flag === true) {
+                element.page.hidden = false;
+                flag = false;
+            }
+        });
+        if(flag === false) {
+            return;
+        }
+        this.listOfPages[0].page.hidden = false;
+        history.pushState({}, "", this.listOfPages[0].url);
+    }
+
+    /**
+     * метод для задания страниц, на которых может находиться неавторизованный пользователь
+     * @param arrPagesForNotLoggedUsers - массив страниц, на которых может находиться навторизованный пользователь
+     */
+    setAllowedForNotLoggedUsersPages(arrPagesForNotLoggedUsers) {
+        this.arrPagesForNotLoggedUsers = arrPagesForNotLoggedUsers;
+    }
+
+    /**
+     * метод для контроля возможности перехода на страницу и перехода на страницу в случае прохождения контроля
+     */
+    showPage() {
+        this.hidePages();
+
+        if(this.arrPagesForNotLoggedUsers.indexOf(window.location.pathname) !== -1) {
+            this.printPage();
+            return;
+        }
+
+        new AjaxWorker("loginbycookies", {}, (resultString) => {
+            const answerObj = JSON.parse(resultString);
+            const result = answerObj.message;
+            const login = answerObj.login;
+
+            if(result === "YES") {
+                new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
+                this.printPage();
+                return;
+            }
+
+            if(result === "NO") {
+                window.location = "/log-in";
+            }
+        }).sendPost();
+    }
+
+    /**
+     * метод для изменения содержимого адресной строки и последующего перехода
+     * @param url
+     */
+    moveToPage(url) {
+        history.pushState({}, "", url);
+        this.showPage();
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ElementsBase.html">ElementsBase</a></li><li><a href="ExitManager.html">ExitManager</a></li><li><a href="FieldsCleaner.html">FieldsCleaner</a></li><li><a href="LiderBoardLoader.html">LiderBoardLoader</a></li><li><a href="LoginFormValidator.html">LoginFormValidator</a></li><li><a href="MessagePrinter.html">MessagePrinter</a></li><li><a href="ReloadSpaPageManager.html">ReloadSpaPageManager</a></li><li><a href="Router.html">Router</a></li><li><a href="SignupFormValidator.html">SignupFormValidator</a></li><li><a href="Start.html">Start</a></li><li><a href="StringContentManager.html">StringContentManager</a></li><li><a href="UserAvatarLoader.html">UserAvatarLoader</a></li></ul><h3>Global</h3><ul><li><a href="global.html#message_login_page">message_login_page</a></li><li><a href="global.html#message_signup_page">message_signup_page</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Mar 11 2018 21:48:11 GMT+0300 (MSK)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

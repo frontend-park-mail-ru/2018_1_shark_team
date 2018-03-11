@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: LiderBoardLoader.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: LiderBoardLoader.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+import AjaxWorker from "./AjaxWorker";
+import MessagePrinter from "./MessagePrinter";
+
+let stopRightMoving = false;
+
+/**
+ * класс для работы с таблицей лидеров
+ */
+export default class LiderBoardLoader {
+    /**
+     * конструктор, в котором идёт инициализация словаря с DOM объектами и очистка бокса с лидерами
+     * @param elementsBase
+     */
+    constructor(elementsBase) {
+        this.elementsBase = elementsBase;
+        this.elementsBase.getElement("lidersBox").innerHTML = "";
+    }
+
+    /**
+     * метод для инициализации номера лидера, с которого начинается показ
+     */
+    static initLiderBoardParams() {
+        localStorage.setItem("startNumber", "0");
+        localStorage.setItem("deltaNumber", "3");
+        stopRightMoving = false;
+    }
+
+    /**
+     * метод для просмотра следующих лидеров в таблице
+     */
+    static moveRight() {
+        if(stopRightMoving === false) {
+            const startPosParam = localStorage.getItem("startNumber");
+            const numberElementsParam = localStorage.getItem("deltaNumber");
+
+            let startPos = parseInt(startPosParam);
+            startPos += parseInt(numberElementsParam);
+
+            localStorage.setItem("startNumber", startPos.toString());
+        }
+    }
+
+    /**
+     * метод для просмотра предыдущих лидеров в таблице
+     */
+    static moveLeft() {
+        const startPosParam = localStorage.getItem("startNumber");
+        const numberElementsParam = localStorage.getItem("deltaNumber");
+
+        let startPos = parseInt(startPosParam);
+        startPos -= parseInt(numberElementsParam);
+
+        if(startPos &lt; 0) {
+            startPos = 0;
+        }
+
+        stopRightMoving = false;
+
+        localStorage.setItem("startNumber", startPos.toString());
+    }
+
+    /**
+     * метод для отправки запроса на сервер, получения списка лидеров и вывода их на экран
+     */
+    loadLiders() {
+        const startPosParam = localStorage.getItem("startNumber");
+        const numberElementsParam = localStorage.getItem("deltaNumber");
+        MessagePrinter.write("Liders paginate params: " + startPosParam + " " + numberElementsParam);
+
+        const startPos = parseInt(startPosParam);
+        const numberElements = parseInt(numberElementsParam);
+
+        new AjaxWorker("getliders", {
+            startPos: startPos,
+            numberElements: numberElements
+        }, (result) => {
+            const arr = JSON.parse(result);
+            this.elementsBase.getElement("lidersBox").innerHTML = "";
+
+            if(arr.length > 0) {
+                arr.forEach((element) => {
+                    const content = element.login + " : " + element.score;
+                    const div = document.createElement("div");
+                    const text = document.createTextNode(content);
+                    div.appendChild(text);
+                    this.elementsBase.getElement("lidersBox").appendChild(div);
+                });
+            } else {
+                const content = "Список окончен";
+                const h3 = document.createElement("h3");
+                const text = document.createTextNode(content);
+                h3.appendChild(text);
+                this.elementsBase.getElement("lidersBox").appendChild(h3);
+                stopRightMoving = true;
+            }
+        }).sendPost();
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ElementsBase.html">ElementsBase</a></li><li><a href="ExitManager.html">ExitManager</a></li><li><a href="FieldsCleaner.html">FieldsCleaner</a></li><li><a href="LiderBoardLoader.html">LiderBoardLoader</a></li><li><a href="LoginFormValidator.html">LoginFormValidator</a></li><li><a href="MessagePrinter.html">MessagePrinter</a></li><li><a href="ReloadSpaPageManager.html">ReloadSpaPageManager</a></li><li><a href="Router.html">Router</a></li><li><a href="SignupFormValidator.html">SignupFormValidator</a></li><li><a href="Start.html">Start</a></li><li><a href="StringContentManager.html">StringContentManager</a></li><li><a href="UserAvatarLoader.html">UserAvatarLoader</a></li></ul><h3>Global</h3><ul><li><a href="global.html#message_login_page">message_login_page</a></li><li><a href="global.html#message_signup_page">message_signup_page</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Mar 11 2018 21:48:11 GMT+0300 (MSK)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

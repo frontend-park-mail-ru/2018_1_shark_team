@@ -8,7 +8,7 @@ export default class AjaxWorker {
     }
 
     static getBasicUrl() {
-        return "http://localhost:5005/";
+        return "https://funny-race-server.herokuapp.com/";
     }
 
     sendPost() {

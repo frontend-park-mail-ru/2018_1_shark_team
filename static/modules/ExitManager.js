@@ -1,5 +1,7 @@
 "use strict";
 
+import AjaxWorker from "./AjaxWorker";
+
 export default class ExitManager {
     constructor(cookieNamesArr) {
         this.cookieNamesArr = cookieNamesArr;
@@ -22,6 +24,10 @@ export default class ExitManager {
     exitFromSystem() {
         this.dropAllCookies();
         localStorage.clear();
-        ExitManager.reloadWindow();
+
+        new AjaxWorker("logout", {}, (result) => {
+            console.log("Log out complete");
+            ExitManager.reloadWindow();
+        }).sendPost();
     }
 }

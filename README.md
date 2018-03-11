@@ -9,9 +9,6 @@ Backend API: https://github.com/3kybika/shark_team-02-2018/blob/master/README.md
 * Минченко Илья
 * Алёхин Влад
 
-# API
-#
-
 ### API
 | Действие | Тип запроса, URL | Тело запроса | Тело ответа | Пояснения |
 | --- | --- | ------ | --- | --- |

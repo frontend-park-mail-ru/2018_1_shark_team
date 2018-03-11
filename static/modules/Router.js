@@ -92,7 +92,8 @@ export default class Router {
             return;
         }
 
-        new AjaxWorker("loginbycookies", {}, (resultString) => {
+        const promise = new AjaxWorker("loginbycookies", {}).sendPost();
+        promise.then((resultString) => {
             const answerObj = JSON.parse(resultString);
             const result = answerObj.message;
             const login = answerObj.login;
@@ -106,7 +107,7 @@ export default class Router {
             if(result === "NO") {
                 window.location = "/log-in";
             }
-        }).sendPost();
+        });
     }
 
     /**

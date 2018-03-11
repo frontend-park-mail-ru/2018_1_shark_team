@@ -23,14 +23,16 @@ export default class UserAvatarLoader {
         const elementsBase = this.elementsBase;
         const login = this.login;
 
-        new AjaxWorker("getavatar", {
+        const promise = new AjaxWorker("getavatar", {
             login: login
-        }, (image) => {
+        }).sendPost();
+
+        promise.then((image) => {
             if(image === "IMAGE_NOT_SET") {
                 elementsBase.getElement("userAvatarImage").src = "./images/userImage.jpg";
             } else {
                 elementsBase.getElement("userAvatarImage").src = image;
             }
-        }).sendPost();
+        });
     }
 }

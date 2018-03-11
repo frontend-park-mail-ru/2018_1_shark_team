@@ -67,10 +67,12 @@ export default class LoginFormValidator {
         }
 
         if(messageArr.length === 0) {
-            new AjaxWorker("login/", {
+            const promise = new AjaxWorker("login/", {
                 loginField: login,
                 passwordField: password
-            }, (result) => {
+            }).sendPost();
+
+            promise.then((result) => {
                 const message = JSON.parse(result).message;
                 if(message === "YES") {
                     router.moveToPage("/main-menu");
@@ -80,7 +82,7 @@ export default class LoginFormValidator {
                     h3.innerHTML = "Неверный логин или пароль.";
                     messageBox.appendChild(h3);
                 }
-            }).sendPost();
+            });
         }
     }
 }

@@ -19,10 +19,11 @@ export default class ExitManager {
      */
     exitFromSystem() {
         localStorage.clear();
-        new AjaxWorker("logout", {}, (result) => {
+        const promise = new AjaxWorker("logout", {}).sendPost();
+        promise.then((result) => {
             MessagePrinter.write(result);
             MessagePrinter.write("Log out complete");
             ExitManager.reloadWindow();
-        }).sendPost();
+        });
     }
 }

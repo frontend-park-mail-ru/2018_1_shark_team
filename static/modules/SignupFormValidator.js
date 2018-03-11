@@ -66,10 +66,12 @@ export default class SignupFormValidator {
         }
 
         if(messageArr.length === 0) {
-            new AjaxWorker("signup/", {
+            const promise = new AjaxWorker("signup/", {
                 loginField: login,
                 passwordField: password
-            }, (result) => {
+            }).sendPost();
+
+            promise.then((result) => {
                 const message = JSON.parse(result).message;
                 if(message === "YES") {
                     const h3 = document.createElement("h3");
@@ -81,7 +83,7 @@ export default class SignupFormValidator {
                     h3.innerHTML = "Пользователь с таким логином уже есть в БД.";
                     messageBox.appendChild(h3);
                 }
-            }).sendPost();
+            });
         }
     }
 }

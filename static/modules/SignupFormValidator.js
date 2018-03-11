@@ -3,6 +3,10 @@
 import StringContentManager from "./StringContentManager";
 import AjaxWorker from "./AjaxWorker";
 
+/**
+ * объект с константами для вывода сообщений на экран
+ * @type {{MESSAGE_LOGIN_EMPTY: string, MESSAGE_LOGIN_BAD_CHARS: string, MESSAGE_PASSWORD_EMPTY: string, MESSAGE_PASSWORD_BAD_CHARS: string}}
+ */
 const message_signup_page = {
     MESSAGE_LOGIN_EMPTY: "Поле ввода логина пусто.",
     MESSAGE_LOGIN_BAD_CHARS: "Поле ввода логина содержит запретные символы.",
@@ -10,12 +14,23 @@ const message_signup_page = {
     MESSAGE_PASSWORD_BAD_CHARS: "Поле ввода пароля содержит запретные символы."
 };
 
+/**
+ * класс для проверки валидности данных при регистрации
+ */
 export default class SignupFormValidator {
+    /**
+     * конструктор для инициализации переключателя страниц и словаря с DOM объектами
+     * @param router - переключаетель страниц
+     * @param elementsBase - словарь
+     */
     constructor(router, elementsBase) {
         this.router = router;
         this.elementsBase = elementsBase;
     }
 
+    /**
+     * метод для проверки валидности данных при регистрации и дальнейшей регистрации
+     */
     validateSignupForm() {
         const elementsBase = this.elementsBase;
 

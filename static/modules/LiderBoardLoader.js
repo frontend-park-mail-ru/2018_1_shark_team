@@ -5,18 +5,31 @@ import MessagePrinter from "./MessagePrinter";
 
 let stopRightMoving = false;
 
+/**
+ * класс для работы с таблицей лидеров
+ */
 export default class LiderBoardLoader {
+    /**
+     * конструктор, в котором идёт инициализация словаря с DOM объектами и очистка бокса с лидерами
+     * @param elementsBase
+     */
     constructor(elementsBase) {
         this.elementsBase = elementsBase;
         this.elementsBase.getElement("lidersBox").innerHTML = "";
     }
 
+    /**
+     * метод для инициализации номера лидера, с которого начинается показ
+     */
     static initLiderBoardParams() {
         localStorage.setItem("startNumber", "0");
         localStorage.setItem("deltaNumber", "3");
         stopRightMoving = false;
     }
 
+    /**
+     * метод для просмотра следующих лидеров в таблице
+     */
     static moveRight() {
         if(stopRightMoving === false) {
             const startPosParam = localStorage.getItem("startNumber");
@@ -29,6 +42,9 @@ export default class LiderBoardLoader {
         }
     }
 
+    /**
+     * метод для просмотра предыдущих лидеров в таблице
+     */
     static moveLeft() {
         const startPosParam = localStorage.getItem("startNumber");
         const numberElementsParam = localStorage.getItem("deltaNumber");
@@ -45,6 +61,9 @@ export default class LiderBoardLoader {
         localStorage.setItem("startNumber", startPos.toString());
     }
 
+    /**
+     * метод для отправки запроса на сервер, получения списка лидеров и вывода их на экран
+     */
     loadLiders() {
         const startPosParam = localStorage.getItem("startNumber");
         const numberElementsParam = localStorage.getItem("deltaNumber");

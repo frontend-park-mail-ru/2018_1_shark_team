@@ -3,7 +3,14 @@
 import AjaxWorker from "./AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
 
+/**
+ * класс для реализации переключения страниц и роутинга
+ */
 export default class Router {
+    /**
+     * конструктор для инициализации словаря с DOM - объектами, массива страниц и добавления события popState
+     * @param elementsBase
+     */
     constructor(elementsBase) {
         this.elementsBase = elementsBase;
 
@@ -14,10 +21,19 @@ export default class Router {
         });
     }
 
+    /**
+     * метод для инициализации объекта, отвечающего за очистку полей ввода и боксов
+     * @param fieldsCleaner
+     */
     initFieldsCleaner(fieldsCleaner) {
         this.fieldsCleaner = fieldsCleaner;
     }
 
+    /**
+     * мето для добавления страницы в массив страниц
+     * @param url - часть адресной строки, соответствующая странице
+     * @param page - DOM объект страница
+     */
     addPage(url, page) {
         this.listOfPages.push({
             url: url,
@@ -25,6 +41,9 @@ export default class Router {
         });
     }
 
+    /**
+     * метод для скрытия всех страниц и очистки полей ввода и вывода
+     */
     hidePages() {
         if(this.fieldsCleaner !== undefined && this.fieldsCleaner !== null) {
             this.fieldsCleaner.clearFields();
@@ -35,6 +54,9 @@ export default class Router {
         });
     }
 
+    /**
+     * метод для отрисовки определённой страницы
+     */
     printPage() {
         const url = window.location.pathname;
         let flag = true;
@@ -51,10 +73,17 @@ export default class Router {
         history.pushState({}, "", this.listOfPages[0].url);
     }
 
+    /**
+     * метод для задания страниц, на которых может находиться неавторизованный пользователь
+     * @param arrPagesForNotLoggedUsers - массив страниц, на которых может находиться навторизованный пользователь
+     */
     setAllowedForNotLoggedUsersPages(arrPagesForNotLoggedUsers) {
         this.arrPagesForNotLoggedUsers = arrPagesForNotLoggedUsers;
     }
 
+    /**
+     * метод для контроля возможности перехода на страницу и перехода на страницу в случае прохождения контроля
+     */
     showPage() {
         this.hidePages();
 
@@ -80,6 +109,10 @@ export default class Router {
         }).sendPost();
     }
 
+    /**
+     * метод для изменения содержимого адресной строки и последующего перехода
+     * @param url
+     */
     moveToPage(url) {
         history.pushState({}, "", url);
         this.showPage();

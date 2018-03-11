@@ -26,7 +26,13 @@ import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
 import MessagePrinter from "./MessagePrinter";
 
+/**
+ * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
+ */
 class Start {
+    /**
+     * конструктор для вызова методов данного класса
+     */
     constructor() {
         this.createPages();
         this.createAndInitElementsBase();
@@ -35,6 +41,9 @@ class Start {
         this.createAndInitFieldsCleaner();
     }
 
+    /**
+     * метод для создания страниц приложения
+     */
     createPages() {
         this.logInPage = new LogInPage();
         this.signInPage = new SignUpPage();
@@ -45,6 +54,9 @@ class Start {
         this.lidersPage = new LidersPage();
     }
 
+    /**
+     * метод для инициализации словаря с DOM объектами
+     */
     createAndInitElementsBase() {
         this.elementsBase = new ElementsBase();
 
@@ -67,6 +79,9 @@ class Start {
         this.elementsBase.addElement("lidersBox", document.querySelector(".liders-page__liders-list-box"));
     }
 
+    /**
+     * метод для инициализации роутера и добавления в него страниц
+     */
     createAndInitRouter() {
         this.router = new Router(this.elementsBase);
         this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
@@ -83,6 +98,9 @@ class Start {
         this.router.showPage();
     }
 
+    /**
+     * метод для добавления событий к элементам в каждой вьюхе
+     */
     addEventsToElements() {
         LogInPage.addEventsToElements(this.router, this.elementsBase);
         SignUpPage.addEventsToElements(this.router, this.elementsBase);
@@ -93,6 +111,9 @@ class Start {
         LidersPage.addEventsToElements(this.router, this.elementsBase);
     }
 
+    /**
+     * метод для инициализации объекта для чистки полей ввода и вывода, заполнение его значениями
+     */
     createAndInitFieldsCleaner() {
         this.fieldsCleaner = new FieldsCleaner();
         const dict = this.elementsBase;
@@ -110,6 +131,9 @@ class Start {
     }
 }
 
+/**
+ * при загрузке окна запускаем приложуху
+ */
 window.addEventListener("load", () => {
     MessagePrinter.write("window load complete");
     new Start();

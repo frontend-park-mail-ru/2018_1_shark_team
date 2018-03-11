@@ -3,11 +3,20 @@
 import AjaxWorker from "./AjaxWorker";
 import MessagePrinter from "./MessagePrinter";
 
+/**
+ * класс для реализации разлогинивания пользователя
+ */
 export default class ExitManager {
+    /**
+     * метод для перезагрузки окна
+     */
     static reloadWindow() {
         window.location = "/log-in";
     }
 
+    /**
+     * метод для выхода из системы
+     */
     exitFromSystem() {
         localStorage.clear();
         new AjaxWorker("logout", {}, (result) => {

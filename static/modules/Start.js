@@ -63,6 +63,7 @@ class Start {
         this.elementsBase.addElement("myPageMessageBox", document.querySelector(".my-page__message-box"));
 
         this.elementsBase.addElement("lidersPageLoginLabel", document.querySelector(".liders-page__login-label"));
+        this.elementsBase.addElement("lidersBox", document.querySelector(".liders-page__liders-list-box"));
     }
 
     createAndInitRouter() {

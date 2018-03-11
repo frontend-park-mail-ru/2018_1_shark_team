@@ -1,6 +1,7 @@
 "use strict";
 
 import template from "./liders-page.pug";
+import LiderBoardLoader from "../../modules/LiderBoardLoader";
 
 export default class LidersPage {
     constructor() {
@@ -16,8 +17,14 @@ export default class LidersPage {
             router.moveToPage("/main-menu");
         });
 
+        document.querySelector(".liders-page__previous-list-button").addEventListener("click", () => {
+            LiderBoardLoader.moveLeft();
+            new LiderBoardLoader(elementsBase).loadLiders();
+        });
+
         document.querySelector(".liders-page__next-list-button").addEventListener("click", () => {
-            ////
+            LiderBoardLoader.moveRight();
+            new LiderBoardLoader(elementsBase).loadLiders();
         });
     }
 }

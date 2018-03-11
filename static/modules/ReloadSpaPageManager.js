@@ -1,6 +1,7 @@
 "use strict";
 
 import UserAvatarLoader from "./UserAvatarLoader";
+import LiderBoardLoader from "./LiderBoardLoader";
 
 export default class ReloadSpaPageManager {
     constructor(login, elementsBase) {
@@ -15,6 +16,10 @@ export default class ReloadSpaPageManager {
         this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = loginUserStr;
         this.elementsBase.getElement("myPageLoginLabel").innerHTML = loginUserStr;
         this.elementsBase.getElement("lidersPageLoginLabel").innerHTML = loginUserStr;
+
         new UserAvatarLoader(this.elementsBase, login).loadAvatar();
+
+        LiderBoardLoader.initLiderBoardParams();
+        new LiderBoardLoader(this.elementsBase).loadLiders();
     }
 }

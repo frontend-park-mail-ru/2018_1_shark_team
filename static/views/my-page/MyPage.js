@@ -20,12 +20,14 @@ export default class MyPage {
         document.querySelector(".form__save-changes-button").addEventListener("click", () => {
             const login = localStorage.getItem("loginValue");
             const image = elementsBase.getElement("userAvatarImage").src;
-            new AjaxWorker("saveavatar", {
+            const promise = new AjaxWorker("saveavatar", {
                 login: login,
                 image: image
-            }, () => {
-                elementsBase.getElement("myPageMessageBox").innerHTML = "Сохранение прошло успешно.";
             }).sendPost();
+
+            promise.then(() => {
+                elementsBase.getElement("myPageMessageBox").innerHTML = "Сохранение прошло успешно.";
+            });
         });
 
         document.querySelector(".form__choose-image-button").addEventListener("click", () => {

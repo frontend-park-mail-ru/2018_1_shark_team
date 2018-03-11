@@ -28,9 +28,11 @@ export default class ReloadSpaPageManager {
         this.elementsBase.getElement("myPageLoginLabel").innerHTML = loginUserStr;
         this.elementsBase.getElement("lidersPageLoginLabel").innerHTML = loginUserStr;
 
-        new UserAvatarLoader(this.elementsBase, login).loadAvatar();
+        const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
+        userAvatarLoader.loadAvatar();
 
         LiderBoardLoader.initLiderBoardParams();
-        new LiderBoardLoader(this.elementsBase).loadLiders();
+        const liederBoardLoader = new LiderBoardLoader(this.elementsBase);
+        liederBoardLoader.loadLiders();
     }
 }

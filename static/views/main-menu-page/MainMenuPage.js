@@ -28,5 +28,9 @@ export default class MainMenuPage {
         document.querySelector(".form__my-page-button").addEventListener("click", () => {
             router.moveToPage("/my-page");
         });
+
+        document.querySelector(".form__leaderboard-button").addEventListener("click", () => {
+            router.moveToPage("/liders-page");
+        });
     }
 }

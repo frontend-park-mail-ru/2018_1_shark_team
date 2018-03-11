@@ -18,6 +18,8 @@ import "../views/game-rules-page/game-rules-page.scss";
 import MyPage from "../views/my-page/MyPage";
 import "../views/my-page/my-page.scss";
 
+import LidersPage from "../views/liders-page/LidersPage";
+import "../views/liders-page/liders-page.scss";
 
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
@@ -39,6 +41,7 @@ class Start {
         this.aboutAuthorsPage = new AboutAuthorsPage();
         this.gameRulesPage = new GameRulesPage();
         this.myPage = new MyPage();
+        this.lidersPage = new LidersPage();
     }
 
     createAndInitElementsBase() {
@@ -58,6 +61,8 @@ class Start {
         this.elementsBase.addElement("fileInputHiddenBtn", document.querySelector(".form__file-button"));
         this.elementsBase.addElement("userAvatarImage", document.querySelector(".form__user-avatar-image"));
         this.elementsBase.addElement("myPageMessageBox", document.querySelector(".my-page__message-box"));
+
+        this.elementsBase.addElement("lidersPageLoginLabel", document.querySelector(".liders-page__login-label"));
     }
 
     createAndInitRouter() {
@@ -68,6 +73,7 @@ class Start {
         this.router.addPage("/about-authors", document.querySelector(".about-authors-page"));
         this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
         this.router.addPage("/my-page", document.querySelector(".my-page"));
+        this.router.addPage("/liders-page", document.querySelector(".liders-page"));
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -82,6 +88,7 @@ class Start {
         AboutAuthorsPage.addEventsToElements(this.router, this.elementsBase);
         GameRulesPage.addEventsToElements(this.router, this.elementsBase);
         MyPage.addEventsToElements(this.router, this.elementsBase);
+        LidersPage.addEventsToElements(this.router, this.elementsBase);
     }
 
     createAndInitFieldsCleaner() {

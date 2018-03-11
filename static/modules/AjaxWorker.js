@@ -20,7 +20,12 @@ export default class AjaxWorker {
         xhr.onreadystatechange = () => {
             if(xhr.readyState === 4 && xhr.status === 200) {
                 const answer = xhr.responseText.toString();
-                console.log(answer);
+
+                const message = "Answer: " + answer;
+                if(message.length < 200) {
+                    console.log(message);
+                }
+
                 this.callback(answer);
                 xhr = null;
             }

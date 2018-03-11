@@ -1,7 +1,7 @@
 "use strict";
 
 import AjaxWorker from "./AjaxWorker";
-import UserAvatarLoader from "./UserAvatarLoader";
+import ReloadSpaPageManager from "./ReloadSpaPageManager";
 
 export default class Router {
     constructor(elementsBase) {
@@ -69,13 +69,11 @@ export default class Router {
             const login = answerObj.login;
 
             if(result === "YES") {
-                localStorage.setItem("loginValue", login);
-                this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = "User: " + login;
-                this.elementsBase.getElement("myPageLoginLabel").innerHTML = "User: " + login;
-                new UserAvatarLoader(this.elementsBase, login).loadAvatar();
+                new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
                 this.printPage();
                 return;
             }
+
             if(result === "NO") {
                  window.location = "/log-in";
             }

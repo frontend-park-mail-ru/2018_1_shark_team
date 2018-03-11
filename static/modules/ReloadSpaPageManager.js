@@ -1,7 +1,7 @@
 "use strict";
 
 import UserAvatarLoader from "./UserAvatarLoader";
-import LiderBoardLoader from "./LiderBoardLoader";
+import getLiaderBoard from "./LiderBoardLoader";
 
 /**
  * класс для выполнения реинициализаций при открытии страниц приложения
@@ -31,8 +31,9 @@ export default class ReloadSpaPageManager {
         const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
         userAvatarLoader.loadAvatar();
 
-        LiderBoardLoader.initLiderBoardParams();
-        const liederBoardLoader = new LiderBoardLoader(this.elementsBase);
-        liederBoardLoader.loadLiders();
+        const liaderBoard = getLiaderBoard();
+        liaderBoard.initLiderBoard(this.elementsBase);
+        liaderBoard.initLiderBoardParams();
+        liaderBoard.loadLiders();
     }
 }

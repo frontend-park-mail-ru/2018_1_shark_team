@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./liders-page.pug";
-import LiderBoardLoader from "../../modules/LiderBoardLoader";
+import getLiaderBoard from "./../../modules/LiderBoardLoader";
 
 export default class LidersPage {
     constructor() {
@@ -12,19 +12,21 @@ export default class LidersPage {
         document.querySelector(".center-box").innerHTML += template();
     }
 
-    static addEventsToElements(router, elementsBase) {
+    static addEventsToElements(router) {
         document.querySelector(".liders-page__main-menu-button").addEventListener("click", () => {
             router.moveToPage("/main-menu");
         });
 
         document.querySelector(".liders-page__previous-list-button").addEventListener("click", () => {
-            LiderBoardLoader.moveLeft();
-            new LiderBoardLoader(elementsBase).loadLiders();
+            const liaderBoard = getLiaderBoard();
+            liaderBoard.moveLeft();
+            liaderBoard.loadLiders();
         });
 
         document.querySelector(".liders-page__next-list-button").addEventListener("click", () => {
-            LiderBoardLoader.moveRight();
-            new LiderBoardLoader(elementsBase).loadLiders();
+            const liaderBoard = getLiaderBoard();
+            liaderBoard.moveRight();
+            liaderBoard.loadLiders();
         });
     }
 }

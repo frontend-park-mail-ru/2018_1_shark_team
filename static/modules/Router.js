@@ -46,7 +46,7 @@ export default class Router {
      * метод для скрытия всех страниц и очистки полей ввода и вывода
      */
     hidePages() {
-        if(this.fieldsCleaner !== undefined && this.fieldsCleaner !== null) {
+        if(this.fieldsCleaner) {
             this.fieldsCleaner.clearFields();
         }
 

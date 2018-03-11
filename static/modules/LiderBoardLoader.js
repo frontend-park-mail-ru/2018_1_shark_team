@@ -4,66 +4,62 @@ import AjaxWorker from "./AjaxWorker";
 import MessagePrinter from "./MessagePrinter";
 
 /**
- * Объект для хранения свойств показа списка лидеров
- * @type {{stopRightMoving: boolean, startNumber: number, deltaNumber: number}}
- */
-const lidersListParams = {
-    stopRightMoving: false,
-    startNumber: 0,
-    deltaNumber: 3
-};
-
-/**
  * класс для работы с таблицей лидеров
  */
-export default class LiderBoardLoader {
-    /**
-     * конструктор, в котором идёт инициализация словаря с DOM объектами и очистка бокса с лидерами
-     * @param elementsBase
-     */
-    constructor(elementsBase) {
+class LiderBoardLoader {
+    initLiderBoard(elementsBase) {
         this.elementsBase = elementsBase;
         this.elementsBase.getElement("lidersBox").innerHTML = "";
+        this.createLidersListParamSaver();
+    }
+
+    createLidersListParamSaver() {
+        this.lidersListParams = {
+            stopRightMoving: false,
+            startNumber: 0,
+            deltaNumber: 3
+        };
     }
 
     /**
      * метод для инициализации номера лидера, с которого начинается показ
      */
-    static initLiderBoardParams() {
-        lidersListParams.startNumber = 0;
-        lidersListParams.deltaNumber = 3;
-        lidersListParams.stopRightMoving = false;
+    initLiderBoardParams() {
+        this.lidersListParams.startNumber = 0;
+        this.lidersListParams.deltaNumber = 3;
+        this.lidersListParams.stopRightMoving = false;
     }
 
     /**
      * метод для просмотра следующих лидеров в таблице
      */
-    static moveRight() {
-        if(lidersListParams.stopRightMoving === false) {
-            lidersListParams.startNumber += lidersListParams.deltaNumber;
+    moveRight() {
+        if(this.lidersListParams.stopRightMoving === false) {
+            this.lidersListParams.startNumber += this.lidersListParams.deltaNumber;
         }
     }
 
     /**
      * метод для просмотра предыдущих лидеров в таблице
      */
-    static moveLeft() {
-        lidersListParams.startNumber -= lidersListParams.deltaNumber;
-        if(lidersListParams.startNumber < 0) {
-            lidersListParams.startNumber = 0;
+    moveLeft() {
+        this.lidersListParams.startNumber -= this.lidersListParams.deltaNumber;
+        if(this.lidersListParams.startNumber < 0) {
+            this.lidersListParams.startNumber = 0;
         }
-        lidersListParams.stopRightMoving = false;
+        this.lidersListParams.stopRightMoving = false;
     }
 
     /**
      * метод для отправки запроса на сервер, получения списка лидеров и вывода их на экран
      */
     loadLiders() {
-        MessagePrinter.write("Liders paginate params: " + lidersListParams.startNumber + " " + lidersListParams.deltaNumber);
+        MessagePrinter.write("Liders paginate params: " + this.lidersListParams.startNumber + " " + this.lidersListParams.deltaNumber);
+        const namespace = this;
 
         const promise = new AjaxWorker("getliders", {
-            startPos: lidersListParams.startNumber,
-            numberElements: lidersListParams.deltaNumber
+            startPos: namespace.lidersListParams.startNumber,
+            numberElements: namespace.lidersListParams.deltaNumber
         }).sendPost();
 
         promise.then((result) => {
@@ -84,8 +80,14 @@ export default class LiderBoardLoader {
                 const text = document.createTextNode(content);
                 h3.appendChild(text);
                 this.elementsBase.getElement("lidersBox").appendChild(h3);
-                lidersListParams.stopRightMoving = true;
+                this.lidersListParams.stopRightMoving = true;
             }
         });
     }
+}
+
+const liaderBoard = new LiderBoardLoader();
+
+export default function getLiaderBoard() {
+    return liaderBoard;
 }

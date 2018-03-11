@@ -34,7 +34,7 @@ class LiderBoardLoader {
      * метод для просмотра следующих лидеров в таблице
      */
     moveRight() {
-        if(this.lidersListParams.stopRightMoving === false) {
+        if(!this.lidersListParams.stopRightMoving) {
             this.lidersListParams.startNumber += this.lidersListParams.deltaNumber;
         }
     }
@@ -55,11 +55,10 @@ class LiderBoardLoader {
      */
     loadLiders() {
         MessagePrinter.write("Liders paginate params: " + this.lidersListParams.startNumber + " " + this.lidersListParams.deltaNumber);
-        const namespace = this;
 
         const promise = new AjaxWorker("getliders", {
-            startPos: namespace.lidersListParams.startNumber,
-            numberElements: namespace.lidersListParams.deltaNumber
+            startPos: this.lidersListParams.startNumber,
+            numberElements: this.lidersListParams.deltaNumber
         }).sendPost();
 
         promise.then((result) => {

@@ -18,4 +18,5 @@
 | Получить лидеров | POST,<br> `/getliders` | { startPos: 6,<br> numberElements: 3 } | [ { login: «Maxim», score: 45 } ] | Возвращается массив объектов с полями:<br> логин и максимальный балл |
 | Разлогиниться | POST,<br> `/logout` | { } | DELETE_COOKIES_OK | Удаление всех печенек пользователя |
 
-
+### JSDoc
+http://frontend.tech-mail.ru/2018_1_shark_team/

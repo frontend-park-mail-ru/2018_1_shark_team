@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint './static/**/*.js'",
     "eslint-fix": "eslint --fix './static/**/*.js'",
-    "docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json",
+    "regenerate-docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json && gh-pages -d docs",
     "prestart": "npm run eslint && webpack && npm run make-pug && npm run make-es2015",
     "start": "node index.js",
     "make-pug": "pug -c --extension 'pug.js' --name-after-file ./static",
@@ -33,6 +33,7 @@
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^4.18.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "gh-pages": "^1.1.0",
     "jsdoc": "^3.5.5",
     "jsdoc-export-default-interop": "^0.3.1"
   }

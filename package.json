@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "eslint": "./node_modules/.bin/eslint './static/**/*.js'",
-    "fix": "./node_modules/.bin/eslint --fix './static/**/*.js'",
+    "eslint": "eslint './static/**/*.js'",
+    "eslint-fix": "eslint --fix './static/**/*.js'",
+    "docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json",
     "prestart": "npm run eslint && webpack && npm run make-pug && npm run make-es2015",
     "start": "node index.js",
     "make-pug": "pug -c --extension 'pug.js' --name-after-file ./static",
-    "make-es2015": "babel static/output/webpack_output -d static/output/babel_output --presets es2015",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "make-es2015": "babel static/output/webpack_output -d static/output/babel_output --presets es2015"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +32,8 @@
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^4.18.2",
-    "extract-text-webpack-plugin": "^3.0.2"
+    "extract-text-webpack-plugin": "^3.0.2",
+    "jsdoc": "^3.5.5",
+    "jsdoc-export-default-interop": "^0.3.1"
   }
 }

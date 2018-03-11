@@ -1,6 +1,8 @@
-node_modules/
-.idea/
+/node_modules
+/.idea
+/.vscode
 *result.js
 *.pug.js
-/static/output/
+/static/output
 *npm-debug.log
+/docs

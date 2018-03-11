@@ -2,6 +2,7 @@
 
 import AjaxWorker from "./AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
+import MessagePrinter from "./MessagePrinter";
 
 /**
  * класс для реализации переключения страниц и роутинга
@@ -59,16 +60,16 @@ export default class Router {
      */
     printPage() {
         const url = window.location.pathname;
-        let flag = true;
-        this.listOfPages.forEach((element) => {
-            if(url === element.url && flag === true) {
-                element.page.hidden = false;
-                flag = false;
-            }
-        });
-        if(flag === false) {
+
+        const currentPage = this.listOfPages.find((element) => url === element.url);
+
+        try {
+            currentPage.page.hidden = false;
             return;
+        } catch (err) {
+            MessagePrinter.write("err");
         }
+
         this.listOfPages[0].page.hidden = false;
         history.pushState({}, "", this.listOfPages[0].url);
     }

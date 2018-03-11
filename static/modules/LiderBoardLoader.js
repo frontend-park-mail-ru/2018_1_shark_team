@@ -72,10 +72,12 @@ export default class LiderBoardLoader {
         const startPos = parseInt(startPosParam);
         const numberElements = parseInt(numberElementsParam);
 
-        new AjaxWorker("getliders", {
+        const promise = new AjaxWorker("getliders", {
             startPos: startPos,
             numberElements: numberElements
-        }, (result) => {
+        }).sendPost();
+
+        promise.then((result) => {
             const arr = JSON.parse(result);
             this.elementsBase.getElement("lidersBox").innerHTML = "";
 
@@ -95,6 +97,6 @@ export default class LiderBoardLoader {
                 this.elementsBase.getElement("lidersBox").appendChild(h3);
                 stopRightMoving = true;
             }
-        }).sendPost();
+        });
     }
 }

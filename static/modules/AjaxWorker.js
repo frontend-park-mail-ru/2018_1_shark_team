@@ -3,10 +3,9 @@
 import MessagePrinter from "./MessagePrinter";
 
 export default class AjaxWorker {
-    constructor(url, body, callback) {
+    constructor(url, body) {
         this.url = AjaxWorker.getBasicUrl() + url;
         this.body = body;
-        this.callback = callback;
     }
 
     static getBasicUrl() {
@@ -22,33 +21,24 @@ export default class AjaxWorker {
             xhr.withCredentials = true;
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhr.send(JSON.stringify(this.body));
-            MessagePrinter.write("SendQuery");
 
             // on getting result from server
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    MessagePrinter.write("GetAnswerFromServer");
                     const xhrResult = xhr.responseText.toString();
                     xhr = null;
+                    const answer = xhrResult.toString();
+                    const message = "Answer: " + answer;
+                    if (message.length < 200) {
+                        MessagePrinter.write(message);
+                    }
                     resolve(xhrResult);
                 }
             };
         });
     }
 
-    // send post query to server
     sendPost() {
-        this.getPromise().then(
-            (xhrResult) => {
-                MessagePrinter.write("getPromiseThen");
-                const answer = xhrResult.toString();
-                const message = "Answer: " + answer;
-                if (message.length < 200) {
-                    MessagePrinter.write(message);
-                }
-                this.callback(answer);
-            }
-        );
+        return this.getPromise();
     }
 }
-

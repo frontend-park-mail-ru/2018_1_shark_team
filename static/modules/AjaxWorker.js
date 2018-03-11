@@ -14,25 +14,40 @@ export default class AjaxWorker {
         //return "http://funny-race-server.herokuapp.com/";
     }
 
-    sendPost() {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", this.url, true);
-        xhr.withCredentials = true;
-        xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-        xhr.send(JSON.stringify(this.body));
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState === 4 && xhr.status === 200) {
-                const answer = xhr.responseText.toString();
+    getPromise() {
+        return new Promise((resolve) => {
+            // init xhr properties
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", this.url, true);
+            xhr.withCredentials = true;
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(this.body));
+            MessagePrinter.write("SendQuery");
 
+            // on getting result from server
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    MessagePrinter.write("GetAnswerFromServer");
+                    const xhrResult = xhr.responseText.toString();
+                    xhr = null;
+                    resolve(xhrResult);
+                }
+            };
+        });
+    }
+
+    sendPost() {
+        this.getPromise().then(
+            (xhrResult) => {
+                MessagePrinter.write("getPromiseThen");
+                const answer = xhrResult.toString();
                 const message = "Answer: " + answer;
-                if(message.length < 200) {
+                if (message.length < 200) {
                     MessagePrinter.write(message);
                 }
-
                 this.callback(answer);
-                xhr = null;
             }
-        };
+        );
     }
 }
 

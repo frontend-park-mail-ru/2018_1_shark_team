@@ -1,6 +1,7 @@
 "use strict";
 
 import AjaxWorker from "./AjaxWorker";
+import UserAvatarLoader from "./UserAvatarLoader";
 
 export default class Router {
     constructor(elementsBase) {
@@ -71,6 +72,7 @@ export default class Router {
                 localStorage.setItem("loginValue", login);
                 this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = "User: " + login;
                 this.elementsBase.getElement("myPageLoginLabel").innerHTML = "User: " + login;
+                new UserAvatarLoader(this.elementsBase, login).loadAvatar();
                 this.printPage();
                 return;
             }

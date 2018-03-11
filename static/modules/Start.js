@@ -55,6 +55,9 @@ class Start {
         this.elementsBase.addElement("mainMenuLoginLabel", document.querySelector(".main-menu-page__label"));
 
         this.elementsBase.addElement("myPageLoginLabel", document.querySelector(".my-page__user-login-label"));
+        this.elementsBase.addElement("fileInputHiddenBtn", document.querySelector(".form__file-button"));
+        this.elementsBase.addElement("userAvatarImage", document.querySelector(".form__user-avatar-image"));
+        this.elementsBase.addElement("myPageMessageBox", document.querySelector(".my-page__message-box"));
     }
 
     createAndInitRouter() {
@@ -91,6 +94,7 @@ class Start {
         this.fieldsCleaner.addField(dict.getElement("logInLoginField"));
         this.fieldsCleaner.addField(dict.getElement("logInPasswordField"));
         this.fieldsCleaner.addField(dict.getElement("logInMessageBox"));
+        this.fieldsCleaner.addField(dict.getElement("myPageMessageBox"));
 
         this.fieldsCleaner.clearFields();
         this.router.initFieldsCleaner(this.fieldsCleaner);

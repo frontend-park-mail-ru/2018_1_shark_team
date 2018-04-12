@@ -1,6 +1,10 @@
 "use strict";
 
 import MessagePrinter from "./MessagePrinter";
+import getApplicationMode from "./DebugMode";
+
+const DEBUG_URL = "http://localhost:5005/";
+const RELEASE_URL = "http://funny-race-server.herokuapp.com/";
 
 export default class AjaxWorker {
     constructor(url, body) {
@@ -9,8 +13,11 @@ export default class AjaxWorker {
     }
 
     static getBasicUrl() {
-        return "http://localhost:5005/";
-        //return "http://funny-race-server.herokuapp.com/";
+        if(getApplicationMode()) {
+            return DEBUG_URL;
+        } else {
+            return RELEASE_URL;
+        }
     }
 
     getPromise() {

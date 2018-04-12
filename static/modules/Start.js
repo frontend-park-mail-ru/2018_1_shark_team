@@ -21,6 +21,9 @@ import "../views/my-page/my-page.scss";
 import LidersPage from "../views/liders-page/LidersPage";
 import "../views/liders-page/liders-page.scss";
 
+import OnePlayerPage from "../views/one-player-page/OnePlayerPage";
+import "../views/one-player-page/one-player-page.scss";
+
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
@@ -52,6 +55,7 @@ class Start {
         this.gameRulesPage = new GameRulesPage();
         this.myPage = new MyPage();
         this.lidersPage = new LidersPage();
+        this.onePlayerPage = new OnePlayerPage();
     }
 
     /**
@@ -91,6 +95,7 @@ class Start {
         this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
         this.router.addPage("/my-page", document.querySelector(".my-page"));
         this.router.addPage("/liders-page", document.querySelector(".liders-page"));
+        this.router.addPage("/one-player-page", document.querySelector(".one-player-page"));
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -109,6 +114,7 @@ class Start {
         GameRulesPage.addEventsToElements(this.router, this.elementsBase);
         MyPage.addEventsToElements(this.router, this.elementsBase);
         LidersPage.addEventsToElements(this.router, this.elementsBase);
+        OnePlayerPage.addEventsToElements(this.router);
     }
 
     /**

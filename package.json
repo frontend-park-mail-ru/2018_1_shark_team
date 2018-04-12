@@ -7,7 +7,7 @@
     "eslint": "eslint './static/**/*.js'",
     "eslint-fix": "eslint --fix './static/**/*.js'",
     "regenerate-docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json && gh-pages -d docs",
-    "prestart": "webpack && npm run make-pug && npm run make-es2015",
+    "prestart": "npm run eslint && webpack && npm run make-pug && npm run make-es2015",
     "start": "node index.js",
     "make-pug": "pug -c --extension 'pug.js' --name-after-file ./static",
     "make-es2015": "babel static/output/webpack_output -d static/output/babel_output --presets es2015"
@@ -25,7 +25,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.11.0"
+    "webpack": "^3.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

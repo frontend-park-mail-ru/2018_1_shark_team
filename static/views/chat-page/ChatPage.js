@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./chat-page.pug";
-import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import ChatManager from "../../modules/ChatManager";
 
 export default class ChatPage {
     constructor() {
@@ -19,7 +19,8 @@ export default class ChatPage {
 
         document.querySelector(".chat-page__send-message-button").addEventListener("click", () => {
             const inputField = elementsBase.getElement("chatInputField");
-            LogMessage(inputField.value);
+            const inputFieldValue = inputField.value.toString();
+            ChatManager.sendMessage(inputFieldValue);
         });
     }
 }

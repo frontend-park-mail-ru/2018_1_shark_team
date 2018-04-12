@@ -2,9 +2,9 @@
 
 import LogMessage from "./MessageLogger";
 
-const ROCKET_IMAGE = "./images/rocketOK.png";
-const ENEMY_IMAGE = "./images/enemyOK.png";
-const FON_IMAGE = "./images/fonOK.png";
+const ROCKET_IMAGE = "./../../gameFiles/images/rocketOK.png";
+const ENEMY_IMAGE = "./../../gameFiles/images/enemyOK.png";
+const FON_IMAGE = "./../../gameFiles/images/fonOK.png";
 
 export default class ImageLoader {
     constructor(game) {

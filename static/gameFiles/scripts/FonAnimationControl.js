@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "./MessageLogger";
+import LogMessage from "./debug/MessageLogger";
 
 const FON_IMAGE_WIDTH = 1000;
 const FON_IMAGE_HEIGHT = 700;

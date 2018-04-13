@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "./MessageLogger";
+import LogMessage from "./debug/MessageLogger";
 
 const START_SPEED = 12;
 const DELTA_SPEED = 0.2;

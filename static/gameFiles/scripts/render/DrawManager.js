@@ -1,9 +1,9 @@
 "use strict";
 
-import LogMessage from "../MessageLogger";
+import LogMessage from "../debug/MessageLogger";
 import GraphicsCreator from "./GraphicsCreator";
 import HeroesInfoGetter from "../HeroesInfoGetter";
-import getDebugMode from "../DebugModeSetter";
+import getDebugMode from "../debug/DebugModeSetter";
 import FonAnimationControl from "../FonAnimationControl";
 import renderEnemies from "../enemies/enemiesRender";
 

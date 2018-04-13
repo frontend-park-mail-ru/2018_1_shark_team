@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "./MessageLogger";
+import LogMessage from "./debug/MessageLogger";
 
 const ROCKET_IMAGE = "./../../gameFiles/images/rocketOK.png";
 const ENEMY_IMAGE = "./../../gameFiles/images/enemyOK.png";

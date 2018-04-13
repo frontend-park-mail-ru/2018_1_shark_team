@@ -1,10 +1,10 @@
 "use strict";
 
-import LogMessage from "../MessageLogger";
+import LogMessage from "../debug/MessageLogger";
 import HeroesInfoGetter from "../HeroesInfoGetter";
 import GraphicsCreator from "../render/GraphicsCreator";
 import getRandomNumber from "../RandomGetter";
-import getDebugMode from "../DebugModeSetter";
+import getDebugMode from "../debug/DebugModeSetter";
 
 const START_ENEMY_X_POSITION = 1000;
 const START_ENEMY_Y_POSITION = 100;

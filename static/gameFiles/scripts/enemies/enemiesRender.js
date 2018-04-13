@@ -1,7 +1,7 @@
 "use strict";
 
-import getDebugMode from "../DebugModeSetter";
-import LogMessage from "../MessageLogger";
+import getDebugMode from "../debug/DebugModeSetter";
+import LogMessage from "../debug/MessageLogger";
 
 export default function renderEnemies(enemiesArr, holst, enemySize, imageLoader) {
 

@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "./MessageLogger";
+import LogMessage from "./debug/MessageLogger";
 import DrawManager from "./render/DrawManager";
 import RocketMoveManager from "./RocketMoveManager";
 import ImageLoader from "./ImageLoader";

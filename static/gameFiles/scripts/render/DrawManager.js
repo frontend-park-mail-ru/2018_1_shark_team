@@ -2,9 +2,9 @@
 
 import LogMessage from "../debug/MessageLogger";
 import GraphicsCreator from "./GraphicsCreator";
-import HeroesInfoGetter from "../HeroesInfoGetter";
+import HeroesInfoGetter from "../imagesContent/HeroesInfoGetter";
 import getDebugMode from "../debug/DebugModeSetter";
-import FonAnimationControl from "../FonAnimationControl";
+import FonAnimationControl from "../background/FonAnimationControl";
 import renderEnemies from "../enemies/enemiesRender";
 
 const SIMPLE_BACKGROUND_COLOR = "#534d94";

@@ -1,7 +1,7 @@
 "use strict";
 
 import LogMessage from "../debug/MessageLogger";
-import HeroesInfoGetter from "../HeroesInfoGetter";
+import HeroesInfoGetter from "../imagesContent/HeroesInfoGetter";
 import GraphicsCreator from "../render/GraphicsCreator";
 import getRandomNumber from "../RandomGetter";
 import getDebugMode from "../debug/DebugModeSetter";

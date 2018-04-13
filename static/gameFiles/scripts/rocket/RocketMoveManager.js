@@ -1,7 +1,7 @@
 "use strict";
 
-import LogMessage from "./debug/MessageLogger";
-import KeyEventManager from "./KeyEventManager";
+import LogMessage from "../debug/MessageLogger";
+import KeyEventManager from "../KeyEventManager";
 
 const START_POSITION = 3;
 const TOP_BORDER = 1;

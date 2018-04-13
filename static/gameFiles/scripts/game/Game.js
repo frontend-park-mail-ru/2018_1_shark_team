@@ -2,8 +2,8 @@
 
 import LogMessage from "../debug/MessageLogger";
 import DrawManager from "../render/DrawManager";
-import RocketMoveManager from "../RocketMoveManager";
-import ImageLoader from "../ImageLoader";
+import RocketMoveManager from "../rocket/RocketMoveManager";
+import ImageLoader from "../imagesContent/ImageLoader";
 import ScoreCounter from "../score/ScoreCounter";
 import ScoreRender from "../score/ScoreRender";
 import SpeedController from "../SpeedController";

@@ -27,7 +27,11 @@ export default class AjaxWorker {
             xhr.open("POST", this.url, true);
             xhr.withCredentials = true;
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(this.body));
+            try {
+                xhr.send(JSON.stringify(this.body));
+            } catch (err) {
+                reject(err);
+            }
 
             // on getting result from server
             xhr.onreadystatechange = () => {

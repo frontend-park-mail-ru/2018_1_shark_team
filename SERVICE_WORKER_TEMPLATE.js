@@ -1,7 +1,7 @@
 "use strict";
 
 // наименование для нашего хранилища кэша
-const CACHE_NAME = 'funny_race_v10';
+const CACHE_NAME = 'funny_race_v11';
 
 //////
 

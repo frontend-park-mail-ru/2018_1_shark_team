@@ -9,6 +9,8 @@ import GraphicsCreator from "./GraphicsCreator";
 import ImageLoader from "./ImageLoader";
 import getDebugMode from "./DebugModeSetter";
 import inRangeHit from "./HitControl";
+import ScoreCounter from "./score/ScoreCounter";
+import ScoreRender from "./score/ScoreRender";
 
 const START_SPEED = 12;
 const DELTA_SPEED = 0.2;
@@ -50,12 +52,12 @@ const START_OPACITY = 1;
 const DELTA_OPACITY = 0.01;
 const MIDDLE_OPACITY = 0.5;
 
-const DELTA_SCORE = 0.05;
 
 export default class Game {
     constructor() {
         LogMessage("create Game");
         this.drawManager = new DrawManager(document.querySelector(".canvas-box__canvas-plain"));
+        this.initScoreObjects();
         this.initScore();
         this.createHeroRocket();
         this.createRocketMoveManager();
@@ -68,15 +70,20 @@ export default class Game {
         this.drawManager.initImageLoader(this.imageLoader);
     }
 
+    initScoreObjects() {
+        this.scoreCounter = new ScoreCounter();
+        this.scoreRender = new ScoreRender();
+    }
+
     initScore() {
-        this.countLabel = document.querySelector(".count-field__count-label");
-        this.scorePoints = 0;
-        this.countLabel.innerHTML = this.scorePoints.toString();
+        this.scoreRender.initCountLabel(document.querySelector(".count-field__count-label"));
+        this.scoreCounter.initScore(0);
+        this.scoreRender.printScore(this.scoreCounter.getScore());
     }
 
     addScore() {
-        this.scorePoints += DELTA_SCORE;
-        this.countLabel.innerHTML = parseInt(this.scorePoints).toString();
+        this.scoreCounter.addDeltaScore();
+        this.scoreRender.printScore(parseInt(this.scoreCounter.getScore()));
     }
 
     initGameFlag() {

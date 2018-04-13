@@ -5,6 +5,7 @@ import GraphicsCreator from "./GraphicsCreator";
 import HeroesInfoGetter from "./HeroesInfoGetter";
 import getDebugMode from "./DebugModeSetter";
 import FonAnimationControl from "./FonAnimationControl";
+import renderEnemies from "./enemiesRender";
 
 const SIMPLE_BACKGROUND_COLOR = "#534d94";
 const HOLST_WIDTH = 900;
@@ -92,21 +93,7 @@ export default class DrawManager {
     }
 
     drawAllEnemies() {
-        if(this.enemiesArr !== null) {
-            if(getDebugMode() === true) {
-                this.enemiesArr.forEach((enemy) => {
-                    enemy.render.drawGraphicsObject(enemy.x, enemy.y);
-                });
-            }
-
-            this.enemiesArr.forEach((enemy) => {
-                try {
-                    this.holst.drawImage(this.imageLoader.getEnemy(), enemy.x, enemy.y, ENEMY_SIZE, ENEMY_SIZE);
-                } catch (err) {
-                    // enemy not loaded
-                }
-            });
-        }
+        renderEnemies(this.enemiesArr, this.holst, ENEMY_SIZE, this.imageLoader);
     }
 
     renderAll() {

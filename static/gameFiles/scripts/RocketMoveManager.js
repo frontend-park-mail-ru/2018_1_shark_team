@@ -58,7 +58,6 @@ export default class RocketMoveManager {
     addKeyUpEvent() {
         this.keyEventManager.initKeyUp((event) => {
             const number = event.keyCode;
-
             switch (number) {
                 case KEY_TOP:
                     this.keyTopPushed = false;

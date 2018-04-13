@@ -11,10 +11,7 @@ import getDebugMode from "./DebugModeSetter";
 import inRangeHit from "./HitControl";
 import ScoreCounter from "./score/ScoreCounter";
 import ScoreRender from "./score/ScoreRender";
-
-const START_SPEED = 12;
-const DELTA_SPEED = 0.2;
-const MAX_SPEED = 50;
+import SpeedController from "./SpeedController";
 
 const ENEMY_SIZE = 80;
 
@@ -56,7 +53,8 @@ const MIDDLE_OPACITY = 0.5;
 export default class Game {
     constructor() {
         LogMessage("create Game");
-        this.drawManager = new DrawManager(document.querySelector(".canvas-box__canvas-plain"));
+        this.initDrawManager();
+        this.initSpeedControlObj();
         this.initScoreObjects();
         this.initScore();
         this.createHeroRocket();
@@ -68,6 +66,14 @@ export default class Game {
         this.initGameFlag();
         this.imageLoader = new ImageLoader(this);
         this.drawManager.initImageLoader(this.imageLoader);
+    }
+
+    initDrawManager() {
+        this.drawManager = new DrawManager(document.querySelector(".canvas-box__canvas-plain"));
+    }
+
+    initSpeedControlObj() {
+        this.speedController = new SpeedController();
     }
 
     initScoreObjects() {
@@ -91,7 +97,7 @@ export default class Game {
     }
 
     setSpeed() {
-        this.speed = START_SPEED;
+        this.speedController.setSpeed();
     }
 
     createCounter() {
@@ -163,7 +169,7 @@ export default class Game {
 
     moveAllEnemies() {
         this.enemiesArr.forEach((enemy) => {
-            enemy.x -= this.speed;
+            enemy.x -= this.speedController.getSpeed();
         });
     }
 
@@ -176,7 +182,7 @@ export default class Game {
     }
 
     printSpeedInfo() {
-        LogMessage("Speed: " + this.speed);
+        this.speedController.printSpeedInfo();
     }
 
     printCountRightBorderInfo() {
@@ -194,9 +200,7 @@ export default class Game {
                         this.countRightBorder -= DELTA_COUNT_RIGHT_BORDER;
                     }
                     this.addEnemiesLine();
-                    if (this.speed < MAX_SPEED) {
-                        this.speed += DELTA_SPEED;
-                    }
+                    this.speedController.controlSpeed();
                     this.printSpeedInfo();
                     this.printCountRightBorderInfo();
                 }

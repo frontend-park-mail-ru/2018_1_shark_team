@@ -1,6 +1,7 @@
 "use strict";
 
 import LogMessage from "./MessageLogger";
+import KeyEventManager from "./KeyEventManager";
 
 const START_POSITION = 3;
 const TOP_BORDER = 1;
@@ -18,6 +19,7 @@ export default class RocketMoveManager {
         this.initFields();
         this.addKeyDownEvent();
         this.addKeyUpEvent();
+        this.keyEventManager.addEvents();
     }
 
     getRocketPosition() {
@@ -28,12 +30,12 @@ export default class RocketMoveManager {
         this.startPosition = START_POSITION;
         this.keyTopPushed = false;
         this.keyBottomPushed = false;
+        this.keyEventManager = new KeyEventManager();
     }
 
     addKeyDownEvent() {
-        window.onkeydown = (event) => {
+        this.keyEventManager.initKeyDown((event) => {
             const number = event.keyCode;
-
             if(number === KEY_TOP) {
                 if(this.keyTopPushed === false) {
                     if(this.startPosition !== TOP_BORDER) {
@@ -42,7 +44,6 @@ export default class RocketMoveManager {
                     }
                 }
             }
-
             if(number === KEY_BOTTOM) {
                 if(this.keyBottomPushed === false) {
                     if(this.startPosition !== BOTTOM_BORDER) {
@@ -51,11 +52,11 @@ export default class RocketMoveManager {
                     }
                 }
             }
-        };
+        });
     }
 
     addKeyUpEvent() {
-        window.onkeyup = (event) => {
+        this.keyEventManager.initKeyUp((event) => {
             const number = event.keyCode;
 
             switch (number) {
@@ -66,6 +67,6 @@ export default class RocketMoveManager {
                     this.keyBottomPushed = false;
                     break;
             }
-        };
+        });
     }
 }

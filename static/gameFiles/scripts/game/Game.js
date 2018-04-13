@@ -10,6 +10,7 @@ import SpeedController from "../SpeedController";
 import EnemiesController from "../enemies/EnemiesController";
 import enemiesHitRocket from "../hitTest/EnemiesHitRocket";
 import gameRepeating from "./gameRepeating";
+import startAnimationOpacity from "./gameOpacityAnimation";
 
 const ROCKET_START_POSITION_X = 100;
 const ROCKET_START_POSITION_Y = 260;
@@ -17,10 +18,6 @@ const ROCKET_START_POSITION_Y = 260;
 const WAIT_TIME_INTEVAL = 35;
 
 const START_COUNT_RIGHT_BORDER = 30;
-
-const START_OPACITY = 1;
-const DELTA_OPACITY = 0.01;
-const MIDDLE_OPACITY = 0.5;
 
 export default class Game {
     constructor() {
@@ -139,19 +136,7 @@ export default class Game {
     }
 
     startAnimationOpacity() {
-        const canvasBox = document.querySelector(".canvas-box__canvas-plain");
-        let opacity = START_OPACITY;
-        LogMessage("=== START OPACITY INTERVAL ===");
-        this.opacityInterval = setInterval(() => {
-            canvasBox.style.opacity = opacity.toString();
-            opacity -= DELTA_OPACITY;
-            LogMessage("Opacity: " + opacity);
-            if(opacity <= MIDDLE_OPACITY) {
-                clearInterval(this.opacityInterval);
-                LogMessage("=== STOP OPACITY INTERVAL ===");
-                Game.renderRestartBtn();
-            }
-        }, WAIT_TIME_INTEVAL);
+        startAnimationOpacity(this);
     }
 
     static renderRestartBtn() {

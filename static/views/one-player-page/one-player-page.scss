@@ -1,0 +1,40 @@
+.one-player-page__main-menu-button {
+  color: black;
+  font-size: 20px;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  padding: 7px;
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  width: 350px;
+}
+
+.one-player-page__start-game-button {
+  color: black;
+  font-size: 20px;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  padding: 7px;
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  width: 350px;
+}
+
+.one-player-page__canvas-box {
+  padding: 0;
+  background-color: black;
+}
+
+.one-player-page__count-field {
+  padding: 15px 25px;
+  background-color: #CCCCCC;
+  border-radius: 8px;
+  width: 160px;
+}
+
+.count-field__count-label {
+  font-size: 35px;
+  padding-right: 15px;
+}

@@ -108,6 +108,11 @@ export default class Router {
             if(result === "NO") {
                 window.location = "/log-in";
             }
+        }).catch(() => {
+            if(location.pathname !== "/one-player-page") {
+                this.moveToPage("/one-player-page");
+            }
+            this.printPage();
         });
     }
 

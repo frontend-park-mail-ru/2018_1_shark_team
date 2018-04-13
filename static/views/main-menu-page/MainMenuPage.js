@@ -32,5 +32,13 @@ export default class MainMenuPage {
         document.querySelector(".form__leaderboard-button").addEventListener("click", () => {
             router.moveToPage("/liders-page");
         });
+
+        document.querySelector(".form__single-player-game-button").addEventListener("click", () => {
+            router.moveToPage("/one-player-page");
+        });
+
+        document.querySelector(".form__chat-button").addEventListener("click", () => {
+            router.moveToPage("/chat-page");
+        });
     }
 }

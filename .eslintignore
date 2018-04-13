@@ -1,3 +1,8 @@
 *.pug.js
 result.js
 MessagePrinter.js
+*/gameFiles
+*ChatManager.js
+*service-worker.js
+*SERVICE_WORKER_TEMPLATE.js
+*copy.js

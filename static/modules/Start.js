@@ -21,10 +21,17 @@ import "../views/my-page/my-page.scss";
 import LidersPage from "../views/liders-page/LidersPage";
 import "../views/liders-page/liders-page.scss";
 
+import OnePlayerPage from "../views/one-player-page/OnePlayerPage";
+import "../views/one-player-page/one-player-page.scss";
+
+import ChatPage from "../views/chat-page/ChatPage";
+import "../views/chat-page/chat-page.scss";
+
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
 import MessagePrinter from "./MessagePrinter";
+import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -52,6 +59,8 @@ class Start {
         this.gameRulesPage = new GameRulesPage();
         this.myPage = new MyPage();
         this.lidersPage = new LidersPage();
+        this.onePlayerPage = new OnePlayerPage();
+        this.chatPage = new ChatPage();
     }
 
     /**
@@ -77,6 +86,9 @@ class Start {
 
         this.elementsBase.addElement("lidersPageLoginLabel", document.querySelector(".liders-page__login-label"));
         this.elementsBase.addElement("lidersBox", document.querySelector(".liders-page__liders-list-box"));
+
+        this.elementsBase.addElement("chatInputField", document.querySelector(".chat-page__input-field"));
+        this.elementsBase.addElement("chatMessageBox", document.querySelector(".chat-page__messages-box"));
     }
 
     /**
@@ -91,6 +103,8 @@ class Start {
         this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
         this.router.addPage("/my-page", document.querySelector(".my-page"));
         this.router.addPage("/liders-page", document.querySelector(".liders-page"));
+        this.router.addPage("/one-player-page", document.querySelector(".one-player-page"));
+        this.router.addPage("/chat-page", document.querySelector(".chat-page"));
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -109,6 +123,8 @@ class Start {
         GameRulesPage.addEventsToElements(this.router, this.elementsBase);
         MyPage.addEventsToElements(this.router, this.elementsBase);
         LidersPage.addEventsToElements(this.router, this.elementsBase);
+        OnePlayerPage.addEventsToElements(this.router);
+        ChatPage.addEventsToElements(this.router, this.elementsBase);
     }
 
     /**
@@ -125,6 +141,8 @@ class Start {
         this.fieldsCleaner.addField(dict.getElement("logInPasswordField"));
         this.fieldsCleaner.addField(dict.getElement("logInMessageBox"));
         this.fieldsCleaner.addField(dict.getElement("myPageMessageBox"));
+        this.fieldsCleaner.addField(dict.getElement("chatInputField"));
+        this.fieldsCleaner.addField(dict.getElement("chatMessageBox"));
 
         this.fieldsCleaner.clearFields();
         this.router.initFieldsCleaner(this.fieldsCleaner);
@@ -136,5 +154,17 @@ class Start {
  */
 window.addEventListener("load", () => {
     MessagePrinter.write("window load complete");
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+            .then(function (registration) {
+                LogMessage("ServiceWorker registration", registration);
+            })
+            .catch(function (err) {
+                LogMessage("Registration err", err);
+            });
+    }
+
+    // start application
     new Start();
 });

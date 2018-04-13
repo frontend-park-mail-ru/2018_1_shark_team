@@ -1,6 +1,10 @@
 "use strict";
 
 import MessagePrinter from "./MessagePrinter";
+import getApplicationMode from "./DebugMode";
+
+const DEBUG_URL = "http://localhost:5005/";
+const RELEASE_URL = "http://funny-race-backend-218.herokuapp.com/";
 
 export default class AjaxWorker {
     constructor(url, body) {
@@ -9,18 +13,25 @@ export default class AjaxWorker {
     }
 
     static getBasicUrl() {
-        return "http://localhost:5005/";
-        //return "http://funny-race-server.herokuapp.com/";
+        if(getApplicationMode()) {
+            return DEBUG_URL;
+        } else {
+            return RELEASE_URL;
+        }
     }
 
     getPromise() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             // init xhr properties
             let xhr = new XMLHttpRequest();
             xhr.open("POST", this.url, true);
             xhr.withCredentials = true;
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(this.body));
+            try {
+                xhr.send(JSON.stringify(this.body));
+            } catch (err) {
+                reject(err);
+            }
 
             // on getting result from server
             xhr.onreadystatechange = () => {
@@ -34,6 +45,10 @@ export default class AjaxWorker {
                     }
                     resolve(xhrResult);
                 }
+            };
+
+            xhr.onerror = () => {
+                reject(new TypeError("Network request failed"));
             };
         });
     }

@@ -2,6 +2,8 @@
 
 import UserAvatarLoader from "./UserAvatarLoader";
 import getLiaderBoard from "./LiderBoardLoader";
+import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
+import ChatManager from "./ChatManager";
 
 /**
  * класс для выполнения реинициализаций при открытии страниц приложения
@@ -31,9 +33,18 @@ export default class ReloadSpaPageManager {
         const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
         userAvatarLoader.loadAvatar();
 
+        LogMessage("Reload SPA");
+
         const liaderBoard = getLiaderBoard();
         liaderBoard.initLiderBoard(this.elementsBase);
         liaderBoard.initLiderBoardParams();
         liaderBoard.loadLiders();
+
+        ChatManager.tryToClose();
+        let socket = ChatManager.getSocket();
+        LogMessage(socket);
+        socket = null;
+        ChatManager.tryToConnect();
+        ChatManager.tryToAddSocketEvents();
     }
 }

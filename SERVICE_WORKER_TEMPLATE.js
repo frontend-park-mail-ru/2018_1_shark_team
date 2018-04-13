@@ -5,30 +5,7 @@ const CACHE_NAME = 'funny_race_v10';
 
 //////
 
-const cacheUrls = [
-  "/maxim",
-  "/",
-  "",
-  "/main-menu",
-  "/log-in",
-  "/sign-up",
-  "/about-authors",
-  "/game-rules",
-  "/my-page",
-  "/liders-page",
-  "/one-player-page",
-  "/chat-page",
-  "output/babel_output/result.js",
-  "global.css",
-  "index.html",
-  "favicon.ico",
-  "images/userImage.jpg",
-  "gameFiles/images/enemyOK.png",
-  "gameFiles/images/fonOK.png",
-  "gameFiles/images/rocketOK.png",
-  "gameFiles/images/star.png",
-]
-;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 //////
 

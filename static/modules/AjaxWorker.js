@@ -21,7 +21,7 @@ export default class AjaxWorker {
     }
 
     getPromise() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             // init xhr properties
             let xhr = new XMLHttpRequest();
             xhr.open("POST", this.url, true);
@@ -41,6 +41,10 @@ export default class AjaxWorker {
                     }
                     resolve(xhrResult);
                 }
+            };
+
+            xhr.onerror = () => {
+                reject(new TypeError("Network request failed"));
             };
         });
     }

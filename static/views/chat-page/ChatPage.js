@@ -20,7 +20,10 @@ export default class ChatPage {
         document.querySelector(".chat-page__send-message-button").addEventListener("click", () => {
             const inputField = elementsBase.getElement("chatInputField");
             const inputFieldValue = inputField.value.toString();
-            ChatManager.sendMessage(inputFieldValue);
+            if(inputFieldValue.length > 0) {
+                ChatManager.tryToSendMessage(inputFieldValue);
+                inputField.value = "";
+            }
         });
     }
 }

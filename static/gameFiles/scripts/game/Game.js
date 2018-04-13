@@ -1,14 +1,15 @@
 "use strict";
 
-import LogMessage from "./debug/MessageLogger";
-import DrawManager from "./render/DrawManager";
-import RocketMoveManager from "./RocketMoveManager";
-import ImageLoader from "./ImageLoader";
-import ScoreCounter from "./score/ScoreCounter";
-import ScoreRender from "./score/ScoreRender";
-import SpeedController from "./SpeedController";
-import EnemiesController from "./enemies/EnemiesController";
-import enemiesHitRocket from "./hitTest/EnemiesHitRocket";
+import LogMessage from "../debug/MessageLogger";
+import DrawManager from "../render/DrawManager";
+import RocketMoveManager from "../RocketMoveManager";
+import ImageLoader from "../ImageLoader";
+import ScoreCounter from "../score/ScoreCounter";
+import ScoreRender from "../score/ScoreRender";
+import SpeedController from "../SpeedController";
+import EnemiesController from "../enemies/EnemiesController";
+import enemiesHitRocket from "../hitTest/EnemiesHitRocket";
+import gameRepeating from "./gameRepeating";
 
 const ROCKET_START_POSITION_X = 100;
 const ROCKET_START_POSITION_Y = 260;
@@ -16,8 +17,6 @@ const ROCKET_START_POSITION_Y = 260;
 const WAIT_TIME_INTEVAL = 35;
 
 const START_COUNT_RIGHT_BORDER = 30;
-const COUNT_LEFT_BORDER = 16.25;
-const DELTA_COUNT_RIGHT_BORDER = 0.1;
 
 const START_OPACITY = 1;
 const DELTA_OPACITY = 0.01;
@@ -135,29 +134,7 @@ export default class Game {
     startRepeatingActions() {
         LogMessage("--- START GAME INTERVAL ---");
         this.interval = setInterval(() => {
-            if(this.gameFlag === true) {
-                this.count += 1;
-                if (this.count === parseInt(this.countRightBorder)) {
-                    this.count = 0;
-                    if (this.countRightBorder >= COUNT_LEFT_BORDER) {
-                        this.countRightBorder -= DELTA_COUNT_RIGHT_BORDER;
-                    }
-                    this.addEnemiesLine();
-                    this.speedController.controlSpeed();
-                    this.printSpeedInfo();
-                    this.printCountRightBorderInfo();
-                }
-                this.killEnemies();
-                this.changeRocketPosition();
-                this.moveAllEnemies();
-                this.drawManager.renderAll();
-                this.addScore();
-                this.controlHit();
-            } else {
-                clearInterval(this.interval);
-                LogMessage("--- STOP GAME INTERVAL ---");
-                this.startAnimationOpacity();
-            }
+            gameRepeating(this);
         }, WAIT_TIME_INTEVAL);
     }
 

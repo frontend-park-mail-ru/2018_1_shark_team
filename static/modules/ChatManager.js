@@ -31,7 +31,7 @@ export default class ChatManager {
             };
 
             socket.onmessage = function(event) {
-                LogMessage("Получено сообщение: " + event.data);
+                LogMessage("Получено сообщение");
 
                 const messageBox = document.querySelector(".chat-page__messages-box");
                 messageBox.innerHTML = "";

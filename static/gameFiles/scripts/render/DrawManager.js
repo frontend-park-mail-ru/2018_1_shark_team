@@ -1,11 +1,11 @@
 "use strict";
 
-import LogMessage from "./MessageLogger";
+import LogMessage from "../MessageLogger";
 import GraphicsCreator from "./GraphicsCreator";
-import HeroesInfoGetter from "./HeroesInfoGetter";
-import getDebugMode from "./DebugModeSetter";
-import FonAnimationControl from "./FonAnimationControl";
-import renderEnemies from "./enemiesRender";
+import HeroesInfoGetter from "../HeroesInfoGetter";
+import getDebugMode from "../DebugModeSetter";
+import FonAnimationControl from "../FonAnimationControl";
+import renderEnemies from "../enemies/enemiesRender";
 
 const SIMPLE_BACKGROUND_COLOR = "#534d94";
 const HOLST_WIDTH = 900;

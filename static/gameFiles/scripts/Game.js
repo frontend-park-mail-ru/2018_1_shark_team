@@ -1,19 +1,14 @@
 "use strict";
 
 import LogMessage from "./MessageLogger";
-import DrawManager from "./DrawManager";
+import DrawManager from "./render/DrawManager";
 import RocketMoveManager from "./RocketMoveManager";
-import getRandomNumber from "./RandomGetter";
-import HeroesInfoGetter from "./HeroesInfoGetter";
-import GraphicsCreator from "./GraphicsCreator";
 import ImageLoader from "./ImageLoader";
-import getDebugMode from "./DebugModeSetter";
-import inRangeHit from "./HitControl";
 import ScoreCounter from "./score/ScoreCounter";
 import ScoreRender from "./score/ScoreRender";
 import SpeedController from "./SpeedController";
-
-const ENEMY_SIZE = 80;
+import EnemiesController from "./enemies/EnemiesController";
+import enemiesHitRocket from "./hitTest/EnemiesHitRocket";
 
 const ROCKET_START_POSITION_X = 100;
 const ROCKET_START_POSITION_Y = 260;
@@ -24,31 +19,9 @@ const START_COUNT_RIGHT_BORDER = 30;
 const COUNT_LEFT_BORDER = 16.25;
 const DELTA_COUNT_RIGHT_BORDER = 0.1;
 
-const START_ENEMY_X_POSITION = 1000;
-const START_ENEMY_Y_POSITION = 100;
-const ENEMY_DELETE_X_POSITION = -150;
-const ENEMY_HEIGHT = 80;
-
-const HIT_LEFT = 100;
-const HIT_RIGHT = 240;
-
-const LINES_ARRAY = [
-    [0,0,0,1,1],
-    [0,0,1,0,1],
-    [0,0,1,1,0],
-    [0,1,0,0,1],
-    [0,1,0,1,0],
-    [0,1,1,0,0],
-    [1,0,0,0,1],
-    [1,0,0,1,0],
-    [1,0,1,0,0],
-    [1,1,0,0,0],
-];
-
 const START_OPACITY = 1;
 const DELTA_OPACITY = 0.01;
 const MIDDLE_OPACITY = 0.5;
-
 
 export default class Game {
     constructor() {
@@ -59,11 +32,15 @@ export default class Game {
         this.initScore();
         this.createHeroRocket();
         this.createRocketMoveManager();
-        this.createEnemiesArray();
+        this.initEnemiesObjects();
         this.createCounter();
         this.initCountRightBorder();
         this.setSpeed();
         this.initGameFlag();
+        this.initImageLoader();
+    }
+
+    initImageLoader() {
         this.imageLoader = new ImageLoader(this);
         this.drawManager.initImageLoader(this.imageLoader);
     }
@@ -112,65 +89,31 @@ export default class Game {
         this.drawManager.createRocket(ROCKET_START_POSITION_X, ROCKET_START_POSITION_Y);
     }
 
-    createEnemiesArray() {
-        this.enemiesArr = [];
+    initEnemiesObjects() {
+        this.enemiesController = new EnemiesController();
+        this.enemiesController.createEnemiesArray();
+        this.enemiesArr = this.enemiesController.getEnemiesArray();
         this.drawManager.initEnemiesArray(this.enemiesArr);
     }
 
     printEnemiesNumber() {
-        LogMessage("Enemies: " + this.enemiesArr.length);
+        this.enemiesController.printEnemiesNumber();
     }
 
     addEnemiesLine() {
-        const lineNumber = getRandomNumber(LINES_ARRAY.length);
-        const arr = LINES_ARRAY[lineNumber];
-        arr.forEach((number, i) => {
-            if(number === 0) {
-                let render = null;
-                if(getDebugMode() === true) {
-                    render = new GraphicsCreator(HeroesInfoGetter.getFirstEnemyPointsArray(), HeroesInfoGetter.getFirstEnemyColor(), this.drawManager.getHolst());
-                }
-
-                this.enemiesArr.push({
-                    x: START_ENEMY_X_POSITION,
-                    y: ENEMY_HEIGHT * i + START_ENEMY_Y_POSITION,
-                    render: render,
-                });
-            }
-        });
-        this.printEnemiesNumber();
+        this.enemiesController.addEnemiesLine(this.drawManager, this.enemiesArr);
     }
 
     controlHit() {
-        this.enemiesArr.forEach((enemy) => {
-           if(enemy.y === this.drawManager.rocket.y) {
-                if(inRangeHit(HIT_LEFT, enemy.x, HIT_RIGHT) === true) {
-                    this.gameFlag = false;
-                }
-
-                if(inRangeHit(HIT_LEFT, enemy.x + ENEMY_SIZE, HIT_RIGHT) === true) {
-                   this.gameFlag = false;
-                }
-           }
-        });
+        this.gameFlag = enemiesHitRocket(this.enemiesArr, this.drawManager);
     }
 
     killEnemies() {
-        const bufferEnemies = [];
-        this.enemiesArr.forEach((enemy) => {
-            if(enemy.x > ENEMY_DELETE_X_POSITION) {
-                bufferEnemies.push(enemy);
-            }
-        });
-
-        this.enemiesArr = bufferEnemies;
-        this.drawManager.initEnemiesArray(this.enemiesArr);
+        this.enemiesArr = this.enemiesController.killEnemies(this.enemiesArr, this.drawManager);
     }
 
     moveAllEnemies() {
-        this.enemiesArr.forEach((enemy) => {
-            enemy.x -= this.speedController.getSpeed();
-        });
+        this.enemiesController.moveAllEnemies(this.speedController);
     }
 
     createRocketMoveManager() {

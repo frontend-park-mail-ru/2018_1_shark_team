@@ -2,6 +2,7 @@
 
 import AjaxWorker from "./AjaxWorker";
 import isStringNormal from "./isStringNormal";
+import AlertManager from "./AlertManager";
 
 /**
  * объект с константами для вывода сообщений на экран
@@ -64,7 +65,14 @@ export default class SignupFormValidator {
             messageBox.appendChild(p);
         });
 
-        if(messageArr.length === 0) {
+        const router = this.router;
+
+        if(messageArr.length !== 0) {
+            const html = messageBox.innerHTML;
+            new AlertManager().showAlertWindow(html, () => {
+                // close window
+            });
+        } else {
             const promise = new AjaxWorker("signup/", {
                 loginField: login,
                 passwordField: password
@@ -73,14 +81,32 @@ export default class SignupFormValidator {
             promise.then((result) => {
                 const message = JSON.parse(result).message;
                 if(message === "YES") {
-                    const h3 = document.createElement("h3");
-                    h3.innerHTML = "Регистрация прошла успешно.";
-                    messageBox.appendChild(h3);
+                    const p = document.createElement("p");
+                    p.innerHTML = "Регистрация прошла успешно.";
+                    messageBox.appendChild(p);
+                    const html = messageBox.innerHTML;
+                    new AlertManager().showAlertWindow(html, () => {
+                        const promise = new AjaxWorker("login/", {
+                            loginField: login,
+                            passwordField: password
+                        }).sendPost();
+
+                        promise.then((result) => {
+                            const message = JSON.parse(result).message;
+                            if (message === "YES") {
+                                router.moveToPage("/main-menu");
+                            }
+                        });
+                    });
                 }
                 if(message === "NO") {
-                    const h3 = document.createElement("h3");
-                    h3.innerHTML = "Пользователь с таким логином уже есть в БД.";
-                    messageBox.appendChild(h3);
+                    const p = document.createElement("p");
+                    p.innerHTML = "Пользователь с таким логином уже есть в БД.";
+                    messageBox.appendChild(p);
+                    const html = messageBox.innerHTML;
+                    new AlertManager().showAlertWindow(html, () => {
+                        // close window
+                    });
                 }
             });
         }

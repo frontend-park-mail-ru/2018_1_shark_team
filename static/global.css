@@ -3,6 +3,7 @@ body {
     font-size: 20px;
     font-family: Geneva, Arial, Helvetica, sans-serif;
     background: cornflowerblue;
+    padding: 0;
 }
 
 .center-box {
@@ -11,8 +12,54 @@ body {
     padding: 30px;
     background: white;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .vertical-space {
     padding-top: 25px;
+}
+
+.full-screen-box {
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.65;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-window {
+    z-index: 5;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.alert-window__content {
+    padding: 30px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    max-width: 45%;
+}
+
+.content__message-content {
+    font-size: 25px;
+}
+
+.content__ok-button {
+    color: black;
+    font-size: 20px;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    padding: 7px;
+    border: 2px solid black;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    width: 100px;
+    margin-top: 10px;
 }

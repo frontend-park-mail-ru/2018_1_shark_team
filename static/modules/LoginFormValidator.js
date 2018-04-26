@@ -2,6 +2,7 @@
 
 import AjaxWorker from "./AjaxWorker";
 import isStringNormal from "./isStringNormal";
+import AlertManager from "./AlertManager";
 
 /**
  * объект с константами для вывода сообщений на экран
@@ -65,7 +66,12 @@ export default class LoginFormValidator {
             messageBox.appendChild(p);
         });
 
-        if(messageArr.length === 0) {
+        if(messageArr.length !== 0) {
+            const html = messageBox.innerHTML;
+            new AlertManager().showAlertWindow(html, () => {
+                // close window
+            });
+        } else {
             const promise = new AjaxWorker("login/", {
                 loginField: login,
                 passwordField: password
@@ -77,9 +83,13 @@ export default class LoginFormValidator {
                     router.moveToPage("/main-menu");
                 }
                 if(message === "NO") {
-                    const h3 = document.createElement("h3");
-                    h3.innerHTML = "Неверный логин или пароль.";
-                    messageBox.appendChild(h3);
+                    const p = document.createElement("p");
+                    p.innerHTML = "Неверный логин или пароль.";
+                    messageBox.appendChild(p);
+                    const html = messageBox.innerHTML;
+                    new AlertManager().showAlertWindow(html, () => {
+                        // close window
+                    });
                 }
             });
         }

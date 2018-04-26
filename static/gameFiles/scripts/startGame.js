@@ -1,6 +1,6 @@
 "use strict";
 
-import Game from "../gameFiles/scripts/Game";
+import Game from "./Game";
 
 export default function startGame() {
     document.querySelector(".one-player-page__start-game-button").hidden = true;

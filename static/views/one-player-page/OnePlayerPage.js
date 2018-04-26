@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./one-player-page.pug";
-import startGame from "./../../modules/startGame";
+import startGame from "../../gameFiles/scripts/startGame";
 
 export default class OnePlayerPage {
     constructor() {

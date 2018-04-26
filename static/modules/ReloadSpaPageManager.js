@@ -4,6 +4,7 @@ import UserAvatarLoader from "./UserAvatarLoader";
 import getLiaderBoard from "./LiderBoard/LiderBoardLoader";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import ChatManager from "./ChatManager";
+import drawLogins from "./render/drawLogins";
 
 /**
  * класс для выполнения реинициализаций при открытии страниц приложения
@@ -25,10 +26,7 @@ export default class ReloadSpaPageManager {
     reloadSpa() {
         const login = this.login;
         localStorage.setItem("loginValue", login);
-        const loginUserStr = "User: " + login;
-        this.elementsBase.getElement("mainMenuLoginLabel").innerHTML = loginUserStr;
-        this.elementsBase.getElement("myPageLoginLabel").innerHTML = loginUserStr;
-        this.elementsBase.getElement("lidersPageLoginLabel").innerHTML = loginUserStr;
+        drawLogins (login, this.elementsBase);
 
         const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
         userAvatarLoader.loadAvatar();

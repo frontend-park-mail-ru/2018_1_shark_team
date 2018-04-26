@@ -31,6 +31,7 @@ import Router from "./Router";
 import ElementsBase from "./utils/ElementsBase";
 import FieldsCleaner from "./render/FieldsCleaner";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
+import initElementsDictionary from "./initElementsDictionary";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -66,28 +67,7 @@ class Start {
      * метод для инициализации словаря с DOM объектами
      */
     createAndInitElementsBase() {
-        this.elementsBase = new ElementsBase();
-
-        this.elementsBase.addElement("signUpLoginField", document.querySelector(".sign-up-page__form .form__login-input-field"));
-        this.elementsBase.addElement("signUpPasswordField", document.querySelector(".sign-up-page__form .form__password-input-field"));
-        this.elementsBase.addElement("signUpMessageBox", document.querySelector(".sign-up-page__message-box"));
-
-        this.elementsBase.addElement("logInLoginField", document.querySelector(".log-in-page__form .form__login-input-field"));
-        this.elementsBase.addElement("logInPasswordField", document.querySelector(".log-in-page__form .form__password-input-field"));
-        this.elementsBase.addElement("logInMessageBox", document.querySelector(".log-in-page__message-box"));
-
-        this.elementsBase.addElement("mainMenuLoginLabel", document.querySelector(".main-menu-page__label"));
-
-        this.elementsBase.addElement("myPageLoginLabel", document.querySelector(".my-page__user-login-label"));
-        this.elementsBase.addElement("fileInputHiddenBtn", document.querySelector(".form__file-button"));
-        this.elementsBase.addElement("userAvatarImage", document.querySelector(".form__user-avatar-image"));
-        this.elementsBase.addElement("myPageMessageBox", document.querySelector(".my-page__message-box"));
-
-        this.elementsBase.addElement("lidersPageLoginLabel", document.querySelector(".liders-page__login-label"));
-        this.elementsBase.addElement("lidersBox", document.querySelector(".liders-page__liders-list-box"));
-
-        this.elementsBase.addElement("chatInputField", document.querySelector(".chat-page__input-field"));
-        this.elementsBase.addElement("chatMessageBox", document.querySelector(".chat-page__messages-box"));
+        this.elementsBase = initElementsDictionary();
     }
 
     /**

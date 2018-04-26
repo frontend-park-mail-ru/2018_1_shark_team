@@ -1,7 +1,6 @@
 "use strict";
 
-import LogMessage from "../debug/MessageLogger";
-import KeyEventManager from "../KeyEventManager";
+import LogMessage from "./MessageLogger";
 
 const START_POSITION = 3;
 const TOP_BORDER = 1;
@@ -9,6 +8,7 @@ const BOTTOM_BORDER = 5;
 
 const KEY_TOP = 87;
 const KEY_BOTTOM = 83;
+const KEY_FIRE = 82;
 
 const ROCKET_HEIGHT = 80;
 const START_ROCKET_Y = 100;
@@ -19,7 +19,6 @@ export default class RocketMoveManager {
         this.initFields();
         this.addKeyDownEvent();
         this.addKeyUpEvent();
-        this.keyEventManager.addEvents();
     }
 
     getRocketPosition() {
@@ -30,12 +29,13 @@ export default class RocketMoveManager {
         this.startPosition = START_POSITION;
         this.keyTopPushed = false;
         this.keyBottomPushed = false;
-        this.keyEventManager = new KeyEventManager();
+        this.keyFire = false;
     }
 
     addKeyDownEvent() {
-        this.keyEventManager.initKeyDown((event) => {
+        window.onkeydown = (event) => {
             const number = event.keyCode;
+
             if(number === KEY_TOP) {
                 if(this.keyTopPushed === false) {
                     if(this.startPosition !== TOP_BORDER) {
@@ -44,6 +44,7 @@ export default class RocketMoveManager {
                     }
                 }
             }
+
             if(number === KEY_BOTTOM) {
                 if(this.keyBottomPushed === false) {
                     if(this.startPosition !== BOTTOM_BORDER) {
@@ -52,12 +53,24 @@ export default class RocketMoveManager {
                     }
                 }
             }
-        });
+
+            if(number === KEY_FIRE) {
+                if(this.keyFire === false) {
+                    this.keyFire = true;
+                    this.fireCallback();
+                }
+            }
+        };
+    }
+
+    initFireCallback(fireCallback) {
+        this.fireCallback = fireCallback;
     }
 
     addKeyUpEvent() {
-        this.keyEventManager.initKeyUp((event) => {
+        window.onkeyup = (event) => {
             const number = event.keyCode;
+
             switch (number) {
                 case KEY_TOP:
                     this.keyTopPushed = false;
@@ -65,7 +78,10 @@ export default class RocketMoveManager {
                 case KEY_BOTTOM:
                     this.keyBottomPushed = false;
                     break;
+                case KEY_FIRE:
+                    this.keyFire = false;
+                    break;
             }
-        });
+        };
     }
 }

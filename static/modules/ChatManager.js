@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 const SOCKET_URL = "ws://funny-race-socket-server-123.herokuapp.com/";
 const HELLO_MESSAGE = "HELLO_MESSAGE";
@@ -96,7 +96,9 @@ export default class ChatManager {
 
 ////////////////////////////////////////////////
 
+/*
 let interSocket = setInterval(() => {
     LogMessage("Template");
     ChatManager.tryToSendTemplateMessage();
 }, 200);
+*/

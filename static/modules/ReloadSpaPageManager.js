@@ -2,7 +2,7 @@
 
 import UserAvatarLoader from "./UserAvatarLoader";
 import getLiaderBoard from "./LiderBoardLoader";
-import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 import ChatManager from "./ChatManager";
 
 /**

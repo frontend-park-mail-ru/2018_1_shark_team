@@ -1,24 +1,32 @@
 "use strict";
 
-import LogMessage from "../debug/MessageLogger";
+import LogMessage from "./MessageLogger";
 
 const ROCKET_IMAGE = "./../../gameFiles/images/rocketOK.png";
 const ENEMY_IMAGE = "./../../gameFiles/images/enemyOK.png";
 const FON_IMAGE = "./../../gameFiles/images/fonOK.png";
+const BONUS_IMAGE = "./../../gameFiles/images/bonusLive.png";
+const BALL_IMAGE = "./../../gameFiles/images/ballOK.png";
 
 export default class ImageLoader {
     constructor(game) {
         this.rocketObj = null;
         this.enemyObj = null;
         this.fonObj = null;
+        this.bonusObj = null;
+        this.ballObj = null;
         LogMessage("create ImageLoader");
         this.game = game;
         this.rocketImage = false;
         this.enemyImage = false;
         this.fonImage = false;
+        this.bonusImage = false;
+        this.ballImage = false;
         this.loadRocket();
         this.loadEnemy();
         this.loadFon();
+        this.loadBonus();
+        this.loadBall();
     }
 
     getRocket() {
@@ -33,12 +41,42 @@ export default class ImageLoader {
         return this.fonObj;
     }
 
+    getBonus() {
+        return this.bonusObj;
+    }
+
+    getBall() {
+        return this.ballObj;
+    }
+
     startGame() {
-        if(this.rocketImage && this.enemyImage && this.fonImage) {
+        if(this.rocketImage && this.enemyImage && this.fonImage && this.bonusImage && this.ballImage) {
             this.rocketImage = false;
             this.enemyImage = false;
             this.fonImage = false;
+            this.bonusImage = false;
+            this.ballImage = false;
             this.game.startRepeatingActions();
+        }
+    }
+
+    loadBall() {
+        const img = new Image();
+        img.src = BALL_IMAGE;
+        img.onload = () => {
+            this.ballImage = true;
+            this.ballObj = img;
+            this.startGame();
+        }
+    }
+
+    loadBonus() {
+        const img = new Image();
+        img.src = BONUS_IMAGE;
+        img.onload = () => {
+            this.bonusImage = true;
+            this.bonusObj = img;
+            this.startGame();
         }
     }
 

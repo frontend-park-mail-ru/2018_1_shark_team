@@ -34,7 +34,33 @@
   width: 160px;
 }
 
+.one_player_page__ammo-field {
+  padding: 15px 25px;
+  background-color: #CCCCCC;
+  border-radius: 8px;
+  width: 160px;
+  margin-left: 15px;
+}
+
+.one_player_page__live-field {
+  padding: 15px 25px;
+  background-color: #CCCCCC;
+  border-radius: 8px;
+  width: 160px;
+  margin-left: 15px;
+}
+
 .count-field__count-label {
+  font-size: 35px;
+  padding-right: 15px;
+}
+
+.ammo-field__ammo-label {
+  font-size: 35px;
+  padding-right: 15px;
+}
+
+.live-field__live-label {
   font-size: 35px;
   padding-right: 15px;
 }

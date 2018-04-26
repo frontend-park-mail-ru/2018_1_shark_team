@@ -30,8 +30,7 @@ import "../views/chat-page/chat-page.scss";
 import Router from "./Router";
 import ElementsBase from "./ElementsBase";
 import FieldsCleaner from "./FieldsCleaner";
-import MessagePrinter from "./MessagePrinter";
-import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -153,18 +152,6 @@ class Start {
  * при загрузке окна запускаем приложуху
  */
 window.addEventListener("load", () => {
-    MessagePrinter.write("window load complete");
-
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(function (registration) {
-                LogMessage("ServiceWorker registration", registration);
-            })
-            .catch(function (err) {
-                LogMessage("Registration err", err);
-            });
-    }
-
     // start application
     new Start();
 });

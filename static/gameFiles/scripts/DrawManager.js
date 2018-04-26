@@ -1,11 +1,9 @@
 "use strict";
 
-import LogMessage from "../debug/MessageLogger";
+import LogMessage from "./MessageLogger";
 import GraphicsCreator from "./GraphicsCreator";
-import HeroesInfoGetter from "../imagesContent/HeroesInfoGetter";
-import getDebugMode from "../debug/DebugModeSetter";
-import FonAnimationControl from "../background/FonAnimationControl";
-import renderEnemies from "../enemies/enemiesRender";
+import HeroesInfoGetter from "./HeroesInfoGetter";
+import getDebugMode from "./DebugModeSetter";
 
 const SIMPLE_BACKGROUND_COLOR = "#534d94";
 const HOLST_WIDTH = 900;
@@ -21,18 +19,25 @@ const ENEMY_SIZE = 80;
 const ROCKET_WIDTH = 140;
 const ROCKET_HEIGHT = 80;
 
+const FON_IMAGE_WIDTH = 1000;
+const FON_IMAGE_HEIGHT = 700;
+const FON_X = -50;
+const FON_Y = -50;
+const DELTA_ANGLE = 0.01;
+const MAX_ANGLE = 4 * Math.PI;
+const FON_RADIUS = 30;
+
 export default class DrawManager {
     constructor(canvasPlain) {
         LogMessage("create DrawManager");
         this.holst = canvasPlain.getContext("2d");
         this.holst.lineWidth = LINE_WIDTH;
-        this.fonAnimationControl = new FonAnimationControl();
         this.initFonAngle();
         this.drawSimpleBackGround();
     }
 
     initFonAngle() {
-        this.fonAnimationControl.initFonAngle(0);
+        this.angle = 0;
     }
 
     getHolst() {
@@ -43,12 +48,17 @@ export default class DrawManager {
         this.holst.fillStyle = SIMPLE_BACKGROUND_COLOR;
         this.holst.fillRect(0, 0, HOLST_WIDTH, HOLST_HEIGHT);
 
-        this.fonAnimationControl.addDeltaAngle();
-        this.fonAnimationControl.controlAngleValue();
-        this.fonAnimationControl.findNewFonPosition();
+        this.angle += DELTA_ANGLE;
+
+        if(this.angle > MAX_ANGLE) {
+            this.angle = 0;
+        }
+
+        const fonX = FON_X + Math.cos(this.angle) * FON_RADIUS;
+        const fonY = FON_Y + Math.sin(this.angle) * FON_RADIUS;
 
         try {
-            this.holst.drawImage(this.imageLoader.getFon(), this.fonAnimationControl.getFonX(), this.fonAnimationControl.getFonY(), FonAnimationControl.getFonImageWidth(), FonAnimationControl.getFonImageHeight());
+            this.holst.drawImage(this.imageLoader.getFon(), fonX, fonY, FON_IMAGE_WIDTH, FON_IMAGE_HEIGHT);
         } catch (err) {
             // fon not loaded
         }
@@ -88,17 +98,50 @@ export default class DrawManager {
         this.enemiesArr = enemiesArr;
     }
 
+    initAmmoArray(ammoArr) {
+        this.ammoArr = ammoArr;
+    }
+
     initImageLoader(imageLoader) {
         this.imageLoader = imageLoader;
     }
 
+    drawAllAmmo() {
+        if(this.ammoArr) {
+            this.ammoArr.forEach((ammo) => {
+                this.holst.drawImage(this.imageLoader.getBall(), ammo.x, ammo.y, ENEMY_SIZE, ENEMY_SIZE);
+            });
+        }
+    }
+
     drawAllEnemies() {
-        renderEnemies(this.enemiesArr, this.holst, ENEMY_SIZE, this.imageLoader);
+        if(this.enemiesArr !== null) {
+            if(getDebugMode() === true) {
+                this.enemiesArr.forEach((enemy) => {
+                    enemy.render.drawGraphicsObject(enemy.x, enemy.y);
+                });
+            }
+
+            this.enemiesArr.forEach((enemy) => {
+                try {
+                    if(!enemy.live) {
+                        this.holst.drawImage(this.imageLoader.getEnemy(), enemy.x, enemy.y, ENEMY_SIZE, ENEMY_SIZE);
+                    } else {
+                        if(enemy.live === true) {
+                            this.holst.drawImage(this.imageLoader.getBonus(), enemy.x, enemy.y, ENEMY_SIZE, ENEMY_SIZE);
+                        }
+                    }
+                } catch (err) {
+                    // enemy not loaded
+                }
+            });
+        }
     }
 
     renderAll() {
         this.drawSimpleBackGround();
         this.drawRocket();
         this.drawAllEnemies();
+        this.drawAllAmmo();
     }
 }

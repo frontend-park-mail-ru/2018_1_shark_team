@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./log-in-page.pug";
-import LoginFormValidator from "../../modules/LoginFormValidator";
+import LoginFormValidator from "../../modules/LogIn/service/LoginFormValidator";
 
 export default class LogInPage {
     constructor() {

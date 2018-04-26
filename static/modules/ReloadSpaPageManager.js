@@ -40,11 +40,13 @@ export default class ReloadSpaPageManager {
         liaderBoard.initLiderBoardParams();
         liaderBoard.loadLiders();
 
+        /*
         ChatManager.tryToClose();
         let socket = ChatManager.getSocket();
         LogMessage(socket);
         socket = null;
         ChatManager.tryToConnect();
         ChatManager.tryToAddSocketEvents();
+        */
     }
 }

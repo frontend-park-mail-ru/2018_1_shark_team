@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./sign-up-page.pug";
-import SignupFormValidator from "../../modules/SignupFormValidator";
+import SignupFormValidator from "../../modules/SignUp/service/SignupFormValidator";
 
 export default class SignUpPage {
     constructor() {

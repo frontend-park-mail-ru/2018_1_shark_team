@@ -31,7 +31,8 @@ import Router from "./Router";
 import ElementsBase from "./utils/ElementsBase";
 import FieldsCleaner from "./render/FieldsCleaner";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
-import initElementsDictionary from "./initElementsDictionary";
+import initElementsDictionary from "./store/initElementsDictionary";
+import initRouter from "./store/initRouter";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -75,15 +76,7 @@ class Start {
      */
     createAndInitRouter() {
         this.router = new Router(this.elementsBase);
-        this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
-        this.router.addPage("/log-in", document.querySelector(".log-in-page"));
-        this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
-        this.router.addPage("/about-authors", document.querySelector(".about-authors-page"));
-        this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
-        this.router.addPage("/my-page", document.querySelector(".my-page"));
-        this.router.addPage("/liders-page", document.querySelector(".liders-page"));
-        this.router.addPage("/one-player-page", document.querySelector(".one-player-page"));
-        this.router.addPage("/chat-page", document.querySelector(".chat-page"));
+        initRouter(this.router);
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",

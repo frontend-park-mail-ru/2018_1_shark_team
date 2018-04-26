@@ -1,6 +1,6 @@
 "use strict";
 
-import ElementsBase from "./utils/ElementsBase";
+import ElementsBase from "../utils/ElementsBase";
 
 export default function initElementsDictionary() {
     const elementsBase = new ElementsBase();

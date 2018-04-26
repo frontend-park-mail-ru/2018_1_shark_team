@@ -1,7 +1,7 @@
 "use strict";
 
 import UserAvatarLoader from "./UserAvatarLoader";
-import getLiaderBoard from "./LiderBoardLoader";
+import getLiaderBoard from "./LiderBoard/LiderBoardLoader";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import ChatManager from "./ChatManager";
 

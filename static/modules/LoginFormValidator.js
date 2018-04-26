@@ -1,8 +1,8 @@
 "use strict";
 
-import AjaxWorker from "./AjaxWorker";
-import isStringNormal from "./isStringNormal";
-import AlertManager from "./AlertManager";
+import AjaxWorker from "./network/AjaxWorker";
+import isStringNormal from "./utils/isStringNormal";
+import AlertManager from "./render/AlertManager";
 
 /**
  * объект с константами для вывода сообщений на экран

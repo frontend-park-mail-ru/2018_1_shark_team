@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./my-page.pug";
-import AjaxWorker from "../../modules/AjaxWorker";
+import AjaxWorker from "../../modules/network/AjaxWorker";
 
 export default class MyPage {
     constructor() {

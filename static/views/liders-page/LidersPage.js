@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./liders-page.pug";
-import getLiaderBoard from "./../../modules/LiderBoardLoader";
+import getLiaderBoard from "../../modules/LiderBoard/LiderBoardLoader";
 
 export default class LidersPage {
     constructor() {

@@ -1,7 +1,7 @@
 "use strict";
 
 import AjaxWorker from "./AjaxWorker";
-import MessagePrinter from "./MessagePrinter";
+import MessagePrinter from "../render/MessagePrinter";
 
 /**
  * класс для реализации разлогинивания пользователя

@@ -28,8 +28,8 @@ import ChatPage from "../views/chat-page/ChatPage";
 import "../views/chat-page/chat-page.scss";
 
 import Router from "./Router";
-import ElementsBase from "./ElementsBase";
-import FieldsCleaner from "./FieldsCleaner";
+import ElementsBase from "./utils/ElementsBase";
+import FieldsCleaner from "./render/FieldsCleaner";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
@@ -133,15 +133,21 @@ class Start {
         this.fieldsCleaner = new FieldsCleaner();
         const dict = this.elementsBase;
 
-        this.fieldsCleaner.addField(dict.getElement("signUpLoginField"));
-        this.fieldsCleaner.addField(dict.getElement("signUpPasswordField"));
-        this.fieldsCleaner.addField(dict.getElement("signUpMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("logInLoginField"));
-        this.fieldsCleaner.addField(dict.getElement("logInPasswordField"));
-        this.fieldsCleaner.addField(dict.getElement("logInMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("myPageMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("chatInputField"));
-        this.fieldsCleaner.addField(dict.getElement("chatMessageBox"));
+        const arr = [
+            "signUpLoginField",
+            "signUpPasswordField",
+            "signUpMessageBox",
+            "logInLoginField",
+            "logInPasswordField",
+            "logInMessageBox",
+            "myPageMessageBox",
+            "chatInputField",
+            "chatMessageBox",
+        ];
+
+        arr.forEach((element) => {
+            this.fieldsCleaner.addField(dict.getElement(element));
+        });
 
         this.fieldsCleaner.clearFields();
         this.router.initFieldsCleaner(this.fieldsCleaner);

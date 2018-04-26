@@ -1,7 +1,8 @@
 "use strict";
 
-import AjaxWorker from "./AjaxWorker";
-import MessagePrinter from "./MessagePrinter";
+import AjaxWorker from "../network/AjaxWorker";
+import MessagePrinter from "../render/MessagePrinter";
+import LiderBoardRender from "./render/LiderBoardRender";
 
 /**
  * класс для работы с таблицей лидеров
@@ -9,7 +10,8 @@ import MessagePrinter from "./MessagePrinter";
 class LiderBoardLoader {
     initLiderBoard(elementsBase) {
         this.elementsBase = elementsBase;
-        this.elementsBase.getElement("lidersBox").innerHTML = "";
+        this.render = new LiderBoardRender(elementsBase);
+        this.render.clearBox();
         this.createLidersListParamSaver();
     }
 
@@ -63,22 +65,12 @@ class LiderBoardLoader {
 
         promise.then((result) => {
             const arr = JSON.parse(result);
-            this.elementsBase.getElement("lidersBox").innerHTML = "";
+            this.render.clearBox();
 
             if(arr.length > 0) {
-                arr.forEach((element) => {
-                    const content = element.login + " : " + element.score;
-                    const div = document.createElement("div");
-                    const text = document.createTextNode(content);
-                    div.appendChild(text);
-                    this.elementsBase.getElement("lidersBox").appendChild(div);
-                });
+                this.render.writeArrContent(arr);
             } else {
-                const content = "Список окончен";
-                const h3 = document.createElement("h3");
-                const text = document.createTextNode(content);
-                h3.appendChild(text);
-                this.elementsBase.getElement("lidersBox").appendChild(h3);
+                this.render.writeEmptyListMessage();
                 this.lidersListParams.stopRightMoving = true;
             }
         });

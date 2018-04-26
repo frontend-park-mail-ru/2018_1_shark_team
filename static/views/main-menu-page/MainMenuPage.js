@@ -1,7 +1,7 @@
 "use strict";
 
 import template from "./main-menu-page.pug";
-import ExitManager from "../../modules/ExitManager";
+import ExitManager from "../../modules/network/ExitManager";
 
 export default class MainMenuPage {
     constructor() {

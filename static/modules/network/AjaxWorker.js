@@ -1,7 +1,7 @@
 "use strict";
 
-import MessagePrinter from "./MessagePrinter";
-import getApplicationMode from "./DebugMode";
+import MessagePrinter from "../render/MessagePrinter";
+import getApplicationMode from "../utils/DebugMode";
 
 const DEBUG_URL = "http://localhost:5005/";
 const RELEASE_URL = "http://funny-race-backend-218.herokuapp.com/";

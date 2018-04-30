@@ -3,7 +3,7 @@ div(class='one-player-page', hidden)
     div(class="one-player-page__canvas-box")
         canvas(class='canvas-box__canvas-plain', width='900px', height='600px')
     div(class="vertical-space")
-    table
+    table(hidden)
         tr
             td
                 div(class='one-player-page__count-field', align='center')
@@ -17,8 +17,8 @@ div(class='one-player-page', hidden)
                 div(class='one_player_page__live-field', align='center')
                     span(class='live-field__live-label') 0
                     img(src='./../../gameFiles/images/bonusLive.png', width='35px', height='35px')
-    div(class="vertical-space")
+    div(class="vertical-space", hidden)
     input(type="button", value="Start game", class="one-player-page__start-game-button")
-    div(class="vertical-space")
+    div(class="vertical-space", hidden)
     input(type="button", value="Main menu", class="one-player-page__main-menu-button")
     div(class="vertical-space")

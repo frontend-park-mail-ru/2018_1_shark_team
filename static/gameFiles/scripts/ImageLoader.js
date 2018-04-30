@@ -7,9 +7,11 @@ const ENEMY_IMAGE = "./../../gameFiles/images/enemyOK.png";
 const FON_IMAGE = "./../../gameFiles/images/fonOK.png";
 const BONUS_IMAGE = "./../../gameFiles/images/bonusLive.png";
 const BALL_IMAGE = "./../../gameFiles/images/ballOK.png";
+const STAR_IMAGE = "./../../gameFiles/images/star.png";
 
 export default class ImageLoader {
     constructor(game) {
+        this.starObj = null;
         this.rocketObj = null;
         this.enemyObj = null;
         this.fonObj = null;
@@ -17,16 +19,22 @@ export default class ImageLoader {
         this.ballObj = null;
         LogMessage("create ImageLoader");
         this.game = game;
+        this.starImage = false;
         this.rocketImage = false;
         this.enemyImage = false;
         this.fonImage = false;
         this.bonusImage = false;
         this.ballImage = false;
+        this.loadStar();
         this.loadRocket();
         this.loadEnemy();
         this.loadFon();
         this.loadBonus();
         this.loadBall();
+    }
+
+    getStar() {
+        return this.starObj;
     }
 
     getRocket() {
@@ -50,13 +58,24 @@ export default class ImageLoader {
     }
 
     startGame() {
-        if(this.rocketImage && this.enemyImage && this.fonImage && this.bonusImage && this.ballImage) {
+        if(this.rocketImage && this.enemyImage && this.fonImage && this.bonusImage && this.ballImage && this.starImage) {
             this.rocketImage = false;
             this.enemyImage = false;
             this.fonImage = false;
             this.bonusImage = false;
             this.ballImage = false;
+            this.starImage = false;
             this.game.startRepeatingActions();
+        }
+    }
+
+    loadStar() {
+        const img = new Image();
+        img.src = STAR_IMAGE;
+        img.onload = () => {
+            this.starImage = true;
+            this.starObj = img;
+            this.startGame();
         }
     }
 

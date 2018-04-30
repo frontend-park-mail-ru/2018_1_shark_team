@@ -78,6 +78,14 @@ export default class Game {
         this.drawManager.initImageLoader(this.imageLoader);
     }
 
+    printGameParamsInCanvas() {
+        try {
+            this.drawManager.printGameParamsWithCanvas(parseInt(this.scorePoints), this.ammo, this.live);
+        } catch (err) {
+            // printing error
+        }
+    }
+
     initRocketShadow() {
         this.rocketShadowY = this.rocketMoveManager.getRocketPosition();
     }
@@ -359,6 +367,7 @@ export default class Game {
                 this.addScore();
                 this.controlHit();
                 this.controlHitAmmoAndEnemies();
+                this.printGameParamsInCanvas();
             } else {
                 clearInterval(this.interval);
                 LogMessage("--- STOP GAME INTERVAL ---");

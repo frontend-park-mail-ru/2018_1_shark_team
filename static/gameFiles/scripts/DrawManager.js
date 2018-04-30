@@ -10,6 +10,10 @@ const HOLST_WIDTH = 900;
 const HOLST_HEIGHT = 600;
 const LINE_WIDTH = 2;
 
+const PICTURE_SIZE = 60;
+const PICTURE_Y_POS = 520;
+const IMAGE_TEXT_Y_POS = 560;
+
 const BORDER_LINES_STYLE = "#2bbab3";
 const BORDER_TOP_Y = 100;
 const BORDER_BOTTOM_Y = 500;
@@ -92,6 +96,22 @@ export default class DrawManager {
         }
 
         this.holst.globalAlpha = 1;
+    }
+
+    printGameParamsWithCanvas(score, balls, lives) {
+        this.holst.drawImage(this.imageLoader.getStar(), 100, PICTURE_Y_POS, PICTURE_SIZE, PICTURE_SIZE);
+        this.holst.drawImage(this.imageLoader.getBall(), 350, PICTURE_Y_POS, PICTURE_SIZE, PICTURE_SIZE);
+        this.holst.drawImage(this.imageLoader.getBonus(), 600, PICTURE_Y_POS, PICTURE_SIZE, PICTURE_SIZE);
+
+        function drawText(holst, textContent, position_x) {
+            holst.fillStyle = '#33ff27';
+            holst.font = "30px Geneva, Arial, Helvetica, sans-serif";
+            holst.fillText(textContent.toString(), position_x, IMAGE_TEXT_Y_POS);
+        }
+
+        drawText(this.holst, score, 180);
+        drawText(this.holst, balls, 430);
+        drawText(this.holst, lives, 680);
     }
 
     drawRocket() {

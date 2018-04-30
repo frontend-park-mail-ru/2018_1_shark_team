@@ -61,7 +61,10 @@ const ROCKET_SHADOW_SPEED = 10;
 export default class Game {
     constructor() {
         LogMessage("create Game");
-        this.drawManager = new DrawManager(document.querySelector(".canvas-box__canvas-plain"));
+        /////
+        this.canvasElement = document.querySelector(".canvas-box__canvas-plain");
+        /////
+        this.drawManager = new DrawManager(this.canvasElement);
         this.initAmmo();
         this.initLive();
         this.initGenerateLiveCount();
@@ -76,6 +79,23 @@ export default class Game {
         this.initGameFlag();
         this.imageLoader = new ImageLoader(this);
         this.drawManager.initImageLoader(this.imageLoader);
+        this.makeFullScreen();
+        this.addFullScreenClickEvent();
+    }
+
+    addFullScreenClickEvent() {
+        this.canvasElement.onclick = () => {
+            LogMessage("Canvas Click");
+            this.makeFullScreen();
+        }
+    }
+
+    makeFullScreen() {
+        try {
+            this.canvasElement.webkitRequestFullscreen();
+        } catch (err) {
+            // fullscreen error
+        }
     }
 
     printGameParamsInCanvas() {

@@ -1,6 +1,6 @@
 "use strict";
 
-import AjaxWorker from "./network/AjaxWorker";
+import AjaxWorker from "./AjaxWorker";
 
 /**
  * класс для загрузки аватарки пользователя

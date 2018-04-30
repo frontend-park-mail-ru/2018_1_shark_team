@@ -1,9 +1,8 @@
 "use strict";
 
-import UserAvatarLoader from "./UserAvatarLoader";
+import UserAvatarLoader from "./network/UserAvatarLoader";
 import getLiaderBoard from "./LiderBoard/LiderBoardLoader";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
-import ChatManager from "./ChatManager";
 import drawLogins from "./render/drawLogins";
 
 /**
@@ -37,14 +36,5 @@ export default class ReloadSpaPageManager {
         liaderBoard.initLiderBoard(this.elementsBase);
         liaderBoard.initLiderBoardParams();
         liaderBoard.loadLiders();
-
-        /*
-        ChatManager.tryToClose();
-        let socket = ChatManager.getSocket();
-        LogMessage(socket);
-        socket = null;
-        ChatManager.tryToConnect();
-        ChatManager.tryToAddSocketEvents();
-        */
     }
 }

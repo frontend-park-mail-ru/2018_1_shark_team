@@ -56,6 +56,8 @@ const MAX_LIVE_COUNT = 200;
 
 const AMMO_SPEED = 15;
 
+const ROCKET_SHADOW_SPEED = 10;
+
 export default class Game {
     constructor() {
         LogMessage("create Game");
@@ -66,6 +68,7 @@ export default class Game {
         this.initScore();
         this.createHeroRocket();
         this.createRocketMoveManager();
+        this.initRocketShadow();
         this.createEnemiesArray();
         this.createCounter();
         this.initCountRightBorder();
@@ -73,6 +76,24 @@ export default class Game {
         this.initGameFlag();
         this.imageLoader = new ImageLoader(this);
         this.drawManager.initImageLoader(this.imageLoader);
+    }
+
+    initRocketShadow() {
+        this.rocketShadowY = this.rocketMoveManager.getRocketPosition();
+    }
+
+    moveRocketShadow() {
+        if(this.rocketShadowY < this.drawManager.rocket.y) {
+            this.rocketShadowY += ROCKET_SHADOW_SPEED
+        }
+
+        if(this.rocketShadowY > this.drawManager.rocket.y) {
+            this.rocketShadowY -= ROCKET_SHADOW_SPEED
+        }
+    }
+
+    renderRocketShadow() {
+        this.drawManager.renderRocketShadow(this.rocketShadowY);
     }
 
     moveAllAmmo() {
@@ -333,6 +354,8 @@ export default class Game {
                 this.moveAllAmmo();
                 this.moveAllEnemies();
                 this.drawManager.renderAll();
+                this.moveRocketShadow();
+                this.renderRocketShadow();
                 this.addScore();
                 this.controlHit();
                 this.controlHitAmmoAndEnemies();

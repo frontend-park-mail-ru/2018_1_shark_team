@@ -82,6 +82,18 @@ export default class DrawManager {
         this.drawRocket();
     }
 
+    renderRocketShadow(rocketShadowY) {
+        this.holst.globalAlpha = 0.5;
+
+        try {
+            this.holst.drawImage(this.imageLoader.getRocket(), this.rocket.x, rocketShadowY, ROCKET_WIDTH, ROCKET_HEIGHT);
+        } catch (err) {
+            // rocket not loaded
+        }
+
+        this.holst.globalAlpha = 1;
+    }
+
     drawRocket() {
         if(getDebugMode() === true) {
             this.rocketGraphics.drawGraphicsObject(this.rocket.x, this.rocket.y);

@@ -1,3 +1,5 @@
+$mobile-width: 480px;
+
 .one-player-page__main-menu-button {
   color: black;
   font-size: 20px;
@@ -7,7 +9,12 @@
   border-radius: 5px;
   outline: none;
   cursor: pointer;
-  width: 350px;
+  width: 350px !important;
+  @media only screen and (max-device-width: $mobile-width) {
+    font-size: 40px;
+    width: 400px !important;
+    height: 200px !important;
+  }
 }
 
 .one-player-page__start-game-button {
@@ -19,8 +26,13 @@
   border-radius: 5px;
   outline: none;
   cursor: pointer;
-  width: 350px;
+  width: 350px !important;
   margin-right: 20px;
+  @media only screen and (max-device-width: $mobile-width) {
+    font-size: 40px;
+    width: 400px !important;
+    height: 200px !important;
+  }
 }
 
 .one-player-page__canvas-box {

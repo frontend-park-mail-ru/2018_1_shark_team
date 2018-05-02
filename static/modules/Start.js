@@ -34,6 +34,8 @@ import LogMessage from "../gameFiles/scripts/MessageLogger";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 
+import "../global.scss";
+
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
  */

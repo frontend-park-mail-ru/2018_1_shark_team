@@ -12,7 +12,7 @@ export default class MessagesLogRender {
     pushArrToBox(messageArr) {
         const messageBox = this.messageBox;
         messageArr.forEach((message) => {
-            const p = document.createElement("p");
+            const p = document.createElement("div");
             p.innerHTML = message;
             messageBox.appendChild(p);
         });
@@ -20,7 +20,7 @@ export default class MessagesLogRender {
 
     printBadLoginAndPassword() {
         const messageBox = this.messageBox;
-        const p = document.createElement("p");
+        const p = document.createElement("div");
         p.innerHTML = "Неверный логин или пароль.";
         messageBox.appendChild(p);
     }

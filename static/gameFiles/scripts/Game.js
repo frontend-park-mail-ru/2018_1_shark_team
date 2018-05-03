@@ -81,7 +81,7 @@ export default class Game {
         this.imageLoader = new ImageLoader(this);
         this.drawManager.initImageLoader(this.imageLoader);
         this.makeFullScreen();
-        this.addFullScreenClickEvent();
+        this.addCanvasClickEvent();
         Game.startMusic();
     }
 
@@ -93,10 +93,28 @@ export default class Game {
         MusicManager.stopMainClip();
     }
 
-    addFullScreenClickEvent() {
+    dropCanvasClickEvent() {
         this.canvasElement.onclick = () => {
-            LogMessage("Canvas Click");
-            this.makeFullScreen();
+            // drop event
+            LogMessage("Canvas EMPTY EVENT");
+        }
+    }
+
+    addCanvasClickEvent() {
+        this.canvasElement.onclick = (event) => {
+            LogMessage("Canvas GAME click");
+            const KEY_TOP = 87;
+            const KEY_BOTTOM = 83;
+            const position = parseInt(event.clientY);
+            const height = parseInt(window.innerHeight);
+            const procent = (position / height) * 100;
+            if(procent >= 50) {
+                this.rocketMoveManager.doKeyDown(KEY_BOTTOM);
+                this.rocketMoveManager.doKeyUp(KEY_BOTTOM);
+            } else {
+                this.rocketMoveManager.doKeyDown(KEY_TOP);
+                this.rocketMoveManager.doKeyUp(KEY_TOP);
+            }
         }
     }
 
@@ -406,6 +424,7 @@ export default class Game {
                 this.startAnimationOpacity();
                 MusicManager.rocketDeadClip();
                 RocketMoveManager.dropEvents();
+                this.dropCanvasClickEvent();
             }
         }, WAIT_TIME_INTEVAL);
     }

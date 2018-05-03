@@ -44,34 +44,37 @@ export default class RocketMoveManager {
         }
     }
 
+    doKeyDown(number) {
+        if(number === KEY_TOP) {
+            if(this.keyTopPushed === false) {
+                if(this.startPosition !== TOP_BORDER) {
+                    this.keyTopPushed = true;
+                    this.startPosition--;
+                }
+            }
+        }
+
+        if(number === KEY_BOTTOM) {
+            if(this.keyBottomPushed === false) {
+                if(this.startPosition !== BOTTOM_BORDER) {
+                    this.keyBottomPushed = true;
+                    this.startPosition++;
+                }
+            }
+        }
+
+        if(number === KEY_FIRE) {
+            if(this.keyFire === false) {
+                this.keyFire = true;
+                this.fireCallback();
+            }
+        }
+    }
+
     addKeyDownEvent() {
         window.onkeydown = (event) => {
             const number = event.keyCode;
-
-            if(number === KEY_TOP) {
-                if(this.keyTopPushed === false) {
-                    if(this.startPosition !== TOP_BORDER) {
-                        this.keyTopPushed = true;
-                        this.startPosition--;
-                    }
-                }
-            }
-
-            if(number === KEY_BOTTOM) {
-                if(this.keyBottomPushed === false) {
-                    if(this.startPosition !== BOTTOM_BORDER) {
-                        this.keyBottomPushed = true;
-                        this.startPosition++;
-                    }
-                }
-            }
-
-            if(number === KEY_FIRE) {
-                if(this.keyFire === false) {
-                    this.keyFire = true;
-                    this.fireCallback();
-                }
-            }
+            this.doKeyDown(number);
         };
     }
 
@@ -79,21 +82,24 @@ export default class RocketMoveManager {
         this.fireCallback = fireCallback;
     }
 
+    doKeyUp(number) {
+        switch (number) {
+            case KEY_TOP:
+                this.keyTopPushed = false;
+                break;
+            case KEY_BOTTOM:
+                this.keyBottomPushed = false;
+                break;
+            case KEY_FIRE:
+                this.keyFire = false;
+                break;
+        }
+    }
+
     addKeyUpEvent() {
         window.onkeyup = (event) => {
             const number = event.keyCode;
-
-            switch (number) {
-                case KEY_TOP:
-                    this.keyTopPushed = false;
-                    break;
-                case KEY_BOTTOM:
-                    this.keyBottomPushed = false;
-                    break;
-                case KEY_FIRE:
-                    this.keyFire = false;
-                    break;
-            }
+            this.doKeyUp(number);
         };
     }
 }

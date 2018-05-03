@@ -32,6 +32,18 @@ export default class RocketMoveManager {
         this.keyFire = false;
     }
 
+    static dropEvents() {
+        window.onkeydown = (event) => {
+            // empty event
+            LogMessage("Dropped event DOWN");
+        };
+
+        window.onkeyup = (event) => {
+            // empty event
+            LogMessage("Dropped event UP");
+        }
+    }
+
     addKeyDownEvent() {
         window.onkeydown = (event) => {
             const number = event.keyCode;

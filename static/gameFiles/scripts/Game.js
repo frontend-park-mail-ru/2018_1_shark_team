@@ -9,6 +9,7 @@ import GraphicsCreator from "./GraphicsCreator";
 import ImageLoader from "./ImageLoader";
 import getDebugMode from "./DebugModeSetter";
 import inRangeHit from "./HitControl";
+import MusicManager from "./MusicManager";
 
 const START_SPEED = 12;
 const DELTA_SPEED = 0.2;
@@ -81,6 +82,15 @@ export default class Game {
         this.drawManager.initImageLoader(this.imageLoader);
         this.makeFullScreen();
         this.addFullScreenClickEvent();
+        Game.startMusic();
+    }
+
+    static startMusic() {
+        MusicManager.startMainClip();
+    }
+
+    static stopMusic() {
+        MusicManager.stopMainClip();
     }
 
     addFullScreenClickEvent() {
@@ -163,6 +173,8 @@ export default class Game {
                 y: this.drawManager.rocket.y,
                 ammo: true,
             });
+            // volume fire
+            MusicManager.fireClip();
         } else {
             this.ammo = 0;
             this.ammoLabel.innerHTML = this.ammo.toString();
@@ -392,6 +404,8 @@ export default class Game {
                 clearInterval(this.interval);
                 LogMessage("--- STOP GAME INTERVAL ---");
                 this.startAnimationOpacity();
+                MusicManager.rocketDeadClip();
+                RocketMoveManager.dropEvents();
             }
         }, WAIT_TIME_INTEVAL);
     }
@@ -407,6 +421,7 @@ export default class Game {
             if(opacity <= MIDDLE_OPACITY) {
                 clearInterval(this.opacityInterval);
                 LogMessage("=== STOP OPACITY INTERVAL ===");
+                Game.stopMusic();
                 Game.renderRestartBtn();
             }
         }, WAIT_TIME_INTEVAL);

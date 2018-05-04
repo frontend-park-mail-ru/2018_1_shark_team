@@ -17,7 +17,6 @@ export default class ImageLoader {
         LogMessage("create ImageLoader");
         this.initGameObj(game);
         this.createObjectsForSavingImages();
-        this.downloadRecources();
     }
 
     initGameObj(game) {
@@ -83,16 +82,8 @@ export default class ImageLoader {
         LogMessage(err);
     }
 
-    initMainCallback(callbackFunc) {
-        this.callbackFunc = callbackFunc;
-    }
-
     downloadRecources() {
-        this.downloadAllPictures()
-            .then(() => {
-                // start after load
-                this.callbackFunc();
-            })
+        return this.downloadAllPictures()
             .catch((err) => {
                 ImageLoader.printLoadingError(err);
             });

@@ -9,123 +9,88 @@ const BONUS_IMAGE = "./../../gameFiles/images/bonusLive.png";
 const BALL_IMAGE = "./../../gameFiles/images/ballOK.png";
 const STAR_IMAGE = "./../../gameFiles/images/star.png";
 
+const IMAGES_NAMES_ARR = [ROCKET_IMAGE, ENEMY_IMAGE, FON_IMAGE, BONUS_IMAGE, BALL_IMAGE, STAR_IMAGE];
+
+
 export default class ImageLoader {
     constructor(game) {
-        this.starObj = null;
-        this.rocketObj = null;
-        this.enemyObj = null;
-        this.fonObj = null;
-        this.bonusObj = null;
-        this.ballObj = null;
         LogMessage("create ImageLoader");
+        this.initGameObj(game);
+        this.createObjectsForSavingImages();
+        this.downloadRecources();
+    }
+
+    initGameObj(game) {
         this.game = game;
-        this.starImage = false;
-        this.rocketImage = false;
-        this.enemyImage = false;
-        this.fonImage = false;
-        this.bonusImage = false;
-        this.ballImage = false;
-        this.loadStar();
-        this.loadRocket();
-        this.loadEnemy();
-        this.loadFon();
-        this.loadBonus();
-        this.loadBall();
+    }
+
+    createObjectsForSavingImages() {
+        this.dict = {
+            ROCKET_IMAGE: null,
+            ENEMY_IMAGE: null,
+            FON_IMAGE: null,
+            BONUS_IMAGE: null,
+            BALL_IMAGE: null,
+            STAR_IMAGE: null,
+        };
     }
 
     getStar() {
-        return this.starObj;
+        return this.dict[STAR_IMAGE];
     }
 
     getRocket() {
-        return this.rocketObj;
+        return this.dict[ROCKET_IMAGE];
     }
 
     getEnemy() {
-        return this.enemyObj;
+        return this.dict[ENEMY_IMAGE];
     }
 
     getFon() {
-        return this.fonObj;
+        return this.dict[FON_IMAGE];
     }
 
     getBonus() {
-        return this.bonusObj;
+        return this.dict[BONUS_IMAGE];
     }
 
     getBall() {
-        return this.ballObj;
+        return this.dict[BALL_IMAGE];
     }
 
-    startGame() {
-        if(this.rocketImage && this.enemyImage && this.fonImage && this.bonusImage && this.ballImage && this.starImage) {
-            this.rocketImage = false;
-            this.enemyImage = false;
-            this.fonImage = false;
-            this.bonusImage = false;
-            this.ballImage = false;
-            this.starImage = false;
-            this.game.startRepeatingActions();
-        }
+    downloadPicture(imageParam) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = imageParam;
+            img.onload = () => {
+                this.dict[imageParam.toString()] = img;
+                resolve(img);
+            };
+            img.onerror = (error) => {
+                reject();
+            }
+        });
     }
 
-    loadStar() {
-        const img = new Image();
-        img.src = STAR_IMAGE;
-        img.onload = () => {
-            this.starImage = true;
-            this.starObj = img;
-            this.startGame();
-        }
+    downloadAllPictures() {
+        return Promise.all(IMAGES_NAMES_ARR.map((element) => {
+            this.downloadPicture(element.toString());
+        }));
     }
 
-    loadBall() {
-        const img = new Image();
-        img.src = BALL_IMAGE;
-        img.onload = () => {
-            this.ballImage = true;
-            this.ballObj = img;
-            this.startGame();
-        }
+    static printLoadingError(err) {
+        LogMessage(err);
     }
 
-    loadBonus() {
-        const img = new Image();
-        img.src = BONUS_IMAGE;
-        img.onload = () => {
-            this.bonusImage = true;
-            this.bonusObj = img;
-            this.startGame();
-        }
-    }
+    downloadRecources() {
+        this.downloadAllPictures()
+            .then(() => {
 
-    loadRocket() {
-        const img = new Image();
-        img.src = ROCKET_IMAGE;
-        img.onload = () => {
-            this.rocketImage = true;
-            this.rocketObj = img;
-            this.startGame();
-        }
-    }
-
-    loadEnemy() {
-        const img = new Image();
-        img.src = ENEMY_IMAGE;
-        img.onload = () => {
-            this.enemyImage = true;
-            this.enemyObj = img;
-            this.startGame();
-        }
-    }
-
-    loadFon() {
-        const img = new Image();
-        img.src = FON_IMAGE;
-        img.onload = () => {
-            this.fonImage = true;
-            this.fonObj = img;
-            this.startGame();
-        }
+                this.game.startRepeatingActions();
+            })
+            .catch((err) => {
+                ImageLoader.printLoadingError(err);
+            });
     }
 }

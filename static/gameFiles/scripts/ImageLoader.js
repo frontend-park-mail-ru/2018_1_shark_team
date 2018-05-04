@@ -83,11 +83,15 @@ export default class ImageLoader {
         LogMessage(err);
     }
 
+    initMainCallback(callbackFunc) {
+        this.callbackFunc = callbackFunc;
+    }
+
     downloadRecources() {
         this.downloadAllPictures()
             .then(() => {
-
-                this.game.startRepeatingActions();
+                // start after load
+                this.callbackFunc();
             })
             .catch((err) => {
                 ImageLoader.printLoadingError(err);

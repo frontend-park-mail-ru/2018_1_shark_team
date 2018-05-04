@@ -79,6 +79,9 @@ export default class Game {
         this.setSpeed();
         this.initGameFlag();
         this.imageLoader = new ImageLoader(this);
+        this.imageLoader.initMainCallback(() => {
+            this.startRepeatingActions();
+        });
         this.drawManager.initImageLoader(this.imageLoader);
         this.makeFullScreen();
         this.addCanvasClickEvent();

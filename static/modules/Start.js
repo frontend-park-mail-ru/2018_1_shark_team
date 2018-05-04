@@ -28,10 +28,13 @@ import ChatPage from "../views/chat-page/ChatPage";
 import "../views/chat-page/chat-page.scss";
 
 import Router from "./Router";
-import ElementsBase from "./ElementsBase";
-import FieldsCleaner from "./FieldsCleaner";
-import MessagePrinter from "./MessagePrinter";
-import LogMessage from "../gameFiles/scripts/debug/MessageLogger";
+import ElementsBase from "./utils/ElementsBase";
+import FieldsCleaner from "./render/FieldsCleaner";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
+import initElementsDictionary from "./store/initElementsDictionary";
+import initRouter from "./store/initRouter";
+
+import "../global.scss";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -67,28 +70,7 @@ class Start {
      * метод для инициализации словаря с DOM объектами
      */
     createAndInitElementsBase() {
-        this.elementsBase = new ElementsBase();
-
-        this.elementsBase.addElement("signUpLoginField", document.querySelector(".sign-up-page__form .form__login-input-field"));
-        this.elementsBase.addElement("signUpPasswordField", document.querySelector(".sign-up-page__form .form__password-input-field"));
-        this.elementsBase.addElement("signUpMessageBox", document.querySelector(".sign-up-page__message-box"));
-
-        this.elementsBase.addElement("logInLoginField", document.querySelector(".log-in-page__form .form__login-input-field"));
-        this.elementsBase.addElement("logInPasswordField", document.querySelector(".log-in-page__form .form__password-input-field"));
-        this.elementsBase.addElement("logInMessageBox", document.querySelector(".log-in-page__message-box"));
-
-        this.elementsBase.addElement("mainMenuLoginLabel", document.querySelector(".main-menu-page__label"));
-
-        this.elementsBase.addElement("myPageLoginLabel", document.querySelector(".my-page__user-login-label"));
-        this.elementsBase.addElement("fileInputHiddenBtn", document.querySelector(".form__file-button"));
-        this.elementsBase.addElement("userAvatarImage", document.querySelector(".form__user-avatar-image"));
-        this.elementsBase.addElement("myPageMessageBox", document.querySelector(".my-page__message-box"));
-
-        this.elementsBase.addElement("lidersPageLoginLabel", document.querySelector(".liders-page__login-label"));
-        this.elementsBase.addElement("lidersBox", document.querySelector(".liders-page__liders-list-box"));
-
-        this.elementsBase.addElement("chatInputField", document.querySelector(".chat-page__input-field"));
-        this.elementsBase.addElement("chatMessageBox", document.querySelector(".chat-page__messages-box"));
+        this.elementsBase = initElementsDictionary();
     }
 
     /**
@@ -96,15 +78,7 @@ class Start {
      */
     createAndInitRouter() {
         this.router = new Router(this.elementsBase);
-        this.router.addPage("/main-menu", document.querySelector(".main-menu-page"));
-        this.router.addPage("/log-in", document.querySelector(".log-in-page"));
-        this.router.addPage("/sign-up", document.querySelector(".sign-up-page"));
-        this.router.addPage("/about-authors", document.querySelector(".about-authors-page"));
-        this.router.addPage("/game-rules", document.querySelector(".game-rules-page"));
-        this.router.addPage("/my-page", document.querySelector(".my-page"));
-        this.router.addPage("/liders-page", document.querySelector(".liders-page"));
-        this.router.addPage("/one-player-page", document.querySelector(".one-player-page"));
-        this.router.addPage("/chat-page", document.querySelector(".chat-page"));
+        initRouter(this.router);
         this.router.setAllowedForNotLoggedUsersPages([
             "/log-in",
             "/sign-up",
@@ -134,15 +108,21 @@ class Start {
         this.fieldsCleaner = new FieldsCleaner();
         const dict = this.elementsBase;
 
-        this.fieldsCleaner.addField(dict.getElement("signUpLoginField"));
-        this.fieldsCleaner.addField(dict.getElement("signUpPasswordField"));
-        this.fieldsCleaner.addField(dict.getElement("signUpMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("logInLoginField"));
-        this.fieldsCleaner.addField(dict.getElement("logInPasswordField"));
-        this.fieldsCleaner.addField(dict.getElement("logInMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("myPageMessageBox"));
-        this.fieldsCleaner.addField(dict.getElement("chatInputField"));
-        this.fieldsCleaner.addField(dict.getElement("chatMessageBox"));
+        const arr = [
+            "signUpLoginField",
+            "signUpPasswordField",
+            "signUpMessageBox",
+            "logInLoginField",
+            "logInPasswordField",
+            "logInMessageBox",
+            "myPageMessageBox",
+            "chatInputField",
+            "chatMessageBox",
+        ];
+
+        arr.forEach((element) => {
+            this.fieldsCleaner.addField(dict.getElement(element));
+        });
 
         this.fieldsCleaner.clearFields();
         this.router.initFieldsCleaner(this.fieldsCleaner);
@@ -153,18 +133,6 @@ class Start {
  * при загрузке окна запускаем приложуху
  */
 window.addEventListener("load", () => {
-    MessagePrinter.write("window load complete");
-
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js")
-            .then(function (registration) {
-                LogMessage("ServiceWorker registration", registration);
-            })
-            .catch(function (err) {
-                LogMessage("Registration err", err);
-            });
-    }
-
     // start application
     new Start();
 });

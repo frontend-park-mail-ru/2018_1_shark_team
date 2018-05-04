@@ -1,7 +1,6 @@
 "use strict";
 
 import template from "./chat-page.pug";
-import ChatManager from "../../modules/ChatManager";
 
 export default class ChatPage {
     constructor() {
@@ -21,8 +20,7 @@ export default class ChatPage {
             const inputField = elementsBase.getElement("chatInputField");
             const inputFieldValue = inputField.value.toString();
             if(inputFieldValue.length > 0) {
-                ChatManager.tryToSendMessage(inputFieldValue);
-                inputField.value = "";
+                // np chat
             }
         });
     }

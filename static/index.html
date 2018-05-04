@@ -3,15 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Funny Race</title>
-    <link rel = "stylesheet" type = "text/css" href = "./global.css"/>
 </head>
 <body>
 
-<div class = "center-box">
-    <h1>Funny Race</h1>
+<div class = "music-box" hidden>
+    <audio class = "music-box__clip-1">
+        <source src = "./../../music/popcorn.mp3">
+    </audio>
+
+    <audio class = "music-box__clip-2">
+        <source src = "./../../music/lazer_shot.mp3">
+    </audio>
+
+    <audio class = "music-box__clip-3">
+        <source src = "./../../music/bang_rocket.mp3">
+    </audio>
 </div>
 
-<script src="./service-worker.js"></script>
+<div class = "full-screen-box" hidden></div>
+<div class = "alert-window" align = "center" hidden>
+    <div class = "alert-window__content">
+        <h2>Сообщение</h2>
+        <hr>
+        <div class = "content__message-content">
+            Содержимое сообщения пользователю.
+        </div>
+        <input type = "button" class = "content__ok-button" value = "OK">
+    </div>
+</div>
+
+<div class = "center-box">
+    <div class="logo">
+        <img src="images/FunnyRace_mini.png">
+    </div>
+</div>
+
 <script src = "./output/babel_output/result.js"></script>
 
 </body>

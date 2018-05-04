@@ -1,8 +1,8 @@
 "use strict";
 
-import AjaxWorker from "./AjaxWorker";
+import AjaxWorker from "./network/AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
-import MessagePrinter from "./MessagePrinter";
+import MessagePrinter from "./render/MessagePrinter";
 
 /**
  * класс для реализации переключения страниц и роутинга

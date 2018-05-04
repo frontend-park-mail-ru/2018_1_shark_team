@@ -1,7 +1,8 @@
 "use strict";
 
 import template from "./my-page.pug";
-import AjaxWorker from "../../modules/AjaxWorker";
+import AjaxWorker from "../../modules/network/AjaxWorker";
+import AlertManager from "../../modules/render/AlertManager";
 
 export default class MyPage {
     constructor() {
@@ -28,6 +29,9 @@ export default class MyPage {
 
             promise.then(() => {
                 elementsBase.getElement("myPageMessageBox").innerHTML = "Сохранение прошло успешно.";
+                new AlertManager().showAlertWindow("Сохранение прошло успешно.", () => {
+                    // close window
+                });
             });
         });
 

@@ -3,6 +3,14 @@ html {
     overflow: hidden;
 }
 
+body {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 3vw;
+    color: gold;
+    padding: 0;
+    background: black;
+}
+
 .bg {
     position: fixed;
     top: -50%;
@@ -19,5 +27,7 @@ html {
         margin: auto;
         min-width: 50%;
         min-height: 50%;
+        -webkit-filter: brightness(0.5);
+        filter: brightness(0.5);
     }
 }

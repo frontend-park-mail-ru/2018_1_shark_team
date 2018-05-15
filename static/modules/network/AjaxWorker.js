@@ -3,7 +3,7 @@
 import MessagePrinter from "../render/MessagePrinter";
 import getApplicationMode from "../utils/DebugMode";
 
-const DEBUG_URL = "http://localhost:5005/";
+const DEBUG_URL = "http://localhost:8081";
 
 /* const RELEASE_URL = "http://funny-race-backend-server-1234.herokuapp.com/"; */
 const RELEASE_URL = "https://tp-sharkteam-backend.herokuapp.com/";
@@ -25,13 +25,22 @@ export default class AjaxWorker {
     getPromise() {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
+
             if(this.body) {
+                console.log("POST");
                 xhr.open("POST", this.url, true);
             } else {
+                console.log("GET");
                 xhr.open("GET", this.url, true);
             }
+
             xhr.withCredentials = true;
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            if(this.body) {
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            } else {
+                xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+            }
 
             if(this.body) {
                 xhr.send(JSON.stringify(this.body));
@@ -41,22 +50,27 @@ export default class AjaxWorker {
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
-                    const xhrResult = xhr.responseText.toString();
-                    xhr = null;
-                    const answer = xhrResult.toString();
-                    const message = "Answer: " + answer;
-                    if (message.length < 200) {
-                        MessagePrinter.write(message);
+                    if (xhr.status < 300) {
+                        const xhrResult = xhr.responseText.toString();
+                        const status = xhr.status;
+                        xhr = null;
+                        const answer = xhrResult.toString();
+                        const message = "Answer: " + answer;
+                        if (message.length < 200) {
+                            MessagePrinter.write(message);
+                        }
+
+                        console.log(xhrResult);
+                        resolve(xhrResult);
+                    } else {
+                        reject("error string");
                     }
-
-                    const resObj = {
-                        xhrResult: xhrResult,
-                        status: xhr.status,
-                    };
-
-                    resolve(resObj);
                 }
             };
+
+            xhr.onerror = (err) => {
+                reject({type: 'connection', error: err});
+            }
         });
     }
 

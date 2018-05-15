@@ -93,26 +93,18 @@ export default class Router {
             return;
         }
 
-        const promise = new AjaxWorker("loginbycookies", {}).sendPost();
-        promise.then((resultString) => {
-            const answerObj = JSON.parse(resultString);
-            const result = answerObj.message;
-            const login = answerObj.login;
-
-            if(result === "YES") {
-                new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
-                this.printPage();
-                return;
-            }
-
-            if(result === "NO") {
-                window.location = "/log-in";
-            }
-        }).catch(() => {
-            if(location.pathname !== "/one-player-page") {
-                this.moveToPage("/one-player-page");
-            }
+        const promise = new AjaxWorker("api/users/me", null).sendPost();
+        promise.then((result) => {
+            const obj = JSON.parse(result);
+            const login = obj.login;
+            alert(login);
+            new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
             this.printPage();
+        });
+
+        promise.catch((err) => {
+            alert("go to log-in-page");
+            window.location = "/log-in";
         });
     }
 

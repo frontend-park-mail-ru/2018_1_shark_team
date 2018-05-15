@@ -31,3 +31,28 @@ body {
         filter: brightness(0.5);
     }
 }
+
+.vertical-space {
+    padding-top: 2vh;
+}
+
+.text-field {
+    font-size: 3vw;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: black;
+    padding: 1vw;
+    border: 1px solid black;
+    border-radius: 1vw;
+    outline: none;
+}
+
+.button-element {
+    font-size: 3vw;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: black;
+    padding: 1vw;
+    border: 1px solid black;
+    border-radius: 1vw;
+    outline: none;
+
+}

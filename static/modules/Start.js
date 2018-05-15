@@ -1,5 +1,7 @@
 "use strict";
 
+import "../global.scss";
+
 import LogInPage from "../views/log-in-page/LogInPage";
 import "../views/log-in-page/log-in-page.scss";
 
@@ -33,8 +35,6 @@ import FieldsCleaner from "./render/FieldsCleaner";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
-
-import "../global.scss";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами

@@ -7,3 +7,11 @@
 .form__password-input-field {
   @extend .text-field;
 }
+
+.form__log-in-button {
+  @extend .button-field;
+}
+
+.log-in-page__link-to-sign-up-page {
+  @extend .link-field;
+}

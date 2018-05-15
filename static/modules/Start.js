@@ -35,6 +35,7 @@ import FieldsCleaner from "./render/FieldsCleaner";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
+import ZoomManager from "./utils/ZoomManager";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -49,6 +50,8 @@ class Start {
         this.createAndInitRouter();
         this.addEventsToElements();
         this.createAndInitFieldsCleaner();
+        // init zoom
+        new ZoomManager();
     }
 
     /**

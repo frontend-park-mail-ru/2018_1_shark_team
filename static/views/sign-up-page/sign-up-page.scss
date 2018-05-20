@@ -1,0 +1,17 @@
+@import './../../global';
+
+.form__login-input-field {
+  @extend .text-field;
+}
+
+.form__password-input-field {
+  @extend .text-field;
+}
+
+.form__sign-up-button {
+  @extend .button-field;
+}
+
+.sign-up-page__link-to-log-in-page {
+  @extend .link-field;
+}

@@ -51,7 +51,7 @@ class Start {
         this.addEventsToElements();
         this.createAndInitFieldsCleaner();
         // init zoom
-        // new ZoomManager();
+        new ZoomManager();
     }
 
     /**

@@ -3,31 +3,15 @@
 import MessagePrinter from "../render/MessagePrinter";
 import getApplicationMode from "../utils/DebugMode";
 
-// урл для отладки (на локалке)
-const DEBUG_URL = "http://localhost:8081";
-// урл в интернете
-const RELEASE_URL = "https://tp-sharkteam-backend.herokuapp.com/";
+const DEBUG_URL = "http://localhost:5005/";
+const RELEASE_URL = "http://funny-race-backend-server-1234.herokuapp.com/";
 
-/**
- * класс для отправки запросов на сервер
- */
 export default class AjaxWorker {
-    /**
-     * конструктор для инициализации части урла запроса и тела запроса
-     * @param url - часть урла запроса
-     * @param body
-     */
     constructor(url, body) {
-        // инициализация урла
         this.url = AjaxWorker.getBasicUrl() + url;
-        // инициализация теа запроса (если это GET запрос, то null)
         this.body = body;
     }
 
-    /**
-     * получение начала урла (различется для рабочего режима и режима отладки)
-     * @returns {string}
-     */
     static getBasicUrl() {
         if(getApplicationMode()) {
             return DEBUG_URL;
@@ -36,61 +20,39 @@ export default class AjaxWorker {
         }
     }
 
-    /**
-     * метод для отправки запроса (возвращает промис)
-     * @returns {Promise<any>}
-     */
     getPromise() {
-        // возвращаем промис
         return new Promise((resolve, reject) => {
+            // init xhr properties
             let xhr = new XMLHttpRequest();
-            // если тело существует
-            if(this.body) {
-                console.log("POST");
-                // создаём POST запрос
-                xhr.open("POST", this.url, true);
-            } else {
-                console.log("GET");
-                // создаём GET запрос
-                xhr.open("GET", this.url, true);
-            }
-            // разрешаем работу с печеньками
+            xhr.open("POST", this.url, true);
             xhr.withCredentials = true;
-            // в зависимости от типа запроса (POST или GET) задаём mime тип
-            if(this.body) {
-                // для POST запроса
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            } else {
-                // для GET запроса
-                xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-            }
-            // если это POST запрос
-            if(this.body) {
-                // отправляем тело запроса
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            try {
                 xhr.send(JSON.stringify(this.body));
-            } else {
-                // отправляем пустое тело
-                xhr.send(null);
+            } catch (err) {
+                reject(err);
             }
-            // при получении ответа от сервера
+
+            // on getting result from server
             xhr.onreadystatechange = () => {
-                // если пришёл последний пакет
-                if (xhr.readyState === 4) {
-                    // если код НЕ ошибочный
-                    if (xhr.status < 300) {
-                        resolve(xhr);
-                    } else {
-                        reject(xhr);
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const xhrResult = xhr.responseText.toString();
+                    xhr = null;
+                    const answer = xhrResult.toString();
+                    const message = "Answer: " + answer;
+                    if (message.length < 200) {
+                        MessagePrinter.write(message);
                     }
+                    resolve(xhrResult);
                 }
+            };
+
+            xhr.onerror = () => {
+                reject(new TypeError("Network request failed"));
             };
         });
     }
 
-    /**
-     * метод для отправки запроса и получения промиса
-     * @returns {Promise<any>}
-     */
     sendPost() {
         return this.getPromise();
     }

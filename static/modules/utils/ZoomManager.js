@@ -1,5 +1,7 @@
 "use strict";
 
+import LogMessage from "../../gameFiles/scripts/MessageLogger";
+
 export default class ZoomManager {
     constructor() {
         ZoomManager.resizeAction();
@@ -10,9 +12,8 @@ export default class ZoomManager {
         let zoomValue = 1;
         const styleObj = getComputedStyle(document.body);
         const heightBody = parseInt(styleObj.height);
-        const heightClient = parseInt(window.clientHeight);
-        const scaleY = (heightClient / heightBody) * 100;
-        zoomValue = (zoomValue / scaleY) * 100;
+        const heightClient = parseInt(document.documentElement.clientHeight);
+
         document.body.style.zoom = zoomValue.toString();
     }
 

@@ -30,9 +30,7 @@ import ChatPage from "../views/chat-page/ChatPage";
 import "../views/chat-page/chat-page.scss";
 
 import Router from "./Router";
-import ElementsBase from "./utils/ElementsBase";
 import FieldsCleaner from "./render/FieldsCleaner";
-import LogMessage from "../gameFiles/scripts/MessageLogger";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";

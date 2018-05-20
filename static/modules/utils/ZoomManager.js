@@ -1,20 +1,28 @@
 "use strict";
 
-import LogMessage from "../../gameFiles/scripts/MessageLogger";
+const FULL = 1;
+const MIDDLE = 0.5;
+const WAIT = 2000;
 
 export default class ZoomManager {
     constructor() {
         ZoomManager.resizeAction();
         this.addResizeEvent();
+
+        let zoomInterval = setInterval(() => {
+            ZoomManager.resizeAction();
+        }, WAIT);
     }
 
     static resizeAction() {
-        let zoomValue = 1;
         const styleObj = getComputedStyle(document.body);
         const heightBody = parseInt(styleObj.height);
         const heightClient = parseInt(document.documentElement.clientHeight);
-
-        document.body.style.zoom = zoomValue.toString();
+        if(heightBody < heightClient) {
+            document.body.style.zoom = FULL.toString();
+        } else {
+            document.body.style.zoom = MIDDLE.toString();
+        }
     }
 
     addResizeEvent() {

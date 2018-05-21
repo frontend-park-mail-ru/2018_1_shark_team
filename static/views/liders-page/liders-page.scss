@@ -1,0 +1,24 @@
+@import './../../global';
+
+.liders-page__previous-list-button {
+  @extend .button-field;
+  width: 20%;
+}
+
+.liders-page__next-list-button {
+  @extend .button-field;
+  width: 20%;
+}
+
+.liders-page__main-menu-button {
+  @extend .button-field;
+  width: 25%;
+}
+
+.liders-page__liders-list-box {
+  background-color: rgba(0, 0, 255, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid yellow;
+  width: 45%;
+}

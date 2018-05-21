@@ -3,6 +3,7 @@
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import createOrJoinToRoom from "./createOrJoinToRoom";
 import showGameCanvas from "./showGameCanvas";
+import CanvasPrinter from "../views/multiplayer-page/CanvasPrinter";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
@@ -13,6 +14,7 @@ export default class SocketMessagesRouter {
     constructor(socket) {
         this.socket = socket;
         this.roomOK = false;
+        this.canvasPrinter = new CanvasPrinter();
     }
 
     sendMessage(message) {
@@ -58,7 +60,11 @@ export default class SocketMessagesRouter {
 
         // get game objects for printing
         if(obj.game) {
-
+            // get heroes position
+            const p1 = parseInt(obj.p1);
+            const p2 = parseInt(obj.p2);
+            // render all game content
+            this.canvasPrinter.renderAll(p1, p2, obj.e_1, obj.e_2, obj.b_1, obj.b_2);
         }
     }
 }

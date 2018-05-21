@@ -1,0 +1,5 @@
+@import './../../global';
+
+.game-rules-page__main-menu-button {
+  @extend .button-field;
+}

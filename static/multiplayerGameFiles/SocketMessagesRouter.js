@@ -4,6 +4,7 @@ import LogMessage from "../gameFiles/scripts/MessageLogger";
 import createOrJoinToRoom from "./createOrJoinToRoom";
 import showGameCanvas from "./showGameCanvas";
 import CanvasPrinter from "../views/multiplayer-page/CanvasPrinter";
+import KeyManager from "./KeyManager";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
@@ -15,6 +16,7 @@ export default class SocketMessagesRouter {
         this.socket = socket;
         this.roomOK = false;
         this.canvasPrinter = new CanvasPrinter();
+        this.keyManager = new KeyManager();
     }
 
     sendMessage(message) {
@@ -55,6 +57,27 @@ export default class SocketMessagesRouter {
         if(obj.play === START_GAME_STRING) {
             // show canvas
             showGameCanvas();
+            // init key events
+            LogMessage("ADD KEY EVENTS");
+            this.keyManager.initKeys();
+            this.keyManager.initCallbacks(() => {
+                this.sendMessage(JSON.stringify({
+                    t: "c",
+                    v: "UP",
+                }));
+            }, () => {
+                this.sendMessage(JSON.stringify({
+                    t: "c",
+                    v: "DOWN",
+                }));
+            }, () => {
+                this.sendMessage(JSON.stringify({
+                    t: "c",
+                    v: "FIRE",
+                }));
+            });
+            this.keyManager.addEventsToKeys();
+            /////////////
             return null;
         }
 

@@ -2,17 +2,17 @@
 
 .liders-page__previous-list-button {
   @extend .button-field;
-  width: 20%;
+  min-width: 20%;
 }
 
 .liders-page__next-list-button {
   @extend .button-field;
-  width: 20%;
+  min-width: 20%;
 }
 
 .liders-page__main-menu-button {
   @extend .button-field;
-  width: 25%;
+  min-width: 25%;
 }
 
 .liders-page__liders-list-box {
@@ -20,5 +20,6 @@
   padding: 20px;
   border-radius: 15px;
   border: 1px solid yellow;
-  width: 45%;
+  min-width: 45%;
+  max-width: 60%;
 }

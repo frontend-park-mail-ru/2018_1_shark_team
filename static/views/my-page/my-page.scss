@@ -2,17 +2,17 @@
 
 .form__choose-image-button {
   @extend .button-field;
-  width: 40%;
+  min-width: 40%;
 }
 
 .form__save-changes-button {
   @extend .button-field;
-  width: 40%;
+  min-width: 40%;
 }
 
 .my-page__main-menu-btn {
   @extend .button-field;
-  width: 36%;
+  min-width: 36%;
 }
 
 .form__user-avatar-image {

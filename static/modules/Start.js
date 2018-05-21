@@ -29,12 +29,14 @@ import "../views/one-player-page/one-player-page.scss";
 import ChatPage from "../views/chat-page/ChatPage";
 import "../views/chat-page/chat-page.scss";
 
+import MultiplayerPage from "../views/multiplayer-page/MultiplayerPage";
+import "../views/multiplayer-page/multiplayer-page.scss";
+
 import Router from "./Router";
 import FieldsCleaner from "./render/FieldsCleaner";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";
-import MultiplayerPage from "../views/multiplayer-page/MultiplayerPage";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами

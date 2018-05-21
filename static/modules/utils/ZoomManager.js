@@ -1,5 +1,7 @@
 "use strict";
 
+import LogMessage from "../../gameFiles/scripts/MessageLogger";
+
 const WAIT = 500;
 
 export default class ZoomManager {
@@ -25,6 +27,7 @@ export default class ZoomManager {
     }
 
     static resizeAction() {
+        LogMessage("Resize ACTION");
         const params = ZoomManager.getParams();
         const k = params.clientHeight / params.bodyHeight;
         document.body.style.zoom = k.toString();

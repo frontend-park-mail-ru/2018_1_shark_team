@@ -53,6 +53,7 @@ export default class SocketMessagesRouter {
         if(obj.play === START_GAME_STRING) {
             // show canvas
             showGameCanvas();
+            return null;
         }
 
         // get game objects for printing

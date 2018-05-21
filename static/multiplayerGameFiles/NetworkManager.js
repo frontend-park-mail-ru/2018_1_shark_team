@@ -1,6 +1,7 @@
 "use strict";
 
 import LogMessage from "../gameFiles/scripts/MessageLogger";
+import SocketMessagesRouter from "./SocketMessagesRouter";
 
 const ERROR = "Ошибка веб-сокета";
 const MESSAGE = "Получено сообщение: ";
@@ -33,6 +34,7 @@ export default class NetworkManager {
     addMessageEvent() {
         this.socket.onmessage = (event) => {
             LogMessage(MESSAGE + event.data.toString());
+            this.socketMessagesRouter.routeMessage(event.data.toString());
         };
     }
 
@@ -45,6 +47,11 @@ export default class NetworkManager {
 
     startSocket(socket_url) {
         this.socket = new WebSocket(socket_url.toString());
+        this.createMessagesRouter();
         this.addSocketEvents();
+    }
+
+    createMessagesRouter() {
+        this.socketMessagesRouter = new SocketMessagesRouter(this.socket);
     }
 }

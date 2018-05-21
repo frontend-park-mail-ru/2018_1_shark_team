@@ -2,10 +2,12 @@
 
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import createOrJoinToRoom from "./createOrJoinToRoom";
+import showGameCanvas from "./showGameCanvas";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
 const SENDING_ERROR = "Ошибка отправки ...";
+const START_GAME_STRING = "P_START";
 
 export default class SocketMessagesRouter {
     constructor(socket) {
@@ -47,6 +49,15 @@ export default class SocketMessagesRouter {
             location.reload();
         }
 
+        // start game with enemy
+        if(obj.play === START_GAME_STRING) {
+            // show canvas
+            showGameCanvas();
+        }
 
+        // get game objects for printing
+        if(obj.game) {
+
+        }
     }
 }

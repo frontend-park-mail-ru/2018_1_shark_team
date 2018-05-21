@@ -37,6 +37,7 @@ import FieldsCleaner from "./render/FieldsCleaner";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -104,6 +105,7 @@ class Start {
         LidersPage.addEventsToElements(this.router, this.elementsBase);
         OnePlayerPage.addEventsToElements(this.router);
         ChatPage.addEventsToElements(this.router, this.elementsBase);
+        MultiplayerPage.addEventsToElements();
     }
 
     /**
@@ -138,6 +140,7 @@ class Start {
  * при загрузке окна запускаем приложуху
  */
 window.addEventListener("load", () => {
+    LogMessage("LOAD APPLICATION EVENT");
     // start application
     new Start();
 });

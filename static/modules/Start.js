@@ -34,6 +34,7 @@ import FieldsCleaner from "./render/FieldsCleaner";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";
+import MultiplayerPage from "../views/multiplayer-page/MultiplayerPage";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -65,6 +66,7 @@ class Start {
         this.lidersPage = new LidersPage();
         this.onePlayerPage = new OnePlayerPage();
         this.chatPage = new ChatPage();
+        this.multiplayerPage = new MultiplayerPage();
     }
 
     /**

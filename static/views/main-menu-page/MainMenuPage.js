@@ -40,5 +40,9 @@ export default class MainMenuPage {
         document.querySelector(".form__chat-button").addEventListener("click", () => {
             router.moveToPage("/chat-page");
         });
+
+        document.querySelector(".form__multiplayer-game-button").addEventListener("click", () => {
+            router.moveToPage("/multiplayer-page");
+        });
     }
 }

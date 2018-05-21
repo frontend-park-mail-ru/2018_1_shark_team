@@ -11,6 +11,7 @@ export default function initRouter (router) {
         ["/liders-page", ".liders-page"],
         ["/one-player-page", ".one-player-page"],
         ["/chat-page", ".chat-page"],
+        ["/multiplayer-page", ".multiplayer-page"],
     ];
 
     arr.forEach((mass) => {

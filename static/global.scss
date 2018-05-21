@@ -44,18 +44,19 @@ body {
     width: 200%;
     height: 200%;
     z-index: -123;
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        min-width: 50%;
-        min-height: 50%;
-        -webkit-filter: brightness(0.5);
-        filter: brightness(0.5);
-    }
+}
+
+.bg__background-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    -webkit-filter: brightness(0.5);
+    filter: brightness(0.5);
 }
 
 .center-box__title-image {

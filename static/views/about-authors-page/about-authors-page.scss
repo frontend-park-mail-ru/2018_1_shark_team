@@ -1,0 +1,5 @@
+@import './../../global';
+
+.about-authors-page__main-menu-button {
+  @extend .button-field;
+}

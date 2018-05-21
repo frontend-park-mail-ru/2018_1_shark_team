@@ -83,6 +83,10 @@ body {
     cursor: pointer;
 }
 
+.button-field:hover {
+    background-color: #ffc723;
+}
+
 .content__ok-button {
     @extend .button-field;
     margin-top: 25px;

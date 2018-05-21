@@ -40,5 +40,13 @@ export default class SocketMessagesRouter {
                 return null;
             }
         }
+
+        // room was deleted by server
+        if(obj.delete) {
+            // reload page
+            location.reload();
+        }
+
+
     }
 }

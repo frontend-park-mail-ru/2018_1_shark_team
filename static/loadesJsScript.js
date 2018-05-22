@@ -17,13 +17,14 @@ function clearCanvas(holst) {
     holst.clearRect(0, 0, 200, 200);
 }
 
-var size = 10;
+var size = 20;
 
 var loadingInterval = setInterval(function() {
     clearCanvas(holst);
     drawRectangle(holst, size);
+    drawRectangle(holst, size - 15);
     size += 2;
     if(size > 90) {
-        size = 10;
+        size = 20;
     }
 }, 50);

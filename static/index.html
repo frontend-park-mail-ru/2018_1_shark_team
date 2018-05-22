@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <title>Funny Race</title>
 </head>
-<body>
+<body style = "background: #111a51; font-family: Geneva, Arial, Helvetica, sans-serif;">
 
-<div class = "bg">
+<style>
+    .loader-box {
+        margin: 0 auto;
+        padding-top: 25vh;
+    }
+
+    .loader-box__canvas-plain {
+        display: block;
+    }
+</style>
+
+<div class = "loader-box" align = "center">
+    <h1 style = "color: white;">Загрузка ...</h1>
+    <canvas width = '200vw' height = '200vh' class = 'loader-box__canvas-plain'></canvas>
+</div>
+
+<script src = "./loadesJsScript.js"></script>
+
+<div class = "bg" hidden>
     <img src = "./images/fon.png" class = "bg__background-picture">
 </div>
 
@@ -36,13 +54,15 @@
     </div>
 </div>
 
-<div class = "center-box" align = "center">
+<div class = "center-box" align = "center" hidden>
     <div hidden>
         <img class = "center-box__title-image" src = "./images/FunnyRace_mini.png">
     </div>
 </div>
 
-<script src = "./output/babel_output/result.js"></script>
+<div class = "script-box" hidden>
+    <!-- <script src = "./output/babel_output/result.js"></script> -->
+</div>
 
 </body>
 </html>

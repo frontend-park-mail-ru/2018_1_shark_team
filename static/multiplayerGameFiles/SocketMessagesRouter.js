@@ -5,6 +5,7 @@ import createOrJoinToRoom from "./createOrJoinToRoom";
 import showGameCanvas from "./showGameCanvas";
 import CanvasPrinter from "../views/multiplayer-page/CanvasPrinter";
 import KeyManager from "./KeyManager";
+import gameOverRender from "./gameOverRender";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
@@ -51,6 +52,12 @@ export default class SocketMessagesRouter {
         if(obj.delete) {
             // reload page
             location.reload();
+        }
+
+        // game over
+        if(obj.gameOver) {
+            gameOverRender(obj);
+            return null;
         }
 
         // start game with enemy

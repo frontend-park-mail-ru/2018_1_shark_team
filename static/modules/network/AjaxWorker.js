@@ -27,6 +27,7 @@ export default class AjaxWorker {
             xhr.open("POST", this.url, true);
             xhr.withCredentials = true;
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.setRequestHeader("Access-Control-Max-Age", "300");
             try {
                 xhr.send(JSON.stringify(this.body));
             } catch (err) {

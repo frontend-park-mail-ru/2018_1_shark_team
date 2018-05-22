@@ -1,0 +1,33 @@
+@import './../../global';
+
+.multiplayer-page__canvas-multiplayer-box {
+  padding: 0;
+  background-color: black;
+  width: 900px;
+  height: 700px;
+  border: 1px solid black;
+}
+
+.canvas-multiplayer-box__canvas-plain {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.multiplayer-page__start-game-finding-button {
+  @extend .button-field;
+  font-size: 2vw;
+  margin-top: 2vh;
+}
+
+.multiplayer-page__main-menu-button {
+  @extend .button-field;
+  font-size: 2vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+}
+
+.multiplayer-page__wait-process-label {
+  color: #65f2ff;
+}

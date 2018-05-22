@@ -1,6 +1,6 @@
 div(class='one-player-page', hidden)
-    h2 Single player
-    div(class="one-player-page__canvas-box")
+    h2 Один игрок
+    div(class="one-player-page__canvas-box", hidden)
         canvas(class='canvas-box__canvas-plain', width='900px', height='600px')
     div(class="vertical-space")
     table(hidden)
@@ -18,7 +18,9 @@ div(class='one-player-page', hidden)
                     span(class='live-field__live-label') 0
                     img(src='./../../gameFiles/images/bonusLive.png', width='35px', height='35px')
     div(class="vertical-space", hidden)
-    input(type="button", value="Start game", class="button one-player-page__start-game-button")
+    input(type="button", value="Начать игру", class="one-player-page__start-game-button")
     div(class="vertical-space", hidden)
-    input(type="button", value="Main menu", class="one-player-page__main-menu-button button btn-gray")
+    input(type="button", value="Главное меню", class="one-player-page__main-menu-button")
+    div(class="vertical-space")
+    div(class="vertical-space")
     div(class="vertical-space")

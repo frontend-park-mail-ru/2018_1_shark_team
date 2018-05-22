@@ -1,58 +1,25 @@
-$mobile-width: 480px;
-
-.liders-page__next-list-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
-}
+@import './../../global';
 
 .liders-page__previous-list-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .button-field;
+  min-width: 20%;
+}
+
+.liders-page__next-list-button {
+  @extend .button-field;
+  min-width: 20%;
 }
 
 .liders-page__main-menu-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .button-field;
+  min-width: 25%;
 }
 
 .liders-page__liders-list-box {
-  padding: 10px;
-  width: 330px;
-  border: 2px solid #666666;
-  border-radius: 10px;
-  // margin: 10px;
-  margin: 50px 50px 50px 30%;
-  @media only screen and (max-device-width: $mobile-width) {
-    width: auto;
-    margin: 50px;
-    padding:20px;
-    font-size: 60px;
-  }
-}
-
-.liders-page__liders-list-box div {
-  background-color: #CCCCCC;
-  padding: 10px;
-  margin: 4px;
+  background-color: rgba(0, 0, 255, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid yellow;
+  min-width: 45%;
+  max-width: 60%;
 }

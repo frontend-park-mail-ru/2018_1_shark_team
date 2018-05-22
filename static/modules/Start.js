@@ -1,5 +1,7 @@
 "use strict";
 
+import "../global.scss";
+
 import LogInPage from "../views/log-in-page/LogInPage";
 import "../views/log-in-page/log-in-page.scss";
 
@@ -27,14 +29,15 @@ import "../views/one-player-page/one-player-page.scss";
 import ChatPage from "../views/chat-page/ChatPage";
 import "../views/chat-page/chat-page.scss";
 
+import MultiplayerPage from "../views/multiplayer-page/MultiplayerPage";
+import "../views/multiplayer-page/multiplayer-page.scss";
+
 import Router from "./Router";
-import ElementsBase from "./utils/ElementsBase";
 import FieldsCleaner from "./render/FieldsCleaner";
-import LogMessage from "../gameFiles/scripts/MessageLogger";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
-
-import "../global.scss";
+import ZoomManager from "./utils/ZoomManager";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -49,6 +52,8 @@ class Start {
         this.createAndInitRouter();
         this.addEventsToElements();
         this.createAndInitFieldsCleaner();
+        // init zoom
+        new ZoomManager();
     }
 
     /**
@@ -64,6 +69,7 @@ class Start {
         this.lidersPage = new LidersPage();
         this.onePlayerPage = new OnePlayerPage();
         this.chatPage = new ChatPage();
+        this.multiplayerPage = new MultiplayerPage();
     }
 
     /**
@@ -99,6 +105,7 @@ class Start {
         LidersPage.addEventsToElements(this.router, this.elementsBase);
         OnePlayerPage.addEventsToElements(this.router);
         ChatPage.addEventsToElements(this.router, this.elementsBase);
+        MultiplayerPage.addEventsToElements();
     }
 
     /**
@@ -133,6 +140,7 @@ class Start {
  * при загрузке окна запускаем приложуху
  */
 window.addEventListener("load", () => {
+    LogMessage("LOAD APPLICATION EVENT");
     // start application
     new Start();
 });

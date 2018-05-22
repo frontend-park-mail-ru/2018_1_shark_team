@@ -1,95 +1,39 @@
+@import './../../global';
+
+.menu-button {
+  @extend .button-field;
+  font-size: 2vw;
+  min-width: 50%;
+}
+
 .form__single-player-game-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .menu-button;
 }
 
 .form__multiplayer-game-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .menu-button;
 }
 
 .form__chat-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
-}
-
-.form__my-page-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
-}
-
-.form__game-rules-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
-}
-
-.form__about-authors-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
-}
-
-.form__exit-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .menu-button;
 }
 
 .form__leaderboard-button {
-  color: black;
-  font-size: 20px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  padding: 7px;
-  border: 2px solid black;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  width: 350px;
+  @extend .menu-button;
+}
+
+.form__my-page-button {
+  @extend .menu-button;
+}
+
+.form__game-rules-button {
+  @extend .menu-button;
+}
+
+.form__about-authors-button {
+  @extend .menu-button;
+}
+
+.form__exit-button {
+  @extend .menu-button;
 }

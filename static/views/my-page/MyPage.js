@@ -5,6 +5,8 @@ import AjaxWorker from "../../modules/network/AjaxWorker";
 import AlertManager from "../../modules/render/AlertManager";
 import LogMessage from "../../gameFiles/scripts/MessageLogger";
 
+const FORMATS = ["JPEG", "JPG", "TIFF", "PSD", "BMP", "GIF", "PNG"];
+
 export default class MyPage {
     constructor() {
         MyPage.render();
@@ -44,8 +46,6 @@ export default class MyPage {
             const type = arr[arr.length - 1].toUpperCase();
             LogMessage("FileType: " + type);
 
-            const FORMATS = ["JPEG", "JPG", "TIFF", "PSD", "BMP", "GIF", "PNG"];
-
             if(FORMATS.indexOf(type) === -1) {
                 new AlertManager().showAlertWindow("Ошибка в формате файла.", () => {
                     // close window
@@ -75,7 +75,13 @@ export default class MyPage {
             const myReader = new FileReader();
             myReader.readAsDataURL(file);
             myReader.onload = (e) => {
-                elementsBase.getElement("userAvatarImage").src = e.target.result;
+                const fileName = elementsBase.getElement("fileInputHiddenBtn").files[0].name + "";
+                const arr = fileName.split(".");
+                const type = arr[arr.length - 1].toUpperCase();
+                LogMessage("FileType: " + type);
+                if(FORMATS.indexOf(type) !== -1) {
+                    elementsBase.getElement("userAvatarImage").src = e.target.result;
+                }
             };
         });
     }

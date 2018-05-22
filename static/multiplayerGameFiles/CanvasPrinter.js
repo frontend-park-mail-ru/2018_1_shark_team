@@ -112,7 +112,9 @@ export default class CanvasPrinter {
     drawRectange(color, xxx, yyy) {
         const holst = this.holst;
         holst.strokeStyle = color;
+        /*
         holst.strokeRect(xxx, yyy, SIZE, SIZE);
+        */
     }
 
     drawFirst(xxx, yyy) {

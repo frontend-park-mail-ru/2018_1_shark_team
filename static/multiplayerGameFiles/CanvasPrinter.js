@@ -24,6 +24,22 @@ export default class CanvasPrinter {
         this.holst.lineWidth = 2;
     }
 
+    printEnemy(e) {
+        try {
+            this.holst.drawImage(this.imageLoader.getEnemy(), e.x, e.y, SIZE, SIZE);
+        } catch (err) {
+            // enemy not loaded
+        }
+    }
+
+    printBullet(b) {
+        try {
+            this.holst.drawImage(this.imageLoader.getBall(), b.x, b.y, SIZE, SIZE);
+        } catch (err) {
+            // bullet not loaded
+        }
+    }
+
     renderAll(p1, p2, e_1, e_2, b_1, b_2) {
         this.drawBackground();
         this.drawThreeLines();
@@ -48,18 +64,22 @@ export default class CanvasPrinter {
 
         e_1.forEach((e) => {
             this.drawRectange("#2fb1d9", e.x, e.y);
+            this.printEnemy(e);
         });
 
         e_2.forEach((e) => {
             this.drawRectange("#32d97e", e.x, e.y);
+            this.printEnemy(e);
         });
 
         b_1.forEach((b) => {
             this.drawRectange("#ff1f1a", b.x, b.y);
+            this.printBullet(b);
         });
 
         b_2.forEach((b) => {
             this.drawRectange("#ff1f1a", b.x, b.y);
+            this.printBullet(b);
         });
     }
 

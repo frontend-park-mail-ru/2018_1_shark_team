@@ -9,7 +9,8 @@ const CONNECTION = "Соединение установлено";
 const CLOSE = "Соединение закрыто";
 
 export default class NetworkManager {
-    constructor(socket_url) {
+    constructor(socket_url, imageLoader) {
+        this.imageLoader = imageLoader;
         this.startSocket(socket_url);
     }
 
@@ -52,6 +53,6 @@ export default class NetworkManager {
     }
 
     createMessagesRouter() {
-        this.socketMessagesRouter = new SocketMessagesRouter(this.socket);
+        this.socketMessagesRouter = new SocketMessagesRouter(this.socket, this.imageLoader);
     }
 }

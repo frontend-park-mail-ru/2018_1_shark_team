@@ -38,6 +38,9 @@ export default class ReloadSpaPageManager {
         liaderBoard.initLiderBoardParams();
         liaderBoard.loadLiders();
 
+        const way = window.location.pathname;
+        LogMessage("Way: " + way);
+
         // zoom control
         ZoomManager.resizeAction();
     }

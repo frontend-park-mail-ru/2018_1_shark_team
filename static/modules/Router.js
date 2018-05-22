@@ -4,6 +4,7 @@ import AjaxWorker from "./network/AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
 import MessagePrinter from "./render/MessagePrinter";
 import ZoomManager from "./utils/ZoomManager";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
  * класс для реализации переключения страниц и роутинга
@@ -66,6 +67,15 @@ export default class Router {
 
         const currentPage = this.listOfPages.find((element) => url === element.url);
 
+        const way = window.location.pathname;
+        LogMessage("Way: " + way);
+        if(localStorage.getItem("loginValue")) {
+            if(way === "/log-in" || way === "/sign-up") {
+                this.moveToPage("/main-menu");
+                return null;
+            }
+        }
+
         try {
             currentPage.page.hidden = false;
             // zoom control
@@ -107,12 +117,14 @@ export default class Router {
             const login = answerObj.login;
 
             if(result === "YES") {
+                LogMessage("Authorize YES");
                 new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
                 this.printPage();
                 return;
             }
 
             if(result === "NO") {
+                LogMessage("Authorize NO");
                 window.location = "/log-in";
             }
         }).catch(() => {

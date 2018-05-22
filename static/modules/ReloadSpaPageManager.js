@@ -24,22 +24,29 @@ export default class ReloadSpaPageManager {
      * метод для реинициализации записей, аватарки, списка лидеров
      */
     reloadSpa() {
+        // print login of user to all pages
+        ///////////////////////////////////
         const login = this.login;
         localStorage.setItem("loginValue", login);
         drawLogins (login, this.elementsBase);
+        ///////////////////////////////////
 
-        const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
-        userAvatarLoader.loadAvatar();
+        const way = window.location.pathname;
+        LogMessage("Way way way way: " + way);
+
+        if(way === "/my-page") {
+            const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
+            userAvatarLoader.loadAvatar();
+        }
 
         LogMessage("Reload SPA");
 
-        const liaderBoard = getLiaderBoard();
-        liaderBoard.initLiderBoard(this.elementsBase);
-        liaderBoard.initLiderBoardParams();
-        liaderBoard.loadLiders();
-
-        const way = window.location.pathname;
-        LogMessage("Way: " + way);
+        if(way === "/liders-page") {
+            const liaderBoard = getLiaderBoard();
+            liaderBoard.initLiderBoard(this.elementsBase);
+            liaderBoard.initLiderBoardParams();
+            liaderBoard.loadLiders();
+        }
 
         // zoom control
         ZoomManager.resizeAction();

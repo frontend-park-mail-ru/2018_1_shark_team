@@ -1,6 +1,6 @@
 "use strict";
 
-import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 const WIDTH = 900;
 const HEIGHT = 700;
@@ -8,8 +8,9 @@ const SIZE = 80;
 const X_POSITION = 100;
 
 export default class CanvasPrinter {
-    constructor() {
+    constructor(imageLoader) {
         LogMessage("new CanvasPrinter");
+        this.imageLoader = imageLoader;
         this.initCanvas();
         this.drawBackground();
         this.drawThreeLines();

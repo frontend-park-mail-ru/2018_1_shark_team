@@ -25,6 +25,6 @@ export default function multiplayerGame() {
     imageLoader.downloadRecources()
         .then(() => {
             // start work with socket
-            new NetworkManager(socket_url);
+            new NetworkManager(socket_url, imageLoader);
         });
 }

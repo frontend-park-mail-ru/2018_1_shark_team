@@ -3,7 +3,7 @@
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import createOrJoinToRoom from "./createOrJoinToRoom";
 import showGameCanvas from "./showGameCanvas";
-import CanvasPrinter from "../views/multiplayer-page/CanvasPrinter";
+import CanvasPrinter from "./CanvasPrinter";
 import KeyManager from "./KeyManager";
 import gameOverRender from "./gameOverRender";
 
@@ -13,10 +13,11 @@ const SENDING_ERROR = "Ошибка отправки ...";
 const START_GAME_STRING = "P_START";
 
 export default class SocketMessagesRouter {
-    constructor(socket) {
+    constructor(socket, imageLoader) {
+        this.imageLoader = imageLoader;
         this.socket = socket;
         this.roomOK = false;
-        this.canvasPrinter = new CanvasPrinter();
+        this.canvasPrinter = new CanvasPrinter(this.imageLoader);
         this.keyManager = new KeyManager();
     }
 

@@ -30,8 +30,21 @@ export default class CanvasPrinter {
 
         p1 = p1 * SIZE + 110;
         p2 = p2 * SIZE + 350;
+
         this.drawFirst(X_POSITION, p1);
         this.drawSecond(X_POSITION, p2);
+
+        try {
+            this.holst.drawImage(this.imageLoader.getRocket(), X_POSITION, p1, SIZE, SIZE);
+        } catch (err) {
+            // rocket not loaded
+        }
+
+        try {
+            this.holst.drawImage(this.imageLoader.getRocket(), X_POSITION, p2, SIZE, SIZE);
+        } catch (err) {
+            // rocket not loaded
+        }
 
         e_1.forEach((e) => {
             this.drawRectange("#2fb1d9", e.x, e.y);
@@ -54,6 +67,11 @@ export default class CanvasPrinter {
         const holst = this.holst;
         holst.fillStyle = '#2d26ad';
         holst.fillRect(0, 0, WIDTH, HEIGHT);
+        try {
+            this.holst.drawImage(this.imageLoader.getFon(), 0, 0, WIDTH, HEIGHT);
+        } catch (err) {
+            // fon not loaded
+        }
     }
 
     drawThreeLines() {

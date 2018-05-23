@@ -4,7 +4,7 @@ import MessagePrinter from "../render/MessagePrinter";
 import getApplicationMode from "../utils/DebugMode";
 
 const DEBUG_URL = "http://localhost:5005/";
-const RELEASE_URL = "http://funny-race-backend-server-1234.herokuapp.com/";
+const RELEASE_URL = "/api/";
 
 export default class AjaxWorker {
     constructor(url, body) {

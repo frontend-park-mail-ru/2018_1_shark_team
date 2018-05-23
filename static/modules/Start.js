@@ -136,6 +136,7 @@ class Start {
     }
 }
 
+////////
 /*
 window.addEventListener("load", () => {
     LogMessage("LOAD APPLICATION EVENT");
@@ -143,6 +144,7 @@ window.addEventListener("load", () => {
     new Start();
 });
 */
+////////
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")

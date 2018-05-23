@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = 'maxim_3';
+const CACHE_NAME = 'maxim_4';
 
 const cacheUrls = [
     "gameFiles/images/ammo.png",

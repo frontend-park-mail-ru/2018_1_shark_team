@@ -110,9 +110,7 @@ export default class Router {
             return;
         }
 
-        const promise = new AjaxWorker("loginbycookies", {
-            flag: true,
-        }).sendPost();
+        const promise = new AjaxWorker("loginbycookies", {}).sendPost();
         promise.then((resultString) => {
             const answerObj = JSON.parse(resultString);
             const result = answerObj.message;

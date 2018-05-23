@@ -4,7 +4,7 @@ import LogMessage from "./MessageLogger";
 
 const ROCKET_IMAGE = "./../../gameFiles/images/rocketOK.png";
 const ENEMY_IMAGE = "./../../gameFiles/images/enemyOK.png";
-const FON_IMAGE = "./../../gameFiles/images/fonOK.png";
+const FON_IMAGE = "./../../gameFiles/images/fonOK.jpg";
 const BONUS_IMAGE = "./../../gameFiles/images/bonusLive.png";
 const BALL_IMAGE = "./../../gameFiles/images/ballOK.png";
 const STAR_IMAGE = "./../../gameFiles/images/star.png";

@@ -101,7 +101,7 @@
                             myQuery("/gameFiles/images/ballOK.png", function () {
                                 myQuery("/gameFiles/images/bonusLive.png", function () {
                                     myQuery("/gameFiles/images/enemyOK.png", function () {
-                                        myQuery("/gameFiles/images/fonOK.png", function () {
+                                        myQuery("/gameFiles/images/fonOK.jpg", function () {
                                             myQuery("/gameFiles/images/rocketOK.png", function () {
                                                 myQuery("/gameFiles/images/star.png", function () {
                                                     /////////////////////////////////////////////////////////////////////////////

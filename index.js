@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 "use strict";
 
 const express = require("express");
 const app = express();
 
-app.use(express.static(__dirname + "/static"));
+app.use(express.static(__dirname + "/dest"));
 
-app.get('/*', function(req, res) {
+app.get("/*", function(req, res) {
     res.header("Cache-Control", "max-age=31536000");
-    res.sendfile("static/index.html");
+    res.sendfile("dest/index.html");
 });
 
 app.use(function(req, res, next) {

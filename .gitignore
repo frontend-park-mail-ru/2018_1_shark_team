@@ -6,3 +6,4 @@
 /static/output
 *npm-debug.log
 /docs
+/dest

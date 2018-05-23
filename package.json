@@ -6,6 +6,8 @@
   "scripts": {
     "eslint": "eslint './static/**/*.js'",
     "eslint-fix": "eslint --fix './static/**/*.js'",
+    "stylelint": "stylelint --syntax scss './static/**/*.scss'",
+    "stylelint-fix": "stylelint --syntax scss --fix './static/**/*.scss",
     "regenerate-docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json && gh-pages -d docs",
     "make-pug": "pug -c --extension 'pug.js' --name-after-file ./static",
     "make-es2015": "babel static/output/webpack_output -d static/output/babel_output --presets es2015",
@@ -18,7 +20,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "css-loader": "^0.28.9",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
@@ -36,7 +39,8 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "gh-pages": "^1.1.0",
     "jsdoc": "^3.5.5",
-    "jsdoc-export-default-interop": "^0.3.1"
-  },
-  "devDependencies": {}
+    "jsdoc-export-default-interop": "^0.3.1",
+    "stylelint": "^9.2.1",
+    "stylelint-config-recommended": "^2.1.0"
+  }
 }

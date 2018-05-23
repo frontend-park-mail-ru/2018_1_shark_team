@@ -1,10 +1,22 @@
 "use strict";
 
+function contorolVersionOfApplication() {
+    console.log("Control version");
+    var value = localStorage.getItem("MAX");
+    if(value) {
+        return null;
+    }
+    localStorage.clear();
+    localStorage.setItem("MAX", "OK");
+}
+
 var can = document.getElementsByClassName("loader-box__canvas-plain")[0];
 var holst = can.getContext('2d');
 
 var charsBox = document.getElementsByClassName("loader-box__procent-field")[0];
 charsBox.innerHTML = "&nbsp;&nbsp;" + "&nbsp;&nbsp;";
+
+contorolVersionOfApplication();
 
 function printChars(number) {
     var answer = "";

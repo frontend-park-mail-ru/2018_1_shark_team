@@ -136,11 +136,14 @@ class Start {
     }
 }
 
-/**
- * при загрузке окна запускаем приложуху
- */
+/*
 window.addEventListener("load", () => {
     LogMessage("LOAD APPLICATION EVENT");
     // start application
     new Start();
 });
+*/
+
+new Start();
+
+

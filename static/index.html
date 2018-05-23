@@ -10,6 +10,7 @@
     .loader-box {
         margin: 0 auto;
         padding-top: 25vh;
+        color: white;
     }
 
     .loader-box__canvas-plain {
@@ -18,28 +19,33 @@
 </style>
 
 <div class = "loader-box" align = "center">
-    <h1 style = "color: white;">Загрузка ...</h1>
+    <h1>Загрузка ...</h1>
+    <h2 class = "loader-box__procent-field"></h2>
     <canvas width = '200vw' height = '200vh' class = 'loader-box__canvas-plain'></canvas>
 </div>
 
 <script src = "./loadesJsScript.js"></script>
 
 <div class = "bg" hidden>
-    <img src = "./images/fon.png" class = "bg__background-picture">
+    <!--
+        <img src = "./images/fon.png" class = "bg__background-picture">
+    -->
 </div>
 
 <div class = "music-box" hidden>
-    <audio class = "music-box__clip-1">
-        <source src = "./../../music/popcorn.mp3">
-    </audio>
+    <!--
+        <audio class = "music-box__clip-1">
+            <source src = "./../../music/popcorn.mp3">
+        </audio>
 
-    <audio class = "music-box__clip-2">
-        <source src = "./../../music/lazer_shot.mp3">
-    </audio>
+        <audio class = "music-box__clip-2">
+            <source src = "./../../music/lazer_shot.mp3">
+        </audio>
 
-    <audio class = "music-box__clip-3">
-        <source src = "./../../music/bang_rocket.mp3">
-    </audio>
+        <audio class = "music-box__clip-3">
+            <source src = "./../../music/bang_rocket.mp3">
+        </audio>
+    -->
 </div>
 
 <div class = "full-screen-box" hidden></div>
@@ -61,7 +67,9 @@
 </div>
 
 <div class = "script-box" hidden>
-    <!-- <script src = "./output/babel_output/result.js"></script> -->
+    <!--
+        <script src = "./output/babel_output/result.js"></script>
+    -->
 </div>
 
 </body>

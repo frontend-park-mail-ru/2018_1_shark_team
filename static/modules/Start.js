@@ -144,6 +144,16 @@ window.addEventListener("load", () => {
 });
 */
 
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+        .then(function (registration) {
+            LogMessage("ServiceWorker registration", registration);
+        })
+        .catch(function (err) {
+            LogMessage("Registration err", err);
+        });
+}
+
 new Start();
 
 

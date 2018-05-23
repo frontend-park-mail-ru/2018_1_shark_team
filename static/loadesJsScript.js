@@ -47,6 +47,7 @@ function myQuery(url, callback) {
     var r = new XMLHttpRequest();
     r.open("GET", url, true);
     r.setRequestHeader("Content-Type","text/plain;charset=UTF-8");
+    r.setRequestHeader("Cache-Control", "max-age=31536000");
     r.send(null);
     r.onreadystatechange = function() {
         if(r.readyState === 4 && r.status === 200) {

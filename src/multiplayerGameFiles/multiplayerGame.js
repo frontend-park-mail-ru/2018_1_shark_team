@@ -6,7 +6,7 @@ import NetworkManager from "./NetworkManager";
 import ImageLoader from "../gameFiles/scripts/ImageLoader";
 
 const DEBUG_URL = "ws://localhost:5007/";
-const RELEASE_URL = "wss:///mp";
+const RELEASE_URL = "wss://shark-team-tp-spr18.reo7sp.ru/mp";
 
 export default function multiplayerGame() {
     LogMessage("Finding enemy process start");

@@ -5,15 +5,14 @@ const glob = require("glob");
 
 function generateOutputFilesList() {
     const urlList = require("./config_arr_file.js");
-    const staticList = glob.sync("./static/**/*.+(html|ico|css|jpg|png)").map((s) => s.replace("./static/", "/"));
-    const outputJs = glob.sync("./static/output/*.js").map((s) => s.replace("./static/", "/"));
-    return urlList.concat(staticList).concat(outputJs);
+    const staticList = glob.sync("./dest/**/*").map((s) => s.replace("./dest/", "/"));
+    return urlList.concat(staticList);
 }
 
 module.exports = {
-    entry: "./static/serviceworker/serviceworker-template.js",
+    entry: "./src/service-worker-template.js",
     output: {
-        path: __dirname + "/static/output/",
+        path: __dirname + "/dest",
         filename: "service-worker.js"
     },
     plugins: [

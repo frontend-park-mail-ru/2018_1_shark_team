@@ -1,14 +1,16 @@
 "use strict";
 
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
-    entry: "./static/modules/Start.js",
+    entry: "./src/modules/Start.js",
     output: {
-        path: __dirname + "/static/output",
-        filename: "result.js"
+        path: __dirname + "/dest",
+        filename: "bundle.js"
     },
     devtool: "inline-source-map",
     devServer: {
-        contentBase: "./static"
+        contentBase: "./dest"
     },
     module: {
         rules: [
@@ -41,5 +43,11 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            {from: "./**/*.+(html|ico|jpg|png|mp3)", to: ".", context: "src"},
+        ])
+    ]
+
 };

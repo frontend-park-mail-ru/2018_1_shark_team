@@ -6,24 +6,19 @@ const CACHE_NAME = "funny_race_finish" + MY_VERSION;
 // eslint-disable-next-line no-undef
 const cacheUrls = MY_STRING;
 
-self.addEventListener("install", function (event) {
+self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function (cache) {
                 // загружаем в наш cache необходимые файлы
                 return cache.addAll(cacheUrls);
             })
-            .then(
-                () => {
-                    this.skipWaiting();
-                }
-            )
     );
 });
 
-self.addEventListener("fetch", function (event) {
+self.addEventListener("fetch", event => {
     event.respondWith(
-        caches.match(event.request).then(function (cachedResponse) {
+        caches.match(event.request).then(cachedResponse => {
             if (cachedResponse) {
                 return cachedResponse;
             }
@@ -32,16 +27,15 @@ self.addEventListener("fetch", function (event) {
     );
 });
 
-self.addEventListener("activate", function (event) {
-    let cacheWhitelist = [CACHE_NAME];
+self.addEventListener("activate", event => {
+    const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
         caches.keys()
-            .then(function (keyList) {
-                return Promise.all(keyList.map(function (key) {
-                    if (cacheWhitelist.indexOf(key) === -1) {
-                        return caches.delete(key);
-                    }
-                }));
+            .then(keyList => {
+                const cachesToDelete = keyList.filter(key => cacheWhitelist.indexOf(key) === -1);
+                return Promise.all(
+                    cachesToDelete.map(key => caches.delete(key))
+                );
             })
     );
 });

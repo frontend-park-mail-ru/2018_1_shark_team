@@ -1,6 +1,7 @@
 "use strict";
 
 const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const glob = require("glob");
 
 function generateOutputFilesList() {
@@ -19,6 +20,7 @@ module.exports = {
         new webpack.DefinePlugin({
             MY_STRING: JSON.stringify(generateOutputFilesList()),
             MY_VERSION: JSON.stringify(Math.random().toString())
-        })
+        }),
+        new UglifyJsPlugin()
     ]
 };

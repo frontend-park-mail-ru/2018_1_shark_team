@@ -1,6 +1,8 @@
 "use strict";
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
 
 module.exports = {
     entry: "./src/modules/Start.js",
@@ -47,7 +49,11 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             {from: "./**/*.+(html|ico|jpg|png|mp3)", to: ".", context: "src"},
-        ])
+        ]),
+        new UglifyJsPlugin(),
+        new ImageminPlugin({
+            test: /\.(jpe?g|png|gif|svg)$/i
+        }),
     ]
 
 };

@@ -8,30 +8,30 @@ module.exports = {
     entry: "./src/modules/Start.js",
     output: {
         path: __dirname + "/dest",
-        filename: "bundle.js"
+        filename: "bundle.js",
     },
     devtool: "inline-source-map",
     devServer: {
-        contentBase: "./dest"
+        contentBase: "./dest",
     },
     module: {
         rules: [
             {
                 test: /\.pug$/,
-                use: "pug-loader"
+                use: "pug-loader",
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: "url-loader"
+                loader: "url-loader",
             },
             {
                 test: /\.scss$/,
                 use: [{
-                    loader: "style-loader"
+                    loader: "style-loader",
                 }, {
-                    loader: "css-loader"
+                    loader: "css-loader",
                 }, {
-                    loader: "sass-loader"
+                    loader: "sass-loader",
                 }]
             },
             {
@@ -40,20 +40,20 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["env"]
-                    }
-                }
-            }
-        ]
+                        presets: ["env"],
+                    },
+                },
+            },
+        ],
     },
     plugins: [
         new CopyWebpackPlugin([
             {from: "./**/*.+(html|ico|jpg|png|mp3)", to: ".", context: "src"},
+            {from: "loadesJsScript.js", to: ".", context: "src"},
         ]),
         new UglifyJsPlugin(),
         new ImageminPlugin({
             test: /\.(jpe?g|png|gif|svg)$/i
         }),
-    ]
-
+    ],
 };

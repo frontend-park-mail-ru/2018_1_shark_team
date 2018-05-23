@@ -33,15 +33,15 @@ export default class RocketMoveManager {
     }
 
     static dropEvents() {
-        window.onkeydown = (event) => {
+        window.onkeydown = () => {
             // empty event
             LogMessage("Dropped event DOWN");
         };
 
-        window.onkeyup = (event) => {
+        window.onkeyup = () => {
             // empty event
             LogMessage("Dropped event UP");
-        }
+        };
     }
 
     doKeyDown(number) {
@@ -84,15 +84,15 @@ export default class RocketMoveManager {
 
     doKeyUp(number) {
         switch (number) {
-            case KEY_TOP:
-                this.keyTopPushed = false;
-                break;
-            case KEY_BOTTOM:
-                this.keyBottomPushed = false;
-                break;
-            case KEY_FIRE:
-                this.keyFire = false;
-                break;
+        case KEY_TOP:
+            this.keyTopPushed = false;
+            break;
+        case KEY_BOTTOM:
+            this.keyBottomPushed = false;
+            break;
+        case KEY_FIRE:
+            this.keyFire = false;
+            break;
         }
     }
 

@@ -67,8 +67,8 @@ export default class ImageLoader {
                 resolve(img);
             };
             img.onerror = (error) => {
-                reject();
-            }
+                reject(error);
+            };
         });
     }
 

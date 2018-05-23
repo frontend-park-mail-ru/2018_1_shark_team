@@ -1,7 +1,5 @@
 "use strict";
 
-import AjaxWorker from "../../network/AjaxWorker";
-import isStringNormal from "../../utils/isStringNormal";
 import AlertManager from "../../render/AlertManager";
 import generateLogMessages from "./generateLogMessages";
 import MessagesLogRender from "../render/MessagesLogRender";

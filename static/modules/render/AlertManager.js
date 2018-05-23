@@ -16,6 +16,6 @@ export default class AlertManager {
             this.backgroundBox.hidden = true;
             this.messageContentBox.hidden = true;
             callback();
-        }
+        };
     }
 }

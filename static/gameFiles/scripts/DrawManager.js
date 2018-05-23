@@ -104,7 +104,7 @@ export default class DrawManager {
         this.holst.drawImage(this.imageLoader.getBonus(), 600, PICTURE_Y_POS, PICTURE_SIZE, PICTURE_SIZE);
 
         function drawText(holst, textContent, position_x) {
-            holst.fillStyle = '#33ff27';
+            holst.fillStyle = "#33ff27";
             holst.font = "30px Geneva, Arial, Helvetica, sans-serif";
             holst.fillText(textContent.toString(), position_x, IMAGE_TEXT_Y_POS);
         }

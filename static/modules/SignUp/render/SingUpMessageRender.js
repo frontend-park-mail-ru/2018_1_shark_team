@@ -22,13 +22,11 @@ export default class SingUpMessageRender {
         const p = document.createElement("div");
         p.innerHTML = "Регистрация прошла успешно.";
         this.messageBox.appendChild(p);
-        const html = this.messageBox.innerHTML;
     }
 
     renderBadUser() {
         const p = document.createElement("div");
         p.innerHTML = "Пользователь с таким логином уже есть в БД.";
         this.messageBox.appendChild(p);
-        const html = this.messageBox.innerHTML;
     }
 }

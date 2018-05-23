@@ -20,7 +20,7 @@ export default class CanvasPrinter {
 
     initCanvas() {
         const can = document.querySelector(".canvas-multiplayer-box__canvas-plain");
-        this.holst = can.getContext('2d');
+        this.holst = can.getContext("2d");
         this.holst.lineWidth = 2;
     }
 
@@ -85,7 +85,7 @@ export default class CanvasPrinter {
 
     drawBackground() {
         const holst = this.holst;
-        holst.fillStyle = '#2d26ad';
+        holst.fillStyle = "#2d26ad";
         holst.fillRect(0, 0, WIDTH, HEIGHT);
         try {
             this.holst.drawImage(this.imageLoader.getFon(), 0, 0, WIDTH, HEIGHT);
@@ -109,6 +109,7 @@ export default class CanvasPrinter {
         drawLine(this.holst, 0, 350, WIDTH, 350);
     }
 
+    // eslint-disable-next-line no-unused-vars
     drawRectange(color, xxx, yyy) {
         const holst = this.holst;
         holst.strokeStyle = color;

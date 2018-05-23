@@ -15,8 +15,8 @@ export default function initRouter (router) {
     ];
 
     arr.forEach((mass) => {
-       const key = mass[0].toString();
-       const value = mass[1].toString();
-       router.addPage(key, document.querySelector(value));
+        const key = mass[0].toString();
+        const value = mass[1].toString();
+        router.addPage(key, document.querySelector(value));
     });
 }

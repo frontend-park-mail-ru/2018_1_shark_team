@@ -11,7 +11,7 @@ export default class ZoomManager {
 
         let oldBody = document.body.innerHTML;
 
-        let zoomInter = setInterval(() => {
+        setInterval(() => {
             if(oldBody !== document.body.innerHTML) {
                 oldBody = document.body.innerHTML;
                 ZoomManager.resizeAction();

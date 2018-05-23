@@ -99,7 +99,7 @@ export default class Game {
         this.canvasElement.onclick = () => {
             // drop event
             LogMessage("Canvas EMPTY EVENT");
-        }
+        };
     }
 
     addCanvasClickEvent() {
@@ -117,7 +117,7 @@ export default class Game {
                 this.rocketMoveManager.doKeyDown(KEY_TOP);
                 this.rocketMoveManager.doKeyUp(KEY_TOP);
             }
-        }
+        };
     }
 
     makeFullScreen() {
@@ -142,11 +142,11 @@ export default class Game {
 
     moveRocketShadow() {
         if(this.rocketShadowY < this.drawManager.rocket.y) {
-            this.rocketShadowY += ROCKET_SHADOW_SPEED
+            this.rocketShadowY += ROCKET_SHADOW_SPEED;
         }
 
         if(this.rocketShadowY > this.drawManager.rocket.y) {
-            this.rocketShadowY -= ROCKET_SHADOW_SPEED
+            this.rocketShadowY -= ROCKET_SHADOW_SPEED;
         }
     }
 
@@ -175,9 +175,9 @@ export default class Game {
     killAmmo() {
         const buffer = [];
         this.ammoArr.forEach((ammo) => {
-           if(ammo.x < 1000) {
-               buffer.push(ammo);
-           }
+            if(ammo.x < 1000) {
+                buffer.push(ammo);
+            }
         });
         this.ammoArr = buffer;
         this.drawManager.initAmmoArray(this.ammoArr);
@@ -316,27 +316,27 @@ export default class Game {
 
     controlHit() {
         this.enemiesArr.forEach((enemy) => {
-           if(enemy.y === this.drawManager.rocket.y) {
-               if (inRangeHit(HIT_LEFT, enemy.x, HIT_RIGHT) === true) {
-                   if(!enemy.live) {
-                       enemy.x = -100;
-                       this.live--;
-                   } else {
-                       enemy.x = -100;
-                       this.live++;
-                   }
-               }
+            if(enemy.y === this.drawManager.rocket.y) {
+                if (inRangeHit(HIT_LEFT, enemy.x, HIT_RIGHT) === true) {
+                    if(!enemy.live) {
+                        enemy.x = -100;
+                        this.live--;
+                    } else {
+                        enemy.x = -100;
+                        this.live++;
+                    }
+                }
 
-               if (inRangeHit(HIT_LEFT, enemy.x + ENEMY_SIZE, HIT_RIGHT) === true) {
-                   if(!enemy.live) {
-                       enemy.x = -100;
-                       this.live--;
-                   } else {
-                       enemy.x = -100;
-                       this.live++;
-                   }
-               }
-           }
+                if (inRangeHit(HIT_LEFT, enemy.x + ENEMY_SIZE, HIT_RIGHT) === true) {
+                    if(!enemy.live) {
+                        enemy.x = -100;
+                        this.live--;
+                    } else {
+                        enemy.x = -100;
+                        this.live++;
+                    }
+                }
+            }
         });
 
         this.liveLabel.innerHTML = this.live.toString();

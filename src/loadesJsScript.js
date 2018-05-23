@@ -70,7 +70,7 @@
     /////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
 
-    var s1 = "<img src = \"/images/fon.png\" class = \"bg__background-picture\">";
+    var s1 = "<img src = \"/images/fon.jpg\" class = \"bg__background-picture\">";
 
     var s2 = "<audio class = \"music-box__clip-1\">\n" +
         "            <source src = \"/music/popcorn.mp3\">\n" +
@@ -91,7 +91,7 @@
 
     var jsCode = "";
 
-    myQuery("/images/fon.png", function () {
+    myQuery("/images/fon.jpg", function () {
         myQuery("/music/popcorn.mp3", function () {
             myQuery("/music/lazer_shot.mp3", function () {
                 myQuery("/music/bang_rocket.mp3", function () {

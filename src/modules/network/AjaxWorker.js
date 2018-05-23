@@ -40,13 +40,16 @@ export default class AjaxWorker {
 
             // on getting result from server
             xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4 && xhr.status === 200) {
+                if (xhr.readyState === 4) {
                     const xhrResult = xhr.responseText.toString();
+                    const status = xhr.status;
                     xhr = null;
                     const answer = xhrResult.toString();
                     const message = "Answer: " + answer;
-                    if (message.length < 200) {
+                    if (status !== 200) {
                         MessagePrinter.write(message);
+                        reject(new TypeError("not 200"));
+                        return;
                     }
                     resolve(xhrResult);
                 }

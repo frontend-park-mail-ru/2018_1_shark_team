@@ -71,8 +71,13 @@ export default class Router {
         LogMessage("Way: " + way);
         if (localStorage.getItem("loginValue")) {
             if (way === "/log-in" || way === "/sign-up") {
+                LogMessage("Reload page old Vers");
+                ////////////////////
+                /*
                 this.moveToPage("/main-menu");
                 return null;
+                */
+                ///////////////////
             }
         }
 

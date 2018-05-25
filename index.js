@@ -16,6 +16,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-const port = process.env.PORT || 5000;
+const port = 5155;
 app.listen(port);
 console.log("Server works on port " + port);

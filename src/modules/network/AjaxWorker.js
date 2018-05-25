@@ -3,8 +3,8 @@
 import MessagePrinter from "../render/MessagePrinter";
 import getApplicationMode from "../utils/DebugMode";
 
-const DEBUG_URL = "http://localhost:5005/";
-const RELEASE_URL = "/api/";
+const DEBUG_URL = "http://localhost:5123/api/";
+const RELEASE_URL = "https://funny-race.xyz/api/";
 
 export default class AjaxWorker {
     constructor(url, body) {

@@ -10,6 +10,7 @@ import ImageLoader from "./ImageLoader";
 import getDebugMode from "./DebugModeSetter";
 import inRangeHit from "./HitControl";
 import MusicManager from "./MusicManager";
+import saveGameResFunc from "./saveGameResFunc";
 
 const START_SPEED = 12;
 const DELTA_SPEED = 0.2;
@@ -423,6 +424,10 @@ export default class Game {
             } else {
                 clearInterval(this.interval);
                 LogMessage("--- STOP GAME INTERVAL ---");
+                ////////////////////////////////
+                LogMessage("Try to save result");
+                saveGameResFunc(parseInt(this.scorePoints));
+                ////////////////////////////////
                 this.startAnimationOpacity();
                 MusicManager.rocketDeadClip();
                 RocketMoveManager.dropEvents();

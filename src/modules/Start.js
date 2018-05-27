@@ -58,7 +58,7 @@ class Start {
         new ZoomManager();
 
         // prevent default
-        document.onclick = (event) => {
+        document.addEventListener("click", (event) => {
             // it is NOT link
             if (event.target.tagName.toUpperCase() !== LINK_NAME.toUpperCase()) {
                 return null;
@@ -66,7 +66,7 @@ class Start {
             // it is a link
             event.preventDefault();
             this.router.moveToPage(event.target.href);
-        };
+        });
     }
 
     /**

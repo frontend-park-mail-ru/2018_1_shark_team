@@ -39,6 +39,8 @@ import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 
+const LINK_NAME = "a";
+
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
  */
@@ -54,6 +56,17 @@ class Start {
         this.createAndInitFieldsCleaner();
         // init zoom
         new ZoomManager();
+
+        // prevent default
+        document.onclick = (event) => {
+            // it is NOT link
+            if (event.target.tagName.toUpperCase() !== LINK_NAME.toUpperCase()) {
+                return null;
+            }
+            // it is a link
+            event.preventDefault();
+            this.router.moveToPage(event.target.href);
+        };
     }
 
     /**

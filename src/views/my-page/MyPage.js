@@ -17,9 +17,7 @@ export default class MyPage {
     }
 
     static addEventsToElements(router, elementsBase) {
-        document.querySelector(".my-page__main-menu-btn").addEventListener("click", () => {
-            router.moveToPage("/main-menu");
-        });
+        LogMessage("Router: " + router);
 
         document.querySelector(".form__save-changes-button").addEventListener("click", () => {
             const login = localStorage.getItem("loginValue");

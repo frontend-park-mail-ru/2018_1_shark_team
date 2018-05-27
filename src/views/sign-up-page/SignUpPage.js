@@ -13,12 +13,6 @@ export default class SignUpPage {
     }
 
     static addEventsToElements(router, elementsBase) {
-        /*
-        document.querySelector(".sign-up-page__link-to-log-in-page").addEventListener("click", () => {
-            router.moveToPage("/log-in");
-        });
-        */
-
         document.querySelector(".form__sign-up-button").addEventListener("click", () => {
             new SignupFormValidator(router, elementsBase).validateSignupForm();
         });

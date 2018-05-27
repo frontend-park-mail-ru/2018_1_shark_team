@@ -38,6 +38,7 @@ import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
 import ZoomManager from "./utils/ZoomManager";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
+import preventDefaultClick from "./preventDefaultClick";
 
 /**
  * класс для запуска сервера, инициализации основных объектов, налаживания взаимодействия между объектами
@@ -54,6 +55,9 @@ class Start {
         this.createAndInitFieldsCleaner();
         // init zoom
         new ZoomManager();
+
+        // prevent default
+        preventDefaultClick(this.router);
     }
 
     /**
@@ -136,15 +140,6 @@ class Start {
     }
 }
 
-////////
-/*
-window.addEventListener("load", () => {
-    LogMessage("LOAD APPLICATION EVENT");
-    // start application
-    new Start();
-});
-*/
-////////
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js")
@@ -157,5 +152,4 @@ if ("serviceWorker" in navigator) {
 }
 
 new Start();
-
 

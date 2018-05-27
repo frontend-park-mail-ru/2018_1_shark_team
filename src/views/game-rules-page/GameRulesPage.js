@@ -1,6 +1,7 @@
 "use strict";
 
 import template from "./game-rules-page.pug";
+import LogMessage from "../../gameFiles/scripts/MessageLogger";
 
 export default class GameRulesPage {
     constructor() {
@@ -12,8 +13,6 @@ export default class GameRulesPage {
     }
 
     static addEventsToElements(router) {
-        document.querySelector(".game-rules-page__main-menu-button").addEventListener("click", () => {
-            router.moveToPage("/main-menu");
-        });
+        LogMessage("Router: " + router);
     }
 }

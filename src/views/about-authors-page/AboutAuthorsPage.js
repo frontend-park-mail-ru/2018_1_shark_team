@@ -1,6 +1,7 @@
 "use strict";
 
 import template from "./about-authors-page.pug";
+import LogMessage from "../../gameFiles/scripts/MessageLogger";
 
 export default class AboutAuthorsPage {
     constructor() {
@@ -12,8 +13,6 @@ export default class AboutAuthorsPage {
     }
 
     static addEventsToElements(router) {
-        document.querySelector(".about-authors-page__main-menu-button").addEventListener("click", () => {
-            router.moveToPage("/main-menu");
-        });
+        LogMessage("Router: " + router);
     }
 }

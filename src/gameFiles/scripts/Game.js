@@ -96,28 +96,41 @@ export default class Game {
         MusicManager.stopMainClip();
     }
 
-    dropCanvasClickEvent() {
-        this.canvasElement.onclick = () => {
-            // drop event
-            LogMessage("Canvas EMPTY EVENT");
-        };
+    canvasClickEventMainContent(event) {
+        LogMessage("Canvas GAME event");
+        const KEY_TOP = 87;
+        const KEY_BOTTOM = 83;
+        const position = parseInt(event.touches[0].clientY);
+        LogMessage("Y pos: " + position);
+        const height = parseInt(window.innerHeight);
+        const procent = (position / height) * 100;
+        if (procent >= 50) {
+            this.rocketMoveManager.doKeyDown(KEY_BOTTOM);
+            this.rocketMoveManager.doKeyUp(KEY_BOTTOM);
+        } else {
+            this.rocketMoveManager.doKeyDown(KEY_TOP);
+            this.rocketMoveManager.doKeyUp(KEY_TOP);
+        }
     }
 
     addCanvasClickEvent() {
-        this.canvasElement.onclick = (event) => {
-            LogMessage("Canvas GAME click");
-            const KEY_TOP = 87;
-            const KEY_BOTTOM = 83;
-            const position = parseInt(event.clientY);
-            const height = parseInt(window.innerHeight);
-            const procent = (position / height) * 100;
-            if (procent >= 50) {
-                this.rocketMoveManager.doKeyDown(KEY_BOTTOM);
-                this.rocketMoveManager.doKeyUp(KEY_BOTTOM);
-            } else {
-                this.rocketMoveManager.doKeyDown(KEY_TOP);
-                this.rocketMoveManager.doKeyUp(KEY_TOP);
-            }
+        this.canvasElement.ontouchstart = (event) => {
+            LogMessage("Touch start");
+            this.canvasClickEventMainContent(event);
+        };
+
+        this.canvasElement.ontouchend = () => {
+            LogMessage("Touch end");
+        };
+    }
+
+    dropCanvasClickEvent() {
+        this.canvasElement.ontouchstart = () => {
+            LogMessage("Killed event touchStart");
+        };
+
+        this.canvasElement.ontouchend = () => {
+            LogMessage("Killed event touchEnd");
         };
     }
 

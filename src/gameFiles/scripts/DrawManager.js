@@ -112,6 +112,16 @@ export default class DrawManager {
         drawText(this.holst, score, 180);
         drawText(this.holst, balls, 430);
         drawText(this.holst, lives, 680);
+
+        // info about w s r function
+        function drawTextWithControlInformation(holst, textContent) {
+            holst.fillStyle = "#33ff27";
+            holst.font = "30px Geneva, Arial, Helvetica, sans-serif";
+            holst.fillText(textContent.toString(), 50, 60);
+        }
+
+        // info about w s r function
+        drawTextWithControlInformation(this.holst, "Управление:  W  S  R");
     }
 
     drawRocket() {

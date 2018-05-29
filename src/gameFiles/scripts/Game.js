@@ -138,7 +138,16 @@ export default class Game {
         try {
             this.canvasElement.webkitRequestFullscreen();
         } catch (err) {
-            // fullscreen error
+            // full screen error
+        }
+    }
+
+    closeFullScreen() {
+        LogMessage("Canvas: " + this.canvasElement);
+        try {
+            document.webkitExitFullscreen();
+        } catch (err) {
+            // full screen closing mode error
         }
     }
 
@@ -441,6 +450,7 @@ export default class Game {
                 LogMessage("Try to save result");
                 saveGameResFunc(parseInt(this.scorePoints));
                 ////////////////////////////////
+                ////////////////////////////////
                 this.startAnimationOpacity();
                 MusicManager.rocketDeadClip();
                 RocketMoveManager.dropEvents();
@@ -462,6 +472,10 @@ export default class Game {
                 LogMessage("=== STOP OPACITY INTERVAL ===");
                 Game.stopMusic();
                 Game.renderRestartBtn();
+                /////////////////////////////////////////
+                LogMessage("Exit full screen mode");
+                this.closeFullScreen();
+                /////////////////////////////////////////
             }
         }, WAIT_TIME_INTEVAL);
     }

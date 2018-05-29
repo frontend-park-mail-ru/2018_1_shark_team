@@ -6,6 +6,9 @@ import showGameCanvas from "./showGameCanvas";
 import CanvasPrinter from "./CanvasPrinter";
 import KeyManager from "./KeyManager";
 import gameOverRender from "./gameOverRender";
+import MusicManager from "../gameFiles/scripts/MusicManager";
+import TouchEventsController from "./TouchEventsController";
+import touchFunc from "./touchFunc";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
@@ -14,11 +17,13 @@ const START_GAME_STRING = "P_START";
 
 export default class SocketMessagesRouter {
     constructor(socket, imageLoader) {
+        TouchEventsController.dropTouchEvents();
         this.imageLoader = imageLoader;
         this.socket = socket;
         this.roomOK = false;
         this.canvasPrinter = new CanvasPrinter(this.imageLoader);
         this.keyManager = new KeyManager();
+
     }
 
     sendMessage(message) {
@@ -65,6 +70,27 @@ export default class SocketMessagesRouter {
         if (obj.play === START_GAME_STRING) {
             // show canvas
             showGameCanvas();
+            // play music
+            MusicManager.startMainClip();
+            // init touch events
+            TouchEventsController.addTouchEvents((eventParam) => {
+                LogMessage("Touch START ok");
+                touchFunc(eventParam, () => {
+                    // down
+                    this.sendMessage(JSON.stringify({
+                        t: "c",
+                        v: "DOWN",
+                    }));
+                }, () => {
+                    // up
+                    this.sendMessage(JSON.stringify({
+                        t: "c",
+                        v: "UP",
+                    }));
+                });
+            }, () => {
+                LogMessage("Touch END ok");
+            });
             // init key events
             LogMessage("ADD KEY EVENTS");
             this.keyManager.initKeys();

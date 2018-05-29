@@ -28,6 +28,13 @@
   margin-top: 2vh;
 }
 
+.multiplayer-page__full-screen-button {
+  @extend .button-field;
+  font-size: 2vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+}
+
 .multiplayer-page__wait-process-label {
   color: #65f2ff;
 }

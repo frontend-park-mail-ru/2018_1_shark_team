@@ -22,6 +22,7 @@ export default class CanvasPrinter {
         const can = document.querySelector(".canvas-multiplayer-box__canvas-plain");
         this.holst = can.getContext("2d");
         this.holst.lineWidth = 2;
+        this.holst.setLineDash([50, 30]);
     }
 
     printEnemy(e) {

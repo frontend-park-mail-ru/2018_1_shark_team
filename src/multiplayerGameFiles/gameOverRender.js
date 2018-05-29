@@ -2,6 +2,7 @@
 
 import FullScreenController from "./FullScreenController";
 import MusicManager from "../gameFiles/scripts/MusicManager";
+import TouchEventsController from "./TouchEventsController";
 
 export default function gameOverRender(obj) {
     const message = obj.gameOver.toString();
@@ -15,4 +16,6 @@ export default function gameOverRender(obj) {
     document.querySelector(".multiplayer-page__full-screen-button").hidden = true;
     // stop music
     MusicManager.stopMainClip();
+    // stop touches
+    TouchEventsController.dropTouchEvents();
 }

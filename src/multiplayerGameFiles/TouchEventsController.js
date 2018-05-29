@@ -10,6 +10,7 @@ export default class TouchEventsController {
 
     static addTouchEvents(touchStartFunctionCallback, touchEndFunctionCallback) {
         const canvasObj = TouchEventsController.getCanvasElement();
+        LogMessage("Add touch events");
         /////////////////////////////////////////////////////
         canvasObj.ontouchstart = (event) => {
             touchStartFunctionCallback(event);
@@ -22,6 +23,7 @@ export default class TouchEventsController {
 
     static dropTouchEvents() {
         const canvasObj = TouchEventsController.getCanvasElement();
+        LogMessage("Drop touch events");
         /////////////////////////////////////////////////////
         canvasObj.ontouchstart = () => {
             LogMessage("Canvas TOUCH START Killed");

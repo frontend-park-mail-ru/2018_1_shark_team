@@ -3,16 +3,22 @@
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 export default class FullScreenController {
+    static getCanvas() {
+        LogMessage("GET CANVAS METHOD");
+        return document.querySelector(".canvas-multiplayer-box__canvas-plain");
+    }
+
     static openFullScreen() {
-        const canvasObj = document.querySelector(".canvas-multiplayer-box__canvas-plain");
+        LogMessage("OPEN FULL SCREEN");
         try {
-            canvasObj.webkitRequestFullscreen();
+            FullScreenController.getCanvas().webkitRequestFullscreen();
         } catch (err) {
             LogMessage("FullScreenError: " + err);
         }
     }
 
     static closeFullScreen() {
+        LogMessage("CLOSE FULL SCREEN");
         try {
             document.webkitExitFullscreen();
         } catch (err) {

@@ -15,24 +15,26 @@
   padding: 0;
 }
 
-.multiplayer-page__start-game-finding-button {
-  @extend .button-field;
+.button-field-multiplayer {
+  @extend .text-field;
+  background-color: #ffb02c;
+  cursor: pointer;
+  max-width: 80%;
   font-size: 2vw;
+  margin-left: 1vw;
   margin-top: 2vh;
+}
+
+.multiplayer-page__start-game-finding-button {
+  @extend .button-field-multiplayer;
 }
 
 .multiplayer-page__main-menu-button {
-  @extend .button-field;
-  font-size: 2vw;
-  margin-left: 1vw;
-  margin-top: 2vh;
+  @extend .button-field-multiplayer;
 }
 
 .multiplayer-page__full-screen-button {
-  @extend .button-field;
-  font-size: 2vw;
-  margin-left: 1vw;
-  margin-top: 2vh;
+  @extend .button-field-multiplayer;
 }
 
 .multiplayer-page__wait-process-label {

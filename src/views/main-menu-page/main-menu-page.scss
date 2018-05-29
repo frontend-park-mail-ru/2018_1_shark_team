@@ -3,7 +3,7 @@
 .menu-button {
   @extend .button-field;
   font-size: 2vw;
-  min-width: 50%;
+  display: block;
 }
 
 .form__single-player-game-button {

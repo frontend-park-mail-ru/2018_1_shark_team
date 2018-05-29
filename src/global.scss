@@ -88,6 +88,12 @@ body {
   @extend .text-field;
   background-color: #ffb02c;
   cursor: pointer;
+  max-width: 80%;
+  display: block;
+}
+
+a {
+  display: block;
 }
 
 .button-field:hover {

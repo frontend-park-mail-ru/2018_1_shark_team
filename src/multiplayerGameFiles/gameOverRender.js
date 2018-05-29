@@ -1,6 +1,7 @@
 "use strict";
 
 import FullScreenController from "./FullScreenController";
+import MusicManager from "../gameFiles/scripts/MusicManager";
 
 export default function gameOverRender(obj) {
     const message = obj.gameOver.toString();
@@ -12,4 +13,6 @@ export default function gameOverRender(obj) {
     document.querySelector(".multiplayer-page__wait-process-label").hidden = false;
     FullScreenController.closeFullScreen();
     document.querySelector(".multiplayer-page__full-screen-button").hidden = true;
+    // stop music
+    MusicManager.stopMainClip();
 }

@@ -6,6 +6,7 @@ import showGameCanvas from "./showGameCanvas";
 import CanvasPrinter from "./CanvasPrinter";
 import KeyManager from "./KeyManager";
 import gameOverRender from "./gameOverRender";
+import MusicManager from "../gameFiles/scripts/MusicManager";
 
 const PING = "PING";
 const TO_SERVER = "На сервер: ";
@@ -19,6 +20,7 @@ export default class SocketMessagesRouter {
         this.roomOK = false;
         this.canvasPrinter = new CanvasPrinter(this.imageLoader);
         this.keyManager = new KeyManager();
+
     }
 
     sendMessage(message) {
@@ -65,6 +67,8 @@ export default class SocketMessagesRouter {
         if (obj.play === START_GAME_STRING) {
             // show canvas
             showGameCanvas();
+            // play music
+            MusicManager.startMainClip();
             // init key events
             LogMessage("ADD KEY EVENTS");
             this.keyManager.initKeys();

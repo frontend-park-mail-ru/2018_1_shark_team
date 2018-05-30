@@ -1,39 +1,90 @@
 @import './../../global';
 
+.double-menu {
+  width: 900px;
+  height: 550px;
+  margin: auto;
+  position: relative;
+
+  &__left {
+    width: 450px;
+  }
+
+  &__right {
+    width: 450px;
+    position: absolute;
+    top: 0;
+    left: 450px;
+    padding-top: 90px;
+  }
+}
+
+@keyframes main-menu-page-logo {
+  0% {
+    transform: translate(-2px, 0);
+  }
+  25% {
+    transform: translate(-2px, -1px);
+  }
+  50% {
+    transform: translate(-1px, -2px);
+  }
+  75% {
+    transform: translate(2px, -1px);
+  }
+  100% {
+    transform: translate(1px, 2px);
+  }
+}
+
+.main-menu-page__logo {
+  animation: main-menu-page-logo 2s ease-in-out infinite alternate;
+  margin-left: -3px;
+}
+
 .menu-button {
-  @extend .button-field;
-  font-size: 2vw;
-  display: block;
+  color: #ffe7ce;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin: 0.2em 0;
 }
 
-.form__single-player-game-button {
-  @extend .menu-button;
-}
-
-.form__multiplayer-game-button {
-  @extend .menu-button;
-}
-
-.form__chat-button {
-  @extend .menu-button;
-}
-
-.form__leaderboard-button {
-  @extend .menu-button;
-}
-
-.form__my-page-button {
-  @extend .menu-button;
-}
-
-.form__game-rules-button {
-  @extend .menu-button;
-}
-
-.form__about-authors-button {
-  @extend .menu-button;
+.menu-button:hover {
+  color: #fff;
+  transform: rotate(5deg) scale(1.2);
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1);
 }
 
 .form__exit-button {
-  @extend .menu-button;
+  //@extend .menu-button;
+}
+
+@keyframes instructions-roller-roll {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, -1000px);
+  }
+}
+
+.instructions-roller__inner {
+  animation: instructions-roller-roll 20s ease-in-out infinite alternate;
+}
+
+.instructions-roller__page {
+  margin: 1em;
+}
+
+.instructions-roller__img {
+  box-shadow: 0 2px 6px 6px rgba(171, 152, 135, 0.67);
+  border-radius: 8px;
+}
+
+.instructions-roller__text {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-style: oblique;
 }

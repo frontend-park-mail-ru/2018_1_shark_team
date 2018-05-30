@@ -4,19 +4,19 @@ html {
 }
 
 td {
-  padding: 1vh 1vw;
+  padding: 16px;
 }
 
 body {
   font-family: Geneva, Arial, Helvetica, sans-serif;
-  font-size: 3vw;
+  font-size: 40px;
   color: gold;
   padding: 0;
   background: #111a51;
 }
 
 .content__message-content {
-  font-size: 2vw;
+  font-size: 16px;
 }
 
 .full-screen-box {
@@ -52,6 +52,15 @@ body {
   z-index: -123;
 }
 
+@keyframes bg-animation {
+  from {
+    transform: scale(1.1) rotate(-7deg);
+  }
+  to {
+    transform: scale(1.1) rotate(7deg);
+  }
+}
+
 .bg__background-picture {
   position: absolute;
   top: 0;
@@ -61,8 +70,9 @@ body {
   margin: auto;
   min-width: 50%;
   min-height: 50%;
-  -webkit-filter: brightness(0.5);
-  filter: brightness(0.5);
+  filter: blur(6px) brightness(0.3);
+  -webkit-filter: blur(6px) brightness(0.3);
+  animation: bg-animation 4s ease-in-out infinite alternate;
 }
 
 .center-box__title-image {
@@ -71,16 +81,16 @@ body {
 }
 
 .vertical-space {
-  padding-top: 2vh;
+  padding-top: 16px;
 }
 
 .text-field {
-  font-size: 3vw;
+  font-size: 16px;
   font-family: Geneva, Arial, Helvetica, sans-serif;
   color: black;
-  padding: 1vw;
+  padding: 16px;
   border: 1px solid black;
-  border-radius: 1vw;
+  border-radius: 8px;
   outline: none;
 }
 
@@ -104,18 +114,20 @@ a {
 .content__ok-button {
   @extend .button-field;
   margin-top: 25px;
-  font-size: 2vw;
+  font-size: 16px;
 }
 
 .link-field {
   color: white;
-  padding: 1vw;
+  padding: 16px;
   cursor: pointer;
 }
 
 .center-box {
-  width: 100%;
-  padding-bottom: 5vh;
-  padding-left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

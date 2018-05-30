@@ -4,7 +4,6 @@ import UserAvatarLoader from "./network/UserAvatarLoader";
 import getLiaderBoard from "./LiderBoard/LiderBoardLoader";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import drawLogins from "./render/drawLogins";
-import ZoomManager from "./utils/ZoomManager";
 import BestResultLoader from "./network/BestResultLoader";
 
 /**
@@ -50,8 +49,5 @@ export default class ReloadSpaPageManager {
             // print best result of current user
             new BestResultLoader();
         }
-
-        // zoom control
-        ZoomManager.resizeAction();
     }
 }

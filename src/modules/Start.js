@@ -36,7 +36,6 @@ import Router from "./Router";
 import FieldsCleaner from "./render/FieldsCleaner";
 import initElementsDictionary from "./store/initElementsDictionary";
 import initRouter from "./store/initRouter";
-import ZoomManager from "./utils/ZoomManager";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 import preventDefaultClick from "./preventDefaultClick";
 
@@ -53,8 +52,6 @@ class Start {
         this.createAndInitRouter();
         this.addEventsToElements();
         this.createAndInitFieldsCleaner();
-        // init zoom
-        new ZoomManager();
 
         // prevent default
         preventDefaultClick(this.router);

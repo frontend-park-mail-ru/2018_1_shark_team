@@ -105,9 +105,9 @@
     var jsCode = "";
 
     myQuery("/images/fon.jpg", function () {
-        myQuery("/music/popcorn.mp3", function () {
-            myQuery("/music/lazer_shot.mp3", function () {
-                myQuery("/music/bang_rocket.mp3", function () {
+        // myQuery("/music/popcorn.mp3", function () {
+            // myQuery("/music/lazer_shot.mp3", function () {
+            //     myQuery("/music/bang_rocket.mp3", function () {  // FIXME
                     myQuery("/bundle.js", function (result) {
                         jsCode = result + "";
                         myQuery("/gameFiles/images/ammo.png", function () {
@@ -138,9 +138,9 @@
                                     });
                                 });
                             });
-                        });
-                    });
-                });
+                        // });
+                    // });
+                // });
             });
         });
     });

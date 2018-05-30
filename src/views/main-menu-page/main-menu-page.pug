@@ -1,22 +1,27 @@
-div(class='main-menu-page', hidden)
-    h3(class="main-menu-page__label")
-    form(class="main-menu-page__form")
-        a(href="/one-player-page", class="form__single-player-game-button") Один игрок
-        div(class="vertical-space")
-        a(href="/multiplayer-page", class="form__multiplayer-game-button") Мультиплеер
-        div(class="vertical-space")
-        div(hidden)
-            a(href="/chat-page", class="form__chat-button", hidden) Чат
-        div(class="vertical-space", hidden)
-        a(href="/liders-page", class="form__leaderboard-button") Список лидеров
-        div(class="vertical-space")
-        a(href="/my-page", class="form__my-page-button") Моя страница
-        div(class="vertical-space")
-        a(href="/game-rules", class="form__game-rules-button") Описание игры
-        div(class="vertical-space")
-        a(href="/about-authors", class="form__about-authors-button") Об авторах
-        div(class="vertical-space")
-        div(class="form__exit-button") Выход
-        div(class="vertical-space")
-        div(class="vertical-space")
-        div(class="vertical-space")
+.main-menu-page.double-menu(hidden)
+    .double-menu__left
+        h3(class="main-menu-page__label" hidden)
+        img.main-menu-page__logo(src="/images/FunnyRace_mini.png", height="100px")
+        div(class="")
+            a(href="/one-player-page", class="menu-button") Один игрок 👩
+            a(href="/multiplayer-page", class="menu-button") Мультиплеер 👯‍
+            a(href="/liders-page", class="menu-button") Список лидеров 🌎
+            a(href="/my-page", class="menu-button") Моя страница 🌚
+            a(href="/game-rules", class="menu-button") Описание игры 🎮
+            a(href="/about-authors", class="menu-button") Об авторах 👀
+            div(class="menu-button form__exit-button") Выход 🚀
+
+    .double-menu__right.instructions-roller
+        .instructions-roller__inner
+            .instructions-roller__page
+                img.instructions-roller__img(src="/images/instructions/4.png")
+                .instructions-roller__text Управление:<br><b>W</b> — вверх ⬆️, <b>S</b> — вниз ⬇️
+            .instructions-roller__page
+                img.instructions-roller__img(src="/images/instructions/2.png")
+                .instructions-roller__text Не врезайтесь<br>в булыжники! 🙀😭❌
+            .instructions-roller__page
+                img.instructions-roller__img(src="/images/instructions/1.png")
+                .instructions-roller__text Стреляйте на <b>R</b> 💥
+            .instructions-roller__page
+                img.instructions-roller__img(src="/images/instructions/3.png")
+                .instructions-roller__text Собирайте жизни! 💖

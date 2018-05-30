@@ -3,7 +3,6 @@
 import AjaxWorker from "./network/AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
 import MessagePrinter from "./render/MessagePrinter";
-import ZoomManager from "./utils/ZoomManager";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
 
 /**
@@ -21,8 +20,6 @@ export default class Router {
 
         window.addEventListener("popstate", () => {
             this.showPage();
-            // zoom control
-            ZoomManager.resizeAction();
         });
     }
 
@@ -83,8 +80,6 @@ export default class Router {
 
         try {
             currentPage.page.hidden = false;
-            // zoom control
-            ZoomManager.resizeAction();
             return;
         } catch (err) {
             MessagePrinter.write("err");
@@ -92,8 +87,6 @@ export default class Router {
 
         this.listOfPages[0].page.hidden = false;
         history.pushState({}, "", this.listOfPages[0].url);
-        // zoom control
-        ZoomManager.resizeAction();
     }
 
     /**
@@ -134,7 +127,7 @@ export default class Router {
             }
         }).catch(() => {
             if (location.pathname !== "/one-player-page") {
-                this.moveToPage("/one-player-page");
+                if (false) this.moveToPage("/one-player-page");  // FIXME remove if false
             }
             this.printPage();
         });
@@ -147,7 +140,5 @@ export default class Router {
     moveToPage(url) {
         history.pushState({}, "", url);
         this.showPage();
-        // zoom control
-        ZoomManager.resizeAction();
     }
 }

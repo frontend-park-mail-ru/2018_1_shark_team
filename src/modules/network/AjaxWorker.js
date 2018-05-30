@@ -4,7 +4,7 @@ import MessagePrinter from "../render/MessagePrinter";
 import getApplicationMode from "../utils/DebugMode";
 
 const DEBUG_URL = "http://localhost:5123/api/";
-const RELEASE_URL = "https://funny-race.xyz/api/";
+const RELEASE_URL = "https://shark-team-v2.reo7sp.ru/api/";  // TODO set to "https://funny-race.xyz/api/"
 
 export default class AjaxWorker {
     constructor(url, body) {

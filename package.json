@@ -16,6 +16,7 @@
     "serve": "node index.js",
     "watch": "npm run clean && webpack --watch",
     "deploy": "npm run build && rsync -a --delete dest/ root@188.225.75.11:/home/max/mailtp/forntend-park-mail/dest/",
+    "deploy-v2": "npm run build && rsync -a --delete dest/ root@188.225.75.11:/opt/funny-race/v2/dest/",
     "size": "du -a -h dest | grep gz"
   },
   "keywords": [],

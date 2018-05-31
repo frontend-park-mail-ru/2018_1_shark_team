@@ -9,15 +9,15 @@
     "stylelint": "stylelint --syntax scss './static/**/*.scss'",
     "stylelint-fix": "stylelint --syntax scss --fix './static/**/*.scss",
     "regenerate-docs": "jsdoc ./static/**/*.js -d docs -c .jsdoc.conf.json && gh-pages -d docs",
+    "size": "du -a -h dest | grep gz",
     "clean": "rimraf ./dest",
     "gzip": "find dest -type f -print0 | xargs -0 zopfli",
     "build": "npm run clean && webpack && webpack --config webpack.serviceworker.config.js && npm run gzip",
     "start": "npm build && node index.js",
     "serve": "node index.js",
     "watch": "npm run clean && webpack --watch",
-    "deploy": "npm run build && rsync -a --delete dest/ root@188.225.75.11:/home/max/mailtp/forntend-park-mail/dest/",
-    "deploy-v2": "npm run build && rsync -a --delete dest/ root@188.225.75.11:/opt/funny-race/v2/dest/",
-    "size": "du -a -h dest | grep gz"
+    "deploy": "npm run build && rsync -aP --delete dest/ root@188.225.75.11:/home/max/mailtp/forntend-park-mail/dest/",
+    "deploy-v2": "npm run build && rsync -aP --delete dest/ root@188.225.75.11:/opt/funny-race/v2/dest/"
   },
   "keywords": [],
   "author": "",

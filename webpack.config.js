@@ -48,7 +48,7 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            {from: "./**/*.+(html|ico|jpg|png|mp3)", to: ".", context: "src"},
+            {from: "./**/*.+(html|ico|jpg|png|mp3|ttf)", to: ".", context: "src"},
             {from: "loadesJsScript.js", to: ".", context: "src"},
         ]),
         new UglifyJsPlugin(),

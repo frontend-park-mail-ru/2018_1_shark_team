@@ -1,36 +1,17 @@
 "use strict";
 
-import "../global.scss";
+import "../index.scss";
 
 import LogInPage from "../views/log-in-page/LogInPage";
-import "../views/log-in-page/log-in-page.scss";
-
 import SignUpPage from "../views/sign-up-page/SignUpPage";
-import "../views/sign-up-page/sign-up-page.scss";
-
 import MainMenuPage from "../views/main-menu-page/MainMenuPage";
-import "../views/main-menu-page/main-menu-page.scss";
-
 import AboutAuthorsPage from "../views/about-authors-page/AboutAuthorsPage";
-import "../views/about-authors-page/about-authors-page.scss";
-
 import GameRulesPage from "../views/game-rules-page/GameRulesPage";
-import "../views/game-rules-page/game-rules-page.scss";
-
 import MyPage from "../views/my-page/MyPage";
-import "../views/my-page/my-page.scss";
-
 import LidersPage from "../views/liders-page/LidersPage";
-import "../views/liders-page/liders-page.scss";
-
 import OnePlayerPage from "../views/one-player-page/OnePlayerPage";
-import "../views/one-player-page/one-player-page.scss";
-
 import ChatPage from "../views/chat-page/ChatPage";
-import "../views/chat-page/chat-page.scss";
-
 import MultiplayerPage from "../views/multiplayer-page/MultiplayerPage";
-import "../views/multiplayer-page/multiplayer-page.scss";
 
 import Router from "./Router";
 import FieldsCleaner from "./render/FieldsCleaner";

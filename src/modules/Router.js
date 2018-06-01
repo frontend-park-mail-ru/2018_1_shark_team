@@ -53,12 +53,8 @@ export default class Router {
         if (localStorage.getItem("loginValue")) {
             if (way === "/log-in" || way === "/sign-up") {
                 LogMessage("Reload page old Vers");
-                ////////////////////
-                /*
                 this.moveToPage("/main-menu");
-                return null;
-                */
-                ///////////////////
+                return;
             }
         }
 
@@ -67,6 +63,7 @@ export default class Router {
             view.render();
             view.addEventsToElements(this);
             history.pushState({}, "", this.listOfPages[0].url);
+            return;
         }
 
         const view = currentPage.viewMakerFn();

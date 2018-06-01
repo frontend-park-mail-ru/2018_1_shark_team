@@ -110,9 +110,10 @@ export default class Router {
                 LogMessage("Authorize NO");
                 window.location = "/log-in";
             }
-        }).catch(() => {
+        }).catch((e) => {
+            LogMessage("Authorize FAIL: " + e);
             if (location.pathname !== "/one-player-page") {
-                if (false) this.moveToPage("/one-player-page");  // FIXME remove if false
+                this.moveToPage("/one-player-page");
             }
             this.printPage();
         });

@@ -11,6 +11,7 @@ export default class LidersPage {
 
     render() {
         pushSingleMenuView(template());
+        this._drawLogin();
     }
 
     addEventsToElements(router) {
@@ -27,5 +28,10 @@ export default class LidersPage {
             liaderBoard.moveRight();
             liaderBoard.loadLiders();
         });
+    }
+
+    _drawLogin() {
+        const loginValueStr = "Логин: " + localStorage.getItem("loginValue");
+        document.querySelector(".liders-page__login-label").innerHTML = loginValueStr;
     }
 }

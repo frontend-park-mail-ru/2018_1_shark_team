@@ -15,8 +15,10 @@ export default class OnePlayerPage {
 
     addEventsToElements(router) {
         LogMessage("Router: " + router);
-        document.querySelector(".one-player-page__start-game-button").addEventListener("click", () => {
-            startGame();
+        document.querySelector(".one-player-page__start-game-button").addEventListener("click", (e) => {
+            e.target.textContent = "🔄";
+            e.target.classList.add("one-player-page__start-game-button--restart");
+            setTimeout(() => startGame(), 150);
         });
     }
 }

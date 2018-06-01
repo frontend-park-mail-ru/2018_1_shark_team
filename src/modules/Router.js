@@ -112,6 +112,7 @@ export default class Router {
             }
         }).catch((e) => {
             LogMessage("Authorize FAIL: " + e);
+            LogMessage(e.stack);
             if (location.pathname !== "/one-player-page") {
                 this.moveToPage("/one-player-page");
             }

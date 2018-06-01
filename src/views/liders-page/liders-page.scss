@@ -2,12 +2,15 @@
 
 .liders-page__previous-list-button {
   @extend .button-field;
+  display: inline-block;
   min-width: 20%;
+  margin-right: 8px;
 }
 
 .liders-page__next-list-button {
   @extend .button-field;
   min-width: 20%;
+  display: inline-block;
 }
 
 .liders-page__main-menu-button {

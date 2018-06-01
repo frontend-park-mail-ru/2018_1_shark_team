@@ -5,7 +5,7 @@ export default class LiderBoardRender {
     }
 
     clearBox() {
-        document.querySelector(".liders-page__liders-list-box").innerHTML = "";
+        // document.querySelector(".liders-page__liders-list-box").innerHTML = "";
     }
 
     writeArrContent(arr) {

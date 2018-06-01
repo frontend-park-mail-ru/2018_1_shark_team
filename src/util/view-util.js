@@ -19,9 +19,7 @@ export function pushDoubleMenuView(html) {
 }
 
 export function depushViews() {
-    document.querySelector("#workspace-single-menu").classList.add("hidden");
     document.querySelector("#workspace-single-menu-content").innerHTML = "";
-    document.querySelector("#workspace-double-menu").classList.add("hidden");
     document.querySelector("#workspace-double-menu-content").innerHTML = "";
 }
 

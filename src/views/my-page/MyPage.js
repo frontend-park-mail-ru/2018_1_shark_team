@@ -14,7 +14,6 @@ export default class MyPage {
 
     render() {
         pushDoubleMenuView(template());
-        this._drawLogin();
     }
 
     addEventsToElements(router) {
@@ -83,10 +82,5 @@ export default class MyPage {
                 }
             };
         });
-    }
-
-    _drawLogin() {
-        const loginValueStr = "Логин: " + localStorage.getItem("loginValue");
-        document.querySelector(".my-page__user-login-label").innerHTML = loginValueStr;
     }
 }

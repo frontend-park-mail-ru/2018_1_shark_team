@@ -1,11 +1,11 @@
 @import './../../global';
 
 .form__login-input-field {
-  @extend .text-field;
+  @extend .edit-field;
 }
 
 .form__password-input-field {
-  @extend .text-field;
+  @extend .edit-field;
 }
 
 .form__sign-up-button {

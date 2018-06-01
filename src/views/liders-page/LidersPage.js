@@ -3,17 +3,18 @@
 import template from "./liders-page.pug";
 import getLiaderBoard from "../../modules/LiderBoard/LiderBoardLoader";
 import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import {pushSingleMenuView} from "../../util/view-util";
 
 export default class LidersPage {
     constructor() {
-        LidersPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushSingleMenuView(template());
+        this._drawLogin();
     }
 
-    static addEventsToElements(router) {
+    addEventsToElements(router) {
         LogMessage("Router: " + router);
 
         document.querySelector(".liders-page__previous-list-button").addEventListener("click", () => {
@@ -27,5 +28,10 @@ export default class LidersPage {
             liaderBoard.moveRight();
             liaderBoard.loadLiders();
         });
+    }
+
+    _drawLogin() {
+        const loginValueStr = "Логин: " + localStorage.getItem("loginValue");
+        document.querySelector(".liders-page__login-label").innerHTML = loginValueStr;
     }
 }

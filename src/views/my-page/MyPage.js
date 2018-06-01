@@ -4,29 +4,29 @@ import template from "./my-page.pug";
 import AjaxWorker from "../../modules/network/AjaxWorker";
 import AlertManager from "../../modules/render/AlertManager";
 import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import {pushDoubleMenuView} from "../../util/view-util";
 
 const FORMATS = ["JPEG", "JPG", "TIFF", "PSD", "BMP", "GIF", "PNG"];
 
 export default class MyPage {
     constructor() {
-        MyPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushDoubleMenuView(template());
     }
 
-    static addEventsToElements(router, elementsBase) {
+    addEventsToElements(router) {
         LogMessage("Router: " + router);
 
         document.querySelector(".form__save-changes-button").addEventListener("click", () => {
             const login = localStorage.getItem("loginValue");
-            const image = elementsBase.getElement("userAvatarImage").src;
+            const image = document.querySelector(".form__user-avatar-image").src;
 
             let fileName = null;
 
             try {
-                fileName = elementsBase.getElement("fileInputHiddenBtn").files[0].name + "";
+                fileName = document.querySelector(".form__file-button").files[0].name + "";
             } catch (err) {
                 // file error
             }
@@ -57,7 +57,7 @@ export default class MyPage {
             }).sendPost();
 
             promise.then(() => {
-                elementsBase.getElement("myPageMessageBox").innerHTML = "Сохранение прошло успешно.";
+                document.querySelector(".my-page__message-box").innerHTML = "Сохранение прошло успешно.";
                 new AlertManager().showAlertWindow("Сохранение прошло успешно.", () => {
                     // close window
                 });
@@ -65,20 +65,20 @@ export default class MyPage {
         });
 
         document.querySelector(".form__choose-image-button").addEventListener("click", () => {
-            elementsBase.getElement("fileInputHiddenBtn").click();
+            document.querySelector(".form__file-button").click();
         });
 
-        elementsBase.getElement("fileInputHiddenBtn").addEventListener("change", () => {
-            const file = elementsBase.getElement("fileInputHiddenBtn").files[0];
+        document.querySelector(".form__file-button").addEventListener("change", () => {
+            const file = document.querySelector(".form__file-button").files[0];
             const myReader = new FileReader();
             myReader.readAsDataURL(file);
             myReader.onload = (e) => {
-                const fileName = elementsBase.getElement("fileInputHiddenBtn").files[0].name + "";
+                const fileName = document.querySelector(".form__file-button").files[0].name + "";
                 const arr = fileName.split(".");
                 const type = arr[arr.length - 1].toUpperCase();
                 LogMessage("FileType: " + type);
                 if (FORMATS.indexOf(type) !== -1) {
-                    elementsBase.getElement("userAvatarImage").src = e.target.result;
+                    document.querySelector(".form__user-avatar-image").src = e.target.result;
                 }
             };
         });

@@ -13,23 +13,19 @@ export default class SignupFormValidator {
     /**
      * конструктор для инициализации переключателя страниц и словаря с DOM объектами
      * @param router - переключаетель страниц
-     * @param elementsBase - словарь
      */
-    constructor(router, elementsBase) {
+    constructor(router) {
         this.router = router;
-        this.elementsBase = elementsBase;
     }
 
     /**
      * метод для проверки валидности данных при регистрации и дальнейшей регистрации
      */
     validateSignupForm() {
-        const elementsBase = this.elementsBase;
+        const login = document.querySelector(".sign-up-page__form .form__login-input-field").value;
+        const password = document.querySelector(".sign-up-page__form .form__password-input-field").value;
 
-        const login = elementsBase.getElement("signUpLoginField").value;
-        const password = elementsBase.getElement("signUpPasswordField").value;
-
-        const messageBox = elementsBase.getElement("signUpMessageBox");
+        const messageBox = document.querySelector(".sign-up-page__message-box");
 
         // объект для вывода сообщений
         const render = new SingUpMessageRender(messageBox);

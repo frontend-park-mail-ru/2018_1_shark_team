@@ -1,12 +1,11 @@
 "use strict";
 
 export default class LiderBoardRender {
-    constructor(elementsBase) {
-        this.elementsBase = elementsBase;
+    constructor() {
     }
 
     clearBox() {
-        this.elementsBase.getElement("lidersBox").innerHTML = "";
+        // document.querySelector(".liders-page__liders-list-box").innerHTML = "";
     }
 
     writeArrContent(arr) {
@@ -20,7 +19,7 @@ export default class LiderBoardRender {
             tableContent += content.toString();
         });
         tableContent += "</table>";
-        this.elementsBase.getElement("lidersBox").innerHTML = tableContent;
+        document.querySelector(".liders-page__liders-list-box").innerHTML = tableContent;
     }
 
     writeEmptyListMessage() {
@@ -28,6 +27,6 @@ export default class LiderBoardRender {
         const h3 = document.createElement("h3");
         const text = document.createTextNode(content);
         h3.appendChild(text);
-        this.elementsBase.getElement("lidersBox").appendChild(h3);
+        document.querySelector(".liders-page__liders-list-box").appendChild(h3);
     }
 }

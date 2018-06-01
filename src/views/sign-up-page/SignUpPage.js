@@ -2,19 +2,19 @@
 
 import template from "./sign-up-page.pug";
 import SignupFormValidator from "../../modules/SignUp/service/SignupFormValidator";
+import {pushDoubleMenuView} from "../../util/view-util";
 
 export default class SignUpPage {
     constructor() {
-        SignUpPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushDoubleMenuView(template());
     }
 
-    static addEventsToElements(router, elementsBase) {
+    addEventsToElements(router) {
         document.querySelector(".form__sign-up-button").addEventListener("click", () => {
-            new SignupFormValidator(router, elementsBase).validateSignupForm();
+            new SignupFormValidator(router).validateSignupForm();
         });
     }
 }

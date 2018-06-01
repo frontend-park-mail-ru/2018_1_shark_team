@@ -12,11 +12,9 @@ export default class LoginFormValidator {
     /**
      * конструктор для инициализации переключателя страниц и словаря с DOM объектами
      * @param router - переключатель страниц
-     * @param elementsBase - словарь с DOM объектами
      */
-    constructor(router, elementsBase) {
+    constructor(router) {
         this.router = router;
-        this.elementsBase = elementsBase;
     }
 
     /**
@@ -24,12 +22,11 @@ export default class LoginFormValidator {
      */
     validateLoginForm() {
         const router = this.router;
-        const elementsBase = this.elementsBase;
 
-        const login = elementsBase.getElement("logInLoginField").value;
-        const password = elementsBase.getElement("logInPasswordField").value;
+        const login = document.querySelector(".log-in-page__form .form__login-input-field").value;
+        const password = document.querySelector(".log-in-page__form .form__password-input-field").value;
 
-        const messageBox = elementsBase.getElement("logInMessageBox");
+        const messageBox = document.querySelector(".log-in-page__message-box");
 
         // объект для отображения сообщений
         const render = new MessagesLogRender(messageBox);

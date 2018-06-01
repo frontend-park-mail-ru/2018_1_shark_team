@@ -1,17 +1,25 @@
 @import './../../global';
 
 .one-player-page__start-game-button {
-  @extend .button-field;
-  font-size: 2vw;
-  margin-left: 1vw;
-  margin-top: 2vh;
+  font-size: 256px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.3s ease-in-out;
 }
 
-.one-player-page__main-menu-button {
-  @extend .button-field;
-  font-size: 2vw;
-  margin-left: 1vw;
-  margin-top: 2vh;
+.one-player-page__start-game-button:hover {
+  transform: scale(1.2);
+}
+
+.one-player-page__start-game-button--restart {
+  position: fixed;
+  top: 128px;
+  right: 48px;
+  color: white;
+  font-size: 48px;
+  text-decoration: none;
+  z-index: 100;
 }
 
 .one-player-page__canvas-box {
@@ -20,6 +28,7 @@
   width: 900px;
   height: 600px;
   border: 1px solid black;
+  margin: auto;
 }
 
 .canvas-box__canvas-plain {

@@ -8,9 +8,8 @@ import LiderBoardRender from "./render/LiderBoardRender";
  * класс для работы с таблицей лидеров
  */
 class LiderBoardLoader {
-    initLiderBoard(elementsBase) {
-        this.elementsBase = elementsBase;
-        this.render = new LiderBoardRender(elementsBase);
+    initLiderBoard() {
+        this.render = new LiderBoardRender();
         this.render.clearBox();
         this.createLidersListParamSaver();
     }

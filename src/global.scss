@@ -4,19 +4,38 @@ html {
 }
 
 td {
-  padding: 1vh 1vw;
+  padding: 16px;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/MontserratAlternates-Medium.ttf");
 }
 
 body {
-  font-family: Geneva, Arial, Helvetica, sans-serif;
-  font-size: 3vw;
-  color: gold;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 36px;
+  color: #ffe7ce;
   padding: 0;
   background: #111a51;
 }
 
+h2 {
+  margin-top: 0;
+}
+
+p {
+  font-size: 24px;
+}
+
+.hidden {
+  display: none !important;
+}
+
 .content__message-content {
-  font-size: 2vw;
+  font-size: 16px;
 }
 
 .full-screen-box {
@@ -52,6 +71,15 @@ body {
   z-index: -123;
 }
 
+@keyframes bg-animation {
+  from {
+    transform: scale(1.1) rotate(-7deg);
+  }
+  to {
+    transform: scale(1.1) rotate(7deg);
+  }
+}
+
 .bg__background-picture {
   position: absolute;
   top: 0;
@@ -61,8 +89,9 @@ body {
   margin: auto;
   min-width: 50%;
   min-height: 50%;
-  -webkit-filter: brightness(0.5);
-  filter: brightness(0.5);
+  filter: blur(6px) brightness(0.3);
+  -webkit-filter: blur(6px) brightness(0.3);
+  animation: bg-animation 4s ease-in-out infinite alternate;
 }
 
 .center-box__title-image {
@@ -71,25 +100,44 @@ body {
 }
 
 .vertical-space {
-  padding-top: 2vh;
+  padding-top: 16px;
 }
 
 .text-field {
-  font-size: 3vw;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 30px;
   color: black;
-  padding: 1vw;
-  border: 1px solid black;
-  border-radius: 1vw;
+  padding: 16px;
+  border: 0;
+  border-radius: 8px;
   outline: none;
 }
 
-.button-field {
+.edit-field {
   @extend .text-field;
-  background-color: #ffb02c;
+  transition: box-shadow 0.15s;
+}
+
+.edit-field:hover {
+  box-shadow: 0 0 8px 4px white;
+}
+
+.edit-field:focus {
+  box-shadow: 0 0 8px 4px #ffb02c;
+}
+
+.menu-button {
+  color: #ffe7ce;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin: 0.3em 0;
   cursor: pointer;
-  max-width: 80%;
-  display: block;
+}
+
+.menu-button:hover {
+  color: #fff;
+  transform: rotate(5deg) scale(1.2);
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1);
 }
 
 a {
@@ -97,25 +145,58 @@ a {
   text-decoration: none;
 }
 
+.button-field {
+  @extend .text-field;
+  font-size: 26px;
+  background-color: #ffb02c;
+  cursor: pointer;
+  max-width: 80%;
+  transition: background-color ease-in-out 0.3s;
+}
+
+@keyframes button-field-pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 .button-field:hover {
-  background-color: #ffc723;
+  background-color: #ffd129;
+  animation: button-field-pulse 0.3s infinite alternate;
 }
 
 .content__ok-button {
   @extend .button-field;
   margin-top: 25px;
-  font-size: 2vw;
+  font-size: 16px;
 }
 
 .link-field {
-  color: white;
-  padding: 1vw;
-  cursor: pointer;
+  @extend .menu-button;
+  font-size: 24px;
 }
 
-.center-box {
-  width: 100%;
-  padding-bottom: 5vh;
-  padding-left: 0;
+#workspace {
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
+}
+
+#workspace-single-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#workspace-double-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

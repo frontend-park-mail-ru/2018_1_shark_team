@@ -13,11 +13,9 @@ export default class ReloadSpaPageManager {
     /**
      * конструктор для инициализации логина пользователя и словаря с DOM объектами
      * @param login - логин пользователя
-     * @param elementsBase - словарь с DOM объектами
      */
-    constructor(login, elementsBase) {
+    constructor(login) {
         this.login = login;
-        this.elementsBase = elementsBase;
     }
 
     /**
@@ -28,14 +26,14 @@ export default class ReloadSpaPageManager {
         ///////////////////////////////////
         const login = this.login;
         localStorage.setItem("loginValue", login);
-        drawLogins(login, this.elementsBase);
+        drawLogins(login);
         ///////////////////////////////////
 
         const way = window.location.pathname;
         LogMessage("Way way way way: " + way);
 
         if (way === "/my-page") {
-            const userAvatarLoader = new UserAvatarLoader(this.elementsBase, login);
+            const userAvatarLoader = new UserAvatarLoader(login);
             userAvatarLoader.loadAvatar();
         }
 
@@ -43,7 +41,7 @@ export default class ReloadSpaPageManager {
 
         if (way === "/liders-page") {
             const liaderBoard = getLiaderBoard();
-            liaderBoard.initLiderBoard(this.elementsBase);
+            liaderBoard.initLiderBoard();
             liaderBoard.initLiderBoardParams();
             liaderBoard.loadLiders();
             // print best result of current user

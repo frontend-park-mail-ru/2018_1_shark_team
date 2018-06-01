@@ -3,17 +3,17 @@
 import template from "./liders-page.pug";
 import getLiaderBoard from "../../modules/LiderBoard/LiderBoardLoader";
 import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import {pushSingleMenuView} from "../../util/view-util";
 
 export default class LidersPage {
     constructor() {
-        LidersPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushSingleMenuView(template());
     }
 
-    static addEventsToElements(router) {
+    addEventsToElements(router) {
         LogMessage("Router: " + router);
 
         document.querySelector(".liders-page__previous-list-button").addEventListener("click", () => {

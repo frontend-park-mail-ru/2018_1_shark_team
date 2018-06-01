@@ -1,0 +1,48 @@
+.double-menu {
+  width: 900px;
+  height: 600px;
+  margin: auto;
+  position: relative;
+
+  &__left {
+    width: 450px;
+    padding-right: 35px;
+  }
+
+  &__right {
+    width: 450px;
+    position: absolute;
+    top: 0;
+    left: 450px;
+    padding-top: 90px;
+  }
+}
+
+@keyframes instructions-roller-roll {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, -700px);
+  }
+}
+
+.instructions-roller__inner {
+  animation: instructions-roller-roll 20s ease-in-out infinite alternate;
+}
+
+.instructions-roller__page {
+  margin: 1em;
+}
+
+.instructions-roller__img {
+  box-shadow: 0 4px 11px 7px rgba(0, 0, 0, 0.35);
+  border-radius: 11px;
+}
+
+.instructions-roller__text {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-style: oblique;
+}

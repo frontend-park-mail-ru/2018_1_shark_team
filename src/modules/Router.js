@@ -2,8 +2,8 @@
 
 import AjaxWorker from "./network/AjaxWorker";
 import ReloadSpaPageManager from "./ReloadSpaPageManager";
-import MessagePrinter from "./render/MessagePrinter";
 import LogMessage from "../gameFiles/scripts/MessageLogger";
+import {depushViews} from "../util/view-util";
 
 /**
  * класс для реализации переключения страниц и роутинга
@@ -11,10 +11,8 @@ import LogMessage from "../gameFiles/scripts/MessageLogger";
 export default class Router {
     /**
      * конструктор для инициализации словаря с DOM - объектами, массива страниц и добавления события popState
-     * @param elementsBase
      */
-    constructor(elementsBase) {
-        this.elementsBase = elementsBase;
+    constructor() {
 
         this.listOfPages = [];
 
@@ -24,22 +22,14 @@ export default class Router {
     }
 
     /**
-     * метод для инициализации объекта, отвечающего за очистку полей ввода и боксов
-     * @param fieldsCleaner
-     */
-    initFieldsCleaner(fieldsCleaner) {
-        this.fieldsCleaner = fieldsCleaner;
-    }
-
-    /**
      * мето для добавления страницы в массив страниц
      * @param url - часть адресной строки, соответствующая странице
-     * @param page - DOM объект страница
+     * @param viewMakerFn - функция, которая создает экземпляр вью
      */
-    addPage(url, page) {
+    addPage(url, viewMakerFn) {
         this.listOfPages.push({
             url: url,
-            page: page
+            viewMakerFn: viewMakerFn
         });
     }
 
@@ -47,13 +37,7 @@ export default class Router {
      * метод для скрытия всех страниц и очистки полей ввода и вывода
      */
     hidePages() {
-        if (this.fieldsCleaner) {
-            this.fieldsCleaner.clearFields();
-        }
-
-        this.listOfPages.forEach((element) => {
-            element.page.hidden = true;
-        });
+        depushViews();
     }
 
     /**
@@ -78,15 +62,16 @@ export default class Router {
             }
         }
 
-        try {
-            currentPage.page.hidden = false;
-            return;
-        } catch (err) {
-            MessagePrinter.write("err");
+        if (!currentPage) {
+            const view = this.listOfPages[0].viewMakerFn();
+            view.render();
+            view.addEventsToElements(this);
+            history.pushState({}, "", this.listOfPages[0].url);
         }
 
-        this.listOfPages[0].page.hidden = false;
-        history.pushState({}, "", this.listOfPages[0].url);
+        const view = currentPage.viewMakerFn();
+        view.render();
+        view.addEventsToElements(this);
     }
 
     /**
@@ -116,7 +101,7 @@ export default class Router {
 
             if (result === "YES") {
                 LogMessage("Authorize YES");
-                new ReloadSpaPageManager(login, this.elementsBase).reloadSpa();
+                new ReloadSpaPageManager(login).reloadSpa();
                 this.printPage();
                 return;
             }

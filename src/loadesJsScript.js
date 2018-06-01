@@ -128,8 +128,8 @@
                                                     //////
                                                     getElement("loader-box").hidden = true;
                                                     getElement("bg").hidden = false;
-                                                    getElement("center-box").hidden = false;
-                                                    eval(jsCode);
+                                                    document.querySelector("#workspace").hidden = false;
+                                                    // eval(jsCode);
                                                     /////////////////////////////////////////////////////////////////////////////
                                                     /////////////////////////////////////////////////////////////////////////////
                                                 });

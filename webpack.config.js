@@ -10,7 +10,7 @@ module.exports = {
         path: __dirname + "/dest",
         filename: "bundle.js",
     },
-    devtool: "inline-source-map",
+    devtool: "source-map",
     devServer: {
         contentBase: "./dest",
     },
@@ -51,7 +51,7 @@ module.exports = {
             {from: "./**/*.+(html|ico|jpg|png|mp3|ttf)", to: ".", context: "src"},
             {from: "loadesJsScript.js", to: ".", context: "src"},
         ]),
-        new UglifyJsPlugin(),
+        new UglifyJsPlugin({sourceMap: true}),
         new ImageminPlugin({
             test: /\.(jpe?g|png|gif|svg)$/i
         }),

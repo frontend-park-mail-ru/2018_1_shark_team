@@ -1,22 +1,30 @@
-"use strict";
+import LogInPage from "../../views/log-in-page/LogInPage";
+import SignUpPage from "../../views/sign-up-page/SignUpPage";
+import MainMenuPage from "../../views/main-menu-page/MainMenuPage";
+import AboutAuthorsPage from "../../views/about-authors-page/AboutAuthorsPage";
+import GameRulesPage from "../../views/game-rules-page/GameRulesPage";
+import MyPage from "../../views/my-page/MyPage";
+import LidersPage from "../../views/liders-page/LidersPage";
+import OnePlayerPage from "../../views/one-player-page/OnePlayerPage";
+import MultiplayerPage from "../../views/multiplayer-page/MultiplayerPage";
+
 
 export default function initRouter(router) {
     const arr = [
-        ["/main-menu", ".main-menu-page"],
-        ["/log-in", ".log-in-page"],
-        ["/sign-up", ".sign-up-page"],
-        ["/about-authors", ".about-authors-page"],
-        ["/game-rules", ".game-rules-page"],
-        ["/my-page", ".my-page"],
-        ["/liders-page", ".liders-page"],
-        ["/one-player-page", ".one-player-page"],
-        ["/chat-page", ".chat-page"],
-        ["/multiplayer-page", ".multiplayer-page"],
+        ["/main-menu", () => new MainMenuPage()],
+        ["/log-in", () => new LogInPage()],
+        ["/sign-up", () => new SignUpPage()],
+        ["/about-authors", () => new AboutAuthorsPage()],
+        ["/game-rules", () => new GameRulesPage()],
+        ["/my-page", () => new MyPage()],
+        ["/liders-page", () => new LidersPage()],
+        ["/one-player-page", () => new OnePlayerPage()],
+        ["/multiplayer-page", () => new MultiplayerPage()],
     ];
 
     arr.forEach((mass) => {
-        const key = mass[0].toString();
-        const value = mass[1].toString();
-        router.addPage(key, document.querySelector(value));
+        const key = mass[0];
+        const value = mass[1];
+        router.addPage(key, value);
     });
 }

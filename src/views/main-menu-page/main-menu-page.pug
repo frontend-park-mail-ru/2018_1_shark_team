@@ -1,27 +1,11 @@
-.main-menu-page.double-menu(hidden)
-    .double-menu__left
-        h3(class="main-menu-page__label" hidden)
-        img.main-menu-page__logo(src="/images/FunnyRace_mini.png", height="100px")
-        div(class="")
-            a(href="/one-player-page", class="menu-button") Один игрок 👩
-            a(href="/multiplayer-page", class="menu-button") Мультиплеер 👯‍
-            a(href="/liders-page", class="menu-button") Список лидеров 🌎
-            a(href="/my-page", class="menu-button") Моя страница 🌚
-            a(href="/game-rules", class="menu-button") Описание игры 🎮
-            a(href="/about-authors", class="menu-button") Об авторах 👀
-            div(class="menu-button form__exit-button") Выход 🚀
+.main-menu-page
+    img.main-menu-page__logo(src="/images/FunnyRace_mini.png", height="100px")
+    p.main-menu-page__hi Привет, <span class="main-menu-page__label"></span>!
 
-    .double-menu__right.instructions-roller
-        .instructions-roller__inner
-            .instructions-roller__page
-                img.instructions-roller__img(src="/images/instructions/4.png")
-                .instructions-roller__text Управление:<br><b>W</b> — вверх ⬆️, <b>S</b> — вниз ⬇️
-            .instructions-roller__page
-                img.instructions-roller__img(src="/images/instructions/2.png")
-                .instructions-roller__text Не врезайтесь<br>в булыжники! 🙀😭❌
-            .instructions-roller__page
-                img.instructions-roller__img(src="/images/instructions/1.png")
-                .instructions-roller__text Стреляйте на <b>R</b> 💥
-            .instructions-roller__page
-                img.instructions-roller__img(src="/images/instructions/3.png")
-                .instructions-roller__text Собирайте жизни! 💖
+    a.menu-button(href="/one-player-page") Один игрок 👩
+    a.menu-button(href="/multiplayer-page") Мультиплеер 👯‍
+    a.menu-button(href="/liders-page") Список лидеров 🌎
+    a.menu-button(href="/my-page") Моя страница 🌚
+    a.menu-button(href="/game-rules") Описание игры 🎮
+    a.menu-button(href="/about-authors") Об авторах 👀
+    div.menu-button.form__exit-button Выход 🚀

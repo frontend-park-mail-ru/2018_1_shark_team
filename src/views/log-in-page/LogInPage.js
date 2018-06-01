@@ -2,19 +2,19 @@
 
 import template from "./log-in-page.pug";
 import LoginFormValidator from "../../modules/LogIn/service/LoginFormValidator";
+import {pushDoubleMenuView} from "../../util/view-util";
 
 export default class LogInPage {
     constructor() {
-        LogInPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushDoubleMenuView(template());
     }
 
-    static addEventsToElements(router, elementsBase) {
+    addEventsToElements(router) {
         document.querySelector(".form__log-in-button").addEventListener("click", () => {
-            new LoginFormValidator(router, elementsBase).validateLoginForm();
+            new LoginFormValidator(router).validateLoginForm();
         });
     }
 }

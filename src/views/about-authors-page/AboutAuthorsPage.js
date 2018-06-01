@@ -2,17 +2,17 @@
 
 import template from "./about-authors-page.pug";
 import LogMessage from "../../gameFiles/scripts/MessageLogger";
+import {pushDoubleMenuView} from "../../util/view-util";
 
 export default class AboutAuthorsPage {
     constructor() {
-        AboutAuthorsPage.render();
     }
 
-    static render() {
-        document.querySelector(".center-box").innerHTML += template();
+    render() {
+        pushDoubleMenuView(template());
     }
 
-    static addEventsToElements(router) {
+    addEventsToElements(router) {
         LogMessage("Router: " + router);
     }
 }

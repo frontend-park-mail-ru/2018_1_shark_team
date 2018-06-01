@@ -1,11 +1,11 @@
 @import './../../global';
 
 .form__login-input-field {
-  @extend .text-field;
+  @extend .edit-field;
 }
 
 .form__password-input-field {
-  @extend .text-field;
+  @extend .edit-field;
 }
 
 .form__log-in-button {
@@ -14,4 +14,5 @@
 
 .log-in-page__link-to-sign-up-page {
   @extend .link-field;
+  font-size: 30px;
 }

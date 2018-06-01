@@ -53,6 +53,7 @@
 </div>
 
 <div class="full-screen-box" hidden></div>
+
 <div class="alert-window" align="center" hidden>
     <div class="alert-window__content" align="center">
         <h3>Сообщение</h3>
@@ -64,16 +65,41 @@
     </div>
 </div>
 
-<div class="center-box" hidden>
-    <div hidden>
-        <img class="center-box__title-image" src="/images/FunnyRace_mini.png">
+<div id="workspace" hidden>
+    <div id="workspace-single-menu" hidden>
+    </div>
+
+    <div id="workspace-double-menu" hidden>
+        <div class="double-menu">
+            <div class="double-menu__left" id="workspace-double-menu-content">
+            </div>
+
+            <div class="double-menu__right instructions-roller">
+                <div class="instructions-roller__inner">
+                    <div class="instructions-roller__page">
+                        <img class="instructions-roller__img" src="/images/instructions/4.png">
+                        <div class="instructions-roller__text">Управление:<br><b>W</b> — вверх ⬆️, <b>S</b> — вниз ⬇️</div>
+                    </div>
+                    <div class="instructions-roller__page">
+                        <img class="instructions-roller__img" src="/images/instructions/2.png">
+                        <div class="instructions-roller__text">Не врезайтесь<br>в булыжники! 🙀😭❌</div>
+                    </div>
+                    <div class="instructions-roller__page">
+                        <img class="instructions-roller__img" src="/images/instructions/1.png">
+                        <div class="instructions-roller__text">Стреляйте на <b>R</b> 💥</div>
+                    </div>
+                    <div class="instructions-roller__page">
+                        <img class="instructions-roller__img" src="/images/instructions/3.png">
+                        <div class="instructions-roller__text">Собирайте жизни! 💖</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class = "script-box" hidden>
-    <!--
-        <script src = "/bundle.js"></script>
-    -->
+    <script src = "/bundle.js"></script>
 </div>
 
 </body>

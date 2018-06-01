@@ -17,9 +17,17 @@ td {
 body {
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 36px;
-  color: gold;
+  color: #ffe7ce;
   padding: 0;
   background: #111a51;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+p {
+  font-size: 24px;
 }
 
 .content__message-content {
@@ -92,21 +100,40 @@ body {
 }
 
 .text-field {
-  font-size: 16px;
-  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 30px;
   color: black;
   padding: 16px;
-  border: 1px solid black;
+  border: 0;
   border-radius: 8px;
   outline: none;
 }
 
-.button-field {
+.edit-field {
   @extend .text-field;
-  background-color: #ffb02c;
+  transition: box-shadow 0.15s;
+}
+
+.edit-field:hover {
+  box-shadow: 0 0 8px 4px white;
+}
+
+.edit-field:focus {
+  box-shadow: 0 0 8px 4px #ffb02c;
+}
+
+.menu-button {
+  color: #ffe7ce;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin: 0.3em 0;
   cursor: pointer;
-  max-width: 80%;
-  display: block;
+}
+
+.menu-button:hover {
+  color: #fff;
+  transform: rotate(5deg) scale(1.2);
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1);
 }
 
 a {
@@ -114,8 +141,28 @@ a {
   text-decoration: none;
 }
 
+.button-field {
+  @extend .text-field;
+  font-size: 26px;
+  background-color: #ffb02c;
+  cursor: pointer;
+  max-width: 80%;
+  display: block;
+  transition: background-color ease-in-out 0.3s;
+}
+
+@keyframes button-field-pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 .button-field:hover {
-  background-color: #ffc723;
+  background-color: #ffd129;
+  animation: button-field-pulse 0.3s infinite alternate;
 }
 
 .content__ok-button {
@@ -125,12 +172,11 @@ a {
 }
 
 .link-field {
-  color: white;
-  padding: 16px;
-  cursor: pointer;
+  @extend .menu-button;
+  font-size: 24px;
 }
 
-.center-box {
+#workspace {
   width: 100vw;
   height: 100vh;
   z-index: 1;

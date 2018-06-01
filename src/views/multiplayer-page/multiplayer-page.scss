@@ -16,13 +16,7 @@
 }
 
 .button-field-multiplayer {
-  @extend .text-field;
-  background-color: #ffb02c;
-  cursor: pointer;
-  max-width: 80%;
-  font-size: 16px;
-  margin-left: 16px;
-  margin-top: 16px;
+  @extend .button-field;
 }
 
 .multiplayer-page__start-game-finding-button {
